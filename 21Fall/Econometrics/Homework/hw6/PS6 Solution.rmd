@@ -1,0 +1,253 @@
+---
+title: "PS6 Solution"
+author: "Chunyu Qu"
+date: "Nov 1, 2021"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+library(plm)
+library(AER)
+library(car)
+```
+
+## 6.1
+ 
+***Answer***  
+  
+## Recap 5.4. Use the data in CARD.RAW  
+***a. Estimate a log(wage) equation by OLS with educ, exper, $exper^2$, black, south, smsa, reg661 through reg668, and smsa66 as explanatory variables. Compare your results with Table 2, Column (2) in Card (1995).***  
+
+```{r}
+# Run OLS
+CARD = read.csv("D:/Google Drive/Fordham/2019 Spring/AE/MITDataCSV/CARD.csv", header = TRUE)
+
+lm54a_ols = lm(lwage ~ educ + exper + expersq + black + south + smsa +reg661 + reg662 + reg663 + reg664 + reg665 + reg666 + reg667 + reg668+ smsa66, data=CARD)
+summary(lm54a_ols)
+```
+The estimated return to education is about 7.5%, with a very large t statistic. These reproduce the estimates from Table 2, Column (2) in Card (1995).  
+  
+***b. Estimate a reduced form equation for educ containing all explanatory variables from part a and the dummy variable nearc4. Do educ and nearc4 have a practically and statistically significant partial correlation? (See also Table 3, Column (1) in Card (1995).)***  
+
+```{r}
+# Run Reduced Form regression
+lm54b_rf = lm(educ ~ nearc4 + exper + expersq + black + south + smsa +reg661 + reg662 + reg663 + reg664 + reg665 + reg666 + reg667 + reg668+ smsa66, data=CARD)
+summary(lm54b_rf)
+```
+The important coefficient is on nearc4. Statistically, educ and nearc4 are partially correlated, and in a way that makes sense: holding other factors in the reduced form fixed, someone living near a four-year college at age 16 has, on average, almost one-third a year more education than a person not near a four-year college at age 16. This is not trivial a effect, so nearc4 passes the requirement that it is partially correlated with educ.  
+  
+***c. Estimate the log(wage) equation by IV, using nearc4 as an instrument for educ. Compare the 95 percent confidence interval for the return to education with that obtained from part a. (See also Table 3, Column (5) in Card (1995).)***  
+```{r}
+# Run IV regression
+lm54c_iv = ivreg(lwage ~ educ + exper + expersq + black + south + smsa +reg661 + reg662 + reg663 + reg664 + reg665 + reg666 + reg667 + reg668+ smsa66 | exper + expersq + black + south + smsa +reg661 + reg662 + reg663 + reg664 + reg665 + reg666 + reg667 + reg668+ smsa66+ nearc4, data=CARD)
+summary(lm54c_iv)
+```
+The estimated return to education has increased to about 13.2%, but notice how wide the 95% confidence interval is: 2.4% to 23.9%. By contrast, the OLS confidence interval is about 6.8% to 8.2%, which is much tighter. Of course, OLS could be inconsistent, in which case a tighter CI is of little value. But the estimated return to education is higher with IV, something that seems a bit counterintuitive.  
+One possible explanation is that educ suffers from classical errors-in-variables. Therefore, while OLS would tend to overestimate the return to schooling because of omitted "ability," classical measurement error in educ leads to an attenuation bias. Measurement error may help explain why the IV estimate is larger, but it is not entirely convincing. It seems unlikely that educ satisfies the CEV assumptions. For example, if we think the measurement error is due to truncation - people are asked about highest grade completed, not actual years of schooling -
+then educ is always less than or equal to educ???. And the measurement error could not be independent of educ???. If we think the mismeasurement is due to is unobserved quality of schooling, it seems likely that quality of schooling part of the measurement error is positively correlated with actual amount of schooling. This, too, violates the CEV assumptions.   
+Another possibility for the much higher IV estimate comes out of the recent treatment effect literature, which is covered in Section 21.4. Of course, we must also remember that the point estimates - particularly the IV estimate - are subject to substantial sampling variation. At this point, we do not even know of OLS and IV are statistically different from each other. See Problem 6.1.  
+  
+***d. Now use nearc2 along with nearc4 as instruments for educ. First estimate the reduced form for educ, and comment on whether nearc2 or nearc4 is more strongly related to educ. How do the 2SLS estimates compare with the earlier estimates?***  
+  
+```{r}
+# Run Reduced Form regression
+lm54d_rf = lm(educ ~ nearc2+ nearc4 + exper + expersq + black + south + smsa +reg661 + reg662 + reg663 + reg664 + reg665 + reg666 + reg667 + reg668+ smsa66, data=CARD)
+summary(lm54d_rf)
+# 2. Run IV regression
+lm54d_iv = ivreg(lwage ~ educ + exper + expersq + black + south + smsa +reg661 + reg662 + reg663 + reg664 + reg665 + reg666 + reg667 + reg668+ smsa66 | exper + expersq + black + south + smsa +reg661 + reg662 + reg663 + reg664 + reg665 + reg666 + reg667 + reg668+ smsa66+ nearc2+nearc4, data=CARD)
+summary(lm54d_iv)
+```
+When nearc2 is added to the reduced form of educ it has a coefficient (standard error) of .123 (.077), compared with .321 (.089) for nearc4. Therefore, nearc4 has a much stronger ceteris paribus relationship with educ; nearc2 is only marginally statistically significant once nearc4 has been included. The joint F test gives F ??? 7.89 with p-value ??? .004.  
+The 2SLS estimate of the return to education becomes about 15.7%, with 95% CI given by 5.4% to 26%. The CI is still very wide.  
+  
+## Now answer 6.1,  
+  
+***a. test the null hypothesis that educ is exogenous.***  
+ 
+***Answer***  
+  
+```{r}
+# Obtain estimated v2 and u1 first
+v2_hat = resid(lm54d_rf)
+u_hat1 = resid(lm54d_iv)
+
+lm61a = lm(lwage ~ educ + exper + expersq + black + south + smsa + reg661 + reg662 + reg663 + reg664 + reg665 + reg666 + reg667 + reg668 + smsa66 + v2_hat, data=CARD)
+summary(lm61a)
+```
+The t statistic on $\hat{v}_2$ is ???1.71, which is not significant at the 5% level against a two-sided alternative. The negative correlation between u1 and educ is essentially the same finding that the 2SLS estimated return to education is larger than the OLS estimate. In any case, I would call this marginal evidence that educ is endogenous. The quandary is that the OLS and 2SLS.  
+
+***b. Test the the single overidentifying restriction in this example.*** 
+ 
+***Answer***  
+  
+```{r}
+
+# Then we regress estimated u1 on all the variables with educ replacing by IVs
+lm61b = lm(u_hat1 ~ exper + expersq + black + south + smsa + reg661 + reg662 + reg663 + reg664 + reg665 + reg666 + reg667 + reg668 + smsa66 + nearc2 + nearc4, data=CARD)
+
+# Obtain R square value
+Rsq = summary(lm61b)$r.squared
+pchisq(Rsq * nrow(CARD), df=1, lower.tail=FALSE)
+```
+The test statistic is the sample size times the R-squared from this regression, or about 1.25. The p-value, obtained from chi-square distribution, is about .264, so the instruments pass the over identification test.  
+  
+
+## 6.2
+In Problem 5.8b, test the null hypothesis that educ and IQ are exogenous in the equation estimated by 2SLS.  
+
+ 
+***Answer***  
+  
+## Answer 5.8 a-b first 
+Consider a model with unobserved heterogeneity (q) and measurement error in
+an explanatory variable:
+$$y=\beta_0+\beta_1x_1+...+\beta_Kx_K^*+q+v$$
+where $e_K=x_K-x_K^*$  is the measurement error and we set the coefficient on q equal to one without loss of generality. The variable q might be correlated with any of the explanatory variables, but an indicator, $q_1=\delta_0+\delta_1 q+a_1$, is available. The measurement error $e_K$  might be correlated with the observed measure, $x_K$, In addition to $q_1$, you might also have variables $z_1,...z_M, M \ge2$, that are uncorrelated with $v,a_1,e_K$.  
+
+***a. Suggest an IV procedure for consistently estimating the $\beta_j$. Why is $M\ge2$ required? (Hint: Plug in $q_1$ for q and $x_K$ for $x_K^*$, and go from there.)***  
+  
+***Answer***  
+  
+Plug in the indicator $q_1$ for q and the measurement $x_K$ for $x_K^???$ , being sure to keep track of the errors:
+$$y=\gamma_0+\beta_1x_1+...+\beta_Kx_K+\gamma_1q_1+v-\beta_Ke_K+\gamma_1a_1$$
+$$=\gamma_0+\beta_1x_1+...+\beta_Kx_K+\gamma_1q_1+u$$
+where $\gamma_1=1/\delta_1$. Now, if the variables $z_1,...z_M$ are redundant in the structural equation (so they are uncorrelated with v), and uncorrelated with the measurement error $e_K$ and the indicator error $a_1$ we can use these as IVs for $x_K$ and $q_1$ in 2SLS.  
+We need $M\ge2$ because we have two explanatory variables, $x_q$ and $q_1$, that are possibly correlated with the composite error u.  
+  
+***b. Apply this method to the model estimated in Example 5.5, where actual education, say $educ^*$, plays the role of $x_K^{*}$ . Use IQ as the indicator of q=ability, and KWW, meduc, feduc, and sibs as the elements of z.***  
+  
+***Answer***  
+  
+```{r}
+# Read the data
+NLS80 = read.csv("D:/Google Drive/Fordham/2019 Spring/AE/MITDataCSV/NLS80.csv", header = TRUE)
+# Run the reduced forms
+lm_rd1 = lm(educ ~ exper + tenure + married + south + urban + black + kww + meduc + feduc + sibs, data=NLS80)
+v21_hat = resid(lm_rd1)
+length(NLS80$educ)
+length(v21_hat)
+# Since the lengths of the response variable and the predictor are not the same, there might be NA values in the data
+NLS80omit = na.omit(NLS80)
+# Run the regression again
+lm_rd1 = lm(educ ~ exper + tenure + married + south + urban + black + kww + meduc + feduc + sibs, data=NLS80omit)
+v21_hat = resid(lm_rd1)
+
+lm_rd2 = lm(iq ~ exper + tenure + married + south + urban + black + kww + meduc + feduc + sibs, data=NLS80omit)
+v22_hat = resid(lm_rd2)
+
+# Run the 2nd stage regression
+lm_2s = lm(lwage ~ exper + tenure + married + south + urban + black + educ + iq + v21_hat + v22_hat, data=NLS80omit)
+summary(lm_2s )
+```
+
+## Now work on 6.2 
+
+```{r}
+linearHypothesis(lm_2s , c("v21_hat=0", "v22_hat=0"))
+```
+Therefore, the test finds fairly strong evidence for endogeneity of at least one of educ and IQ, although this conclusion relies on the instruments being truly exogenous. If you look back at Problem 5.8, this IV solution did not seem to work very well. So we still do not know what should be treated as exogenous in this method.
+
+
+## 6.3
+
+Consider a model for individual data to test whether nutrition a¤ects productivity (in a developing country):
+$$log(produc)=\delta_0+\delta_1 exper + \delta_2^2exper^2+\delta_3educ+\alpha_1 calories +\alpha_2protein+u_1$$
+where produc is some measure of worker productivity, calories is caloric intake per day, and protein is a measure of protein intake per day. Assume here that exper,$exper^2$ and educ are all exogenous. The variables calories and protein are possibly correlated with $u_1$ (see Strauss and Thomas (1995) for discussion). Possible instrumental variables for calories and protein are regional prices of various goods, such as grains, meats, breads, dairy products, and so on.
+
+
+***a. Under what circumstances do prices make good IVs for calories and proteins? What if prices reflect quality of food?***  
+
+***Answer***  
+  
+We need prices to satisfy two requirements. First, calories and protein must be partially correlated with prices of food. While this is easy to test separately by estimating the two reduced forms, the rank condition could still be violated. (Problem 5.15c contains a sufficient condition for the rank condition to hold.) In addition, we must also assume prices are exogenous in the productivity equation. Ideally, prices vary because of things like transportation costs that are not systematically related to regional variations in individual productivity. A potential problem is that prices reflect food quality and that features of the food other than calories and protein appear in the disturbance u1.  
+  
+***b. How many prices are needed to identify equation (6.57)?***
+
+***Answer***  
+  
+Since there are two endogenous explanatory variables we need at least two prices.  
+  
+***c. Suppose we have M prices, p1; . . . ; pM. Explain how to test the null hypothesis that calories and protein are exogenous in equation (6.57).***
+
+***Answer***  
+  
+We would first estimate the two reduced forms for calories and protein by regressing
+each on a constant, exper,$exper^2$ and educ and the M prices $p_1, ... p_M$, we obtain $\hat{v_{21}},\hat{v_{22}}$. Then we would run the regression log(produc) on 1,exper,$exper^2$ and educ, $\hat{v_{21}},\hat{v_{22}}$, and do a joint significance test on $\hat{v_{21}},\hat{v_{22}}$. We could use a standard F test or use a heteroskedasticity-robust test.
+
+## 6.8
+The data in FERTIL1.RAW are a pooled cross section on more than a thousand U.S. women for the even years between 1972 and 1984, inclusive; the data set is similar to the one used by Sander (1992). These data can be used to study the relationship between women’s education and fertility.  
+  
+***a. Use OLS to estimate a model relating number of children ever born to a woman (kids) to years of education, age, region, race, and type of environment reared in. You should use a quadratic in age and should include year dummies. What is the estimated relationship between fertility and education? Holding other factors fixed, has there been any notable secular change in fertility over the time period?***
+
+***Answer***  
+  
+```{r}
+FERTIL1 = read.csv("D:/Google Drive/Fordham/2019 Spring/AE/MITDataCSV/FERTIL1.csv", header = TRUE)
+
+# Run the OLS
+lm68a= lm(kids ~ educ+age+agesq+black+east+northcen+west+farm+othrural+town+smcity+y74+y76+y78+y80+y82+y84, data = FERTIL1)
+summary(lm68a)
+```
+The estimate says that a women with about eight more years of education has about one fewer child (gotten from .128$times$8=1.024), other factors fixed. The coefficient is very statistically significant. Also, there has been a notable secular decline in fertility over this period: on average, with other factors held fixed, a women in 1984 had about half a child less -0.545 than a similar woman in 1972, the base year. The effect is also statistically significant with p-value=. 002.
+
+
+***b. Reestimate the model in part a, but use motheduc and fatheduc as instruments for educ. First check that these instruments are sufficiently partially correlated with educ. Test whether educ is in fact exogenous in the fertility equation.***
+
+***Answer***  
+  
+```{r}
+# Run the 1st stage reduced form for educ
+lm68b= lm(educ ~ age+agesq+black+east+northcen+west+farm+othrural+town+smcity+y74+y76+y78+y80+y82+y84+meduc+feduc, data = FERTIL1)
+summary(lm68b)
+```
+Then we test the partial correlation
+```{r}
+linearHypothesis(lm68b, c("meduc=0", "feduc=0"))
+```
+The joint F test shows that educ is significantly partially correlated with meduc and feduc; the t statistics also show this clearly. If we make the test robust to heteroskedasticity of unknown form, the F statistic drops to 131.37 but the p-value is still zero to four decimal places.  
+  
+To test the null that educ is exogenous, we need to reduced form residuals and then include them in the OLS regression. I suppress the output here:
+```{r}
+# Obtain estimated v2 
+v2_hat = resid(lm68b)
+
+lm_2nd = lm(kids ~ educ+age+agesq+black+east+northcen+west+farm+othrural+town+smcity+y74+y76+y78+y80+y82+y84+v2_hat, data = FERTIL1)
+summary(lm_2nd)
+```
+The t statistic on v2hat is . 702, so there is little evidence that educ is endogenous in the equation. Still, we can see if 2SLS produces very different estimates:
+
+```{r}
+# Generate the estimated educ
+educ_hat = fitted.values(lm68b)
+
+# Run the 2nd stage regression
+lm_2nd = lm(kids ~ educ_hat+age+agesq+black+east+northcen+west+farm+othrural+town+smcity+y74+y76+y78+y80+y82+y84, data = FERTIL1)
+summary(lm_2nd)
+```
+The estimated coefficient on educ is larger in magnitude than before, but the test for endogeneity shows that we can reasonably attribute the difference between OLS and 2SLS to sampling error.  
+  
+***c. Now allow the effect of education to change over time by including interaction terms such as y74educ, y76educ, and so on in the model. Use interactions of time dummies and parents’ education as instruments for the interaction terms. Test that there has been no change in the relationship between fertility and education over time.***  
+
+***Answer***  
+  
+Since there is little evidence that educ is endogenous, we could just use OLS. I did it both ways. First, I just added interactions y74educ, y76educ, ..., y84educ to the model in part a and used OLS. 
+```{r}
+lm_68c1 = lm(kids ~ educ+age+agesq+black+east+northcen+west+farm+othrural+town+smcity+y74+y76+y78+y80+y82+y84+y74educ+y76educ+y78educ+y80educ+y82educ+y84educ, data = FERTIL1)
+summary(lm_68c1)
+```
+
+Some of the interactions, particularly in the last two years, are marginally significant and negative, showing that the effect of education has become stronger over time. 
+```{r}
+linearHypothesis(lm_68c1, c("y74educ=0", "y76educ=0", "y78educ=0", "y80educ=0", "y82educ=0", "y84educ=0"))
+```
+But the joint F test for the interaction terms yields p-value =. 180, and so we do not reject the model without the interactions. Still, the possibility that the link between fertility and education has become stronger over time is deserves attention, especially using more recent data.  
+
+```{r}
+lm_68c2= ivreg(kids ~ age+agesq+black+east+northcen+west+farm+othrural+town+smcity+educ+y74+y76+y78+y80+y82+y84+y74educ+y76educ+y78educ+y80educ+y82educ+y84educ | age+agesq+black+east+northcen+west+farm+othrural+town+smcity+y74+y76+y78+y80+y82+y84+meduc+feduc+y74meduc+y76meduc+y78meduc+y80meduc+y82meduc+y84meduc+y74feduc+y76feduc+y78feduc+y80feduc+y82feduc+y84feduc, data = FERTIL1)
+summary(lm_68c2)
+```
+Then test 
+```{r}
+linearHypothesis(lm_68c2, c("y74educ=0", "y76educ=0", "y78educ=0", "y80educ=0", "y82educ=0", "y84educ=0"))
+```
+Qualitatively, the results are similar to the OLS estimates. The p-value for the joint F test on the interactions is 0.204, which has asymptotic justification under Assumption 2SLS.3, the homoskedasticity assumption - so again there is no strong evidence favoring including of the interactions of year dummies and education.

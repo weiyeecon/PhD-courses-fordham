@@ -1,0 +1,506 @@
+%EX TS-program = pdflatex
+% !TEX encoding = UTF-8 Unicode
+
+% This is a simple template for a LaTeX document using the "article" class.
+% See "book", "report", "letter" for other types of document.
+
+\documentclass[11pt]{article} % use larger type; default would be 10pt
+
+\usepackage[utf8]{inputenc} % set input encoding (not needed with XeLaTeX)
+
+%%% Examples of Article customizations
+% These packages are optional, depending whether you want the features they provide.
+% See the LaTeX Companion or other references for full information.
+\usepackage{amsmath}
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+	\hskip -\arraycolsep
+	\let\@ifnextchar\new@ifnextchar
+	\array{#1}}
+\makeatother
+
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+%%% PAGE DIMENSIONS
+\usepackage{geometry} % to change the page dimensions
+\usepackage{listings}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{marvosym}
+\geometry{a4paper} % or letterpaper (US) or a5paper or....
+% \geometry{margin=2in} % for example, change the margins to 2 inches all round
+% \geometry{landscape} % set up the page for landscape
+%   read geometry.pdf for detailed page layout information
+
+\usepackage{graphicx} % support the \includegraphics command and options
+% \usepackage[parfill]{parskip} % Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{amssymb}
+%%% PACKAGES
+\usepackage{booktabs} % for much better looking tables
+\usepackage{array} % for better arrays (eg matrices) in maths
+\usepackage{paralist} % very flexible & customisable lists (eg. enumerate/itemize, etc.)
+\usepackage{verbatim} % adds environment for commenting out blocks of text & for better verbatim
+\usepackage{subfig} % make it possible to include more than one captioned figure/table in a single float
+% These packages are all incorporated in the memoir class to one degree or another...
+\usepackage{pgfplots}
+%%% HEADERS & FOOTERS
+\usepackage{fancyhdr} % This should be set AFTER setting up the page geometry
+\pagestyle{fancy} % options: empty , plain , fancy
+\renewcommand{\headrulewidth}{0pt} % customise the layout...
+\lhead{}\chead{}\rhead{}
+\lfoot{}\cfoot{\thepage}\rfoot{}
+
+%%% SECTION TITLE APPEARANCE
+\usepackage{sectsty}
+\allsectionsfont{\sffamily\mdseries\upshape} % (See the fntguide.pdf for font help)
+% (This matches ConTeXt defaults)
+\usepackage[thinc]{esdiff}
+\usepackage{bbold}
+\usepackage{MnSymbol,wasysym}
+%%% ToC (table of contents) APPEARANCE
+\usepackage[nottoc,notlof,notlot]{tocbibind} % Put the bibliography in the ToC
+\usepackage[titles,subfigure]{tocloft} % Alter the style of the Table of Contents
+\renewcommand{\cftsecfont}{\rmfamily\mdseries\upshape}
+\renewcommand{\cftsecpagefont}{\rmfamily\mdseries\upshape} % No bold!
+
+%%% END Article customizations
+
+%%% The "real" document content comes below...
+
+\title{Homework 6}
+\author{Wei Ye\footnote{ 1st year PhD student in Economics Department at Fordham University. Email: wye22@fordham.edu}
+    \\ ECON 7910- Econometrics I}
+\date{Due on Oct 28, 2021}
+\begin{document}
+\maketitle
+
+\section{Question 1 -- 6.1}
+\textbf{Solution:}
+\begin{enumerate}[a)]
+    \item From the reduced form regression, nearc4 is more correlated with educ, becasue not only it has higher coeffficient, but with higher confidence level We
+            reject our null hypothesis: the coefficient of of nearc4 is 0.
+
+            See the table 2, they are completely same with regarding to coefficients and confidence levels.
+    \item  From the result of Chi square, it pass the overidentification test.
+\end{enumerate}
+
+\begin{lstlisting}{language=R}
+    library(tidyverse)
+    library(stargazer)
+    library(AER)
+    library(plm)
+    #
+    
+    #6.1 parta
+    card <- read_csv('card.csv')
+    head(card,n=5)
+    iv1 <- ivreg(lwage~exper+expersq+black+south+smsa+reg661+educ|exper+expersq+
+                   black+south+smsa66+reg661+reg662+reg663+reg664+reg665+reg666+reg667+
+                   reg668+nearc2+nearc4,data=card)
+    summary(iv1)
+    olseduc <- lm(educ~exper+expersq+black+south+smsa+reg661+nearc2+nearc4,
+                  data=card)
+    summary(olseduc)
+    educhat <- fitted.values(olseduc)
+    olslwage <- lm(lwage~exper+expersq+black+south+smsa+reg661+educhat,data=card)
+    summary(olslwage)
+    stargazer(iv1,olslwage)
+    stargazer(olseduc)
+    
+    #6.1 part b
+    u_hat1 <- resid(iv1)
+    # Then we regress estimated u1 on all the variables with educ replacing by IVs
+    lm61b = lm(u_hat1 ~ exper + expersq + black + south + smsa + reg661 + reg662 + reg663 + reg664 + reg665 + reg666 + reg667 + reg668 + smsa66 + nearc2 + nearc4, data=card)
+    
+    # Obtain R square value
+    Rsq = summary(lm61b)$r.squared
+    pchisq(Rsq * nrow(card), df=1, lower.tail=FALSE)
+
+
+\end{lstlisting}
+
+
+
+\section{Question 2 -- 6.2}
+\textbf{Solution:}
+
+From the test, we can hold strong opinion that there exists exogeneity between these two variables.
+
+\begin{lstlisting}{language=R}
+
+#6.3
+# Read the data
+NLS80 = read_csv("NLS80.csv")
+# Run the reduced forms
+lm_rd1 = lm(educ ~ exper + tenure + married + south + urban + black + kww + meduc + feduc + sibs, data=NLS80)
+v21_hat = resid(lm_rd1)
+length(NLS80$educ)
+length(v21_hat)
+# Since the lengths of the response variable and the predictor are not the same, there might be NA values in the data
+NLS80omit = na.omit(NLS80)
+# Run the regression again
+lm_rd1 = lm(educ ~ exper + tenure + married + south + urban + black + kww + meduc + feduc + sibs, data=NLS80omit)
+v21_hat = resid(lm_rd1)
+
+lm_rd2 = lm(iq ~ exper + tenure + married + south + urban + black + kww + meduc + feduc + sibs, data=NLS80omit)
+v22_hat = resid(lm_rd2)
+
+# Run the 2nd stage regression
+lm_2s = lm(lwage ~ exper + tenure + married + south + urban + black + educ + iq + v21_hat + v22_hat, data=NLS80omit)
+summary(lm_2s )
+
+linearHypothesis(lm_2s , c("v21_hat=0", "v22_hat=0"))
+\end{lstlisting}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\section{Question 3 -- 6.3}
+\textbf{Solution:}
+\begin{enumerate}[a)]
+    \item Price is correlated with calories and protein, but uncorrelated with $u_1$.
+    \item two unknown variable calaories, and protein, thus, we at least need 2 equations.
+    \item We would first estimate the two reduced forms for calories and protein by regressing
+    each on a constant, exper,$exper^2$ and educ and the M prices $p_1, ... p_M$, we obtain $\hat{v_{21}},\hat{v_{22}}$. Then we would run the regression log(produc) on 1,exper,$exper^2$ and educ, $\hat{v_{21}},\hat{v_{22}}$, and do a joint significance test on $\hat{v_{21}},\hat{v_{22}}$. We could use a standard F test or use a heteroskedasticity-robust test.
+\end{enumerate}
+
+
+\section{Question -- 6.8}
+\textbf{Solution:}
+\begin{enumerate}[a)]
+    \item The estimate says that a women with about eight more years of education has about one fewer child, while keeping other factors fixed. The coefficient is also very statistically significant.  There has been a notable secular decline in fertility over this period: on average, with other factors held fixed, a women in 1984 had about half a child less -0.545 than a similar woman in 1972, the base year. The effect is also statistically significant with p-value=. 002.
+    \item Yes, they are partially correlated with edu. 
+    \item t-value on $\hat{v_2}$ is .702, which means there is nearly no evidence that educ is endogeneous. ```
+    The estimated coefficient on educ is larger in magnitude than before, but the test for endogeneity shows that we can reasonably attribute the difference between OLS and 2SLS to sampling error. 
+    \item \begin{itemize}
+        \item Since there is little evidence that educ is endogenous, we could just use OLS. I did it both ways. First, I just added interactions y74educ, y76educ, ..., y84educ to the model in part a and used OLS.
+        \item Some of the interactions, particularly in the last two years, are marginally significant and negative, showing that the effect of education has become stronger over time. 
+        \item But the joint F test for the interaction terms yields p-value =. 180, and so we do not reject the model without the interactions. Still, the possibility that the link between fertility and education has become stronger over time is deserves attention, especially using more recent data.  
+        \item Qualitatively, the results are similar to the OLS estimates. The p-value for the joint F test on the interactions is 0.204, which has asymptotic justification under Assumption 2SLS.3, the homoskedasticity assumption - so again there is no strong evidence favoring including of the interactions of year dummies and education.
+    \end{itemize}
+\end{enumerate}
+
+\begin{lstlisting}[language=R]
+
+    ##partc
+    lm_68c1 = lm(kids ~ educ+age+agesq+black+east+northcen+west+farm+othrural+town+smcity+y74+y76+y78+y80+y82+y84+y74educ+y76educ+y78educ+y80educ+y82educ+y84educ, data = FERTIL1)
+    summary(lm_68c1)
+    
+    linearHypothesis(lm_68c1, c("y74educ=0", "y76educ=0", "y78educ=0", "y80educ=0", "y82educ=0", "y84educ=0"))
+    
+    lm_68c2= ivreg(kids ~ age+agesq+black+east+northcen+west+farm+othrural+town+smcity+educ+y74+y76+y78+y80+y82+y84+y74educ+y76educ+y78educ+y80educ+y82educ+y84educ | age+agesq+black+east+northcen+west+farm+othrural+town+smcity+y74+y76+y78+y80+y82+y84+meduc+feduc+y74meduc+y76meduc+y78meduc+y80meduc+y82meduc+y84meduc+y74feduc+y76feduc+y78feduc+y80feduc+y82feduc+y84feduc, data = FERTIL1)
+    summary(lm_68c2)
+    
+    linearHypothesis(lm_68c2, c("y74educ=0", "y76educ=0", "y78educ=0", "y80educ=0", "y82educ=0", "y84educ=0"))
+
+\end{lstlisting}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\appendix
+\setcounter{secnumdepth}{0}
+\section{Appendix}
+
+\begin{table}[!htbp] \centering 
+    \caption{6.1 Reduced Form of Educ} 
+    \label{} 
+  \begin{tabular}{@{\extracolsep{5pt}}lc} 
+  \\[-1.8ex]\hline 
+  \hline \\[-1.8ex] 
+   & \multicolumn{1}{c}{\textit{Dependent variable:}} \\ 
+  \cline{2-2} 
+  \\[-1.8ex] & educ \\ 
+  \hline \\[-1.8ex] 
+   exper & $-$0.410$^{***}$ \\ 
+    & (0.034) \\ 
+    & \\ 
+   expersq & 0.001 \\ 
+    & (0.002) \\ 
+    & \\ 
+   black & $-$1.013$^{***}$ \\ 
+    & (0.090) \\ 
+    & \\ 
+   south & $-$0.279$^{***}$ \\ 
+    & (0.080) \\ 
+    & \\ 
+   smsa & 0.389$^{***}$ \\ 
+    & (0.086) \\ 
+    & \\ 
+   reg661 & $-$0.006 \\ 
+    & (0.171) \\ 
+    & \\ 
+   nearc2 & 0.108 \\ 
+    & (0.073) \\ 
+    & \\ 
+   nearc4 & 0.331$^{***}$ \\ 
+    & (0.083) \\ 
+    & \\ 
+   Constant & 16.623$^{***}$ \\ 
+    & (0.178) \\ 
+    & \\ 
+  \hline \\[-1.8ex] 
+  Observations & 3,010 \\ 
+  R$^{2}$ & 0.475 \\ 
+  Adjusted R$^{2}$ & 0.473 \\ 
+  Residual Std. Error & 1.942 (df = 3001) \\ 
+  F Statistic & 339.192$^{***}$ (df = 8; 3001) \\ 
+  \hline 
+  \hline \\[-1.8ex] 
+  \textit{Note:}  & \multicolumn{1}{r}{$^{*}$p$<$0.1; $^{**}$p$<$0.05; $^{***}$p$<$0.01} \\ 
+  \end{tabular} 
+  \end{table} 
+
+
+
+
+
+
+
+
+
+\begin{table}[!htbp] \centering 
+    \caption{6.1: OLS w/ educhat and 2SLS comparison} 
+    \label{} 
+  \begin{tabular}{@{\extracolsep{5pt}}lcc} 
+  \\[-1.8ex]\hline 
+  \hline \\[-1.8ex] 
+   & \multicolumn{2}{c}{\textit{Dependent variable:}} \\ 
+  \cline{2-3} 
+  \\[-1.8ex] & \multicolumn{2}{c}{lwage} \\ 
+  \\[-1.8ex] & \textit{instrumental} & \textit{OLS} \\ 
+   & \textit{variable} & \textit{} \\ 
+  \\[-1.8ex] & (1) & (2)\\ 
+  \hline \\[-1.8ex] 
+   exper & 0.122$^{***}$ & 0.122$^{***}$ \\ 
+    & (0.021) & (0.021) \\ 
+    & & \\ 
+   expersq & $-$0.002$^{***}$ & $-$0.002$^{***}$ \\ 
+    & (0.0004) & (0.0003) \\ 
+    & & \\ 
+   black & $-$0.100$^{*}$ & $-$0.100$^{*}$ \\ 
+    & (0.053) & (0.051) \\ 
+    & & \\ 
+   south & $-$0.100$^{***}$ & $-$0.100$^{***}$ \\ 
+    & (0.024) & (0.023) \\ 
+    & & \\ 
+   smsa & 0.112$^{***}$ & 0.112$^{***}$ \\ 
+    & (0.031) & (0.030) \\ 
+    & & \\ 
+   reg661 & $-$0.107$^{***}$ & $-$0.107$^{***}$ \\ 
+    & (0.036) & (0.035) \\ 
+    & & \\ 
+   educ & 0.166$^{***}$ &  \\ 
+    & (0.049) &  \\ 
+    & & \\ 
+   educhat &  & 0.166$^{***}$ \\ 
+    &  & (0.047) \\ 
+    & & \\ 
+   Constant & 3.190$^{***}$ & 3.190$^{***}$ \\ 
+    & (0.827) & (0.798) \\ 
+    & & \\ 
+  \hline \\[-1.8ex] 
+  Observations & 3,010 & 3,010 \\ 
+  R$^{2}$ & 0.130 & 0.191 \\ 
+  Adjusted R$^{2}$ & 0.128 & 0.189 \\ 
+  Residual Std. Error (df = 3002) & 0.414 & 0.400 \\ 
+  F Statistic &  & 101.156$^{***}$ (df = 7; 3002) \\ 
+  \hline 
+  \hline \\[-1.8ex] 
+  \textit{Note:}  & \multicolumn{2}{r}{$^{*}$p$<$0.1; $^{**}$p$<$0.05; $^{***}$p$<$0.01} \\ 
+  \end{tabular} 
+  \end{table} 
+
+
+
+
+  \begin{table}[!htbp] \centering 
+    \caption{6.8 Regression Results between 2SLS and OLS} 
+    \label{} 
+  \begin{tabular}{@{\extracolsep{5pt}}lcc} 
+  \\[-1.8ex]\hline 
+  \hline \\[-1.8ex] 
+   & \multicolumn{2}{c}{\textit{Dependent variable:}} \\ 
+  \cline{2-3} 
+  \\[-1.8ex] & kids & educ \\ 
+  \\[-1.8ex] & (1) & (2)\\ 
+  \hline \\[-1.8ex] 
+   educ & $-$0.128$^{***}$ &  \\ 
+    & (0.018) &  \\ 
+    & & \\ 
+   age & 0.532$^{***}$ & $-$0.224 \\ 
+    & (0.138) & (0.200) \\ 
+    & & \\ 
+   agesq & $-$0.006$^{***}$ & 0.003 \\ 
+    & (0.002) & (0.002) \\ 
+    & & \\ 
+   black & 1.076$^{***}$ & 0.367 \\ 
+    & (0.174) & (0.252) \\ 
+    & & \\ 
+   east & 0.217 & 0.249 \\ 
+    & (0.133) & (0.192) \\ 
+    & & \\ 
+   northcen & 0.363$^{***}$ & 0.091 \\ 
+    & (0.121) & (0.176) \\ 
+    & & \\ 
+   west & 0.198 & 0.101 \\ 
+    & (0.167) & (0.242) \\ 
+    & & \\ 
+   farm & $-$0.053 & $-$0.379$^{*}$ \\ 
+    & (0.147) & (0.214) \\ 
+    & & \\ 
+   othrural & $-$0.163 & $-$0.561$^{**}$ \\ 
+    & (0.175) & (0.255) \\ 
+    & & \\ 
+   town & 0.084 & 0.062 \\ 
+    & (0.125) & (0.181) \\ 
+    & & \\ 
+   smcity & 0.212 & 0.081 \\ 
+    & (0.160) & (0.232) \\ 
+    & & \\ 
+   y74 & 0.268 & 0.006 \\ 
+    & (0.173) & (0.250) \\ 
+    & & \\ 
+   y76 & $-$0.097 & 0.124 \\ 
+    & (0.179) & (0.259) \\ 
+    & & \\ 
+   y78 & $-$0.069 & 0.208 \\ 
+    & (0.182) & (0.263) \\ 
+    & & \\ 
+   y80 & $-$0.071 & 0.383 \\ 
+    & (0.183) & (0.264) \\ 
+    & & \\ 
+   y82 & $-$0.522$^{***}$ & 0.582$^{**}$ \\ 
+    & (0.172) & (0.249) \\ 
+    & & \\ 
+   y84 & $-$0.545$^{***}$ & 0.425$^{*}$ \\ 
+    & (0.175) & (0.253) \\ 
+    & & \\ 
+   meduc &  & 0.172$^{***}$ \\ 
+    &  & (0.022) \\ 
+    & & \\ 
+   feduc &  & 0.207$^{***}$ \\ 
+    &  & (0.025) \\ 
+    & & \\ 
+   Constant & $-$7.742$^{**}$ & 13.633$^{***}$ \\ 
+    & (3.052) & (4.397) \\ 
+    & & \\ 
+  \hline \\[-1.8ex] 
+  Observations & 1,129 & 1,129 \\ 
+  R$^{2}$ & 0.130 & 0.287 \\ 
+  Adjusted R$^{2}$ & 0.116 & 0.275 \\ 
+  Residual Std. Error & 1.555 (df = 1111) & 2.247 (df = 1110) \\ 
+  F Statistic & 9.723$^{***}$ (df = 17; 1111) & 24.815$^{***}$ (df = 18; 1110) \\ 
+  \hline 
+  \hline \\[-1.8ex] 
+  \textit{Note:}  & \multicolumn{2}{r}{$^{*}$p$<$0.1; $^{**}$p$<$0.05; $^{***}$p$<$0.01} \\ 
+  \end{tabular} 
+  \end{table} 
+
+\end{document}

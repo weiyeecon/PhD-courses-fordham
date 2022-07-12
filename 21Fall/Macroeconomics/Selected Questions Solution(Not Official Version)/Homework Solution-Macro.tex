@@ -1,0 +1,348 @@
+%EX TS-program = pdflatex
+% !TEX encoding = UTF-8 Unicode
+
+% This is a simple template for a LaTeX document using the "article" class.
+% See "book", "report", "letter" for other types of document.
+
+\documentclass[11pt]{article} % use larger type; default would be 10pt
+
+\usepackage[utf8]{inputenc} % set input encoding (not needed with XeLaTeX)
+
+%%% Examples of Article customizations
+% These packages are optional, depending whether you want the features they provide.
+% See the LaTeX Companion or other references for full information.
+\usepackage{amsmath}
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+	\hskip -\arraycolsep
+	\let\@ifnextchar\new@ifnextchar
+	\array{#1}}
+\makeatother
+
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+%%% PAGE DIMENSIONS
+\usepackage{geometry} % to change the page dimensions
+\usepackage{marvosym}
+\geometry{a4paper} % or letterpaper (US) or a5paper or....
+% \geometry{margin=2in} % for example, change the margins to 2 inches all round
+% \geometry{landscape} % set up the page for landscape
+%   read geometry.pdf for detailed page layout information
+\usepackage{hyperref}
+\usepackage{graphicx} % support the \includegraphics command and options
+% \usepackage[parfill]{parskip} % Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{amssymb}
+%%% PACKAGES
+\usepackage{booktabs} % for much better looking tables
+\usepackage{array} % for better arrays (eg matrices) in maths
+\usepackage{paralist} % very flexible & customisable lists (eg. enumerate/itemize, etc.)
+\usepackage{verbatim} % adds environment for commenting out blocks of text & for better verbatim
+\usepackage{subfig} % make it possible to include more than one captioned figure/table in a single float
+% These packages are all incorporated in the memoir class to one degree or another...
+\usepackage{pgfplots}
+%%% HEADERS & FOOTERS
+\usepackage{fancyhdr} % This should be set AFTER setting up the page geometry
+\pagestyle{fancy} % options: empty , plain , fancy
+\renewcommand{\headrulewidth}{0pt} % customise the layout...
+\lhead{}\chead{}\rhead{}
+\lfoot{}\cfoot{\thepage}\rfoot{}
+
+%%% SECTION TITLE APPEARANCE
+\usepackage{sectsty}
+\allsectionsfont{\sffamily\mdseries\upshape} % (See the fntguide.pdf for font help)
+% (This matches ConTeXt defaults)
+\usepackage[thinc]{esdiff}
+\usepackage{bbold}
+\usepackage{MnSymbol,wasysym}
+%%% ToC (table of contents) APPEARANCE
+\usepackage[nottoc,notlof,notlot]{tocbibind} % Put the bibliography in the ToC
+\usepackage[titles,subfigure]{tocloft} % Alter the style of the Table of Contents
+\renewcommand{\cftsecfont}{\rmfamily\mdseries\upshape}
+\renewcommand{\cftsecpagefont}{\rmfamily\mdseries\upshape} % No bold!
+
+%%% END Article customizations
+
+%%% The "real" document content comes below...
+
+\title{Homework Solution-Selected Questions}
+\author{Wei Ye\footnote{ 1st year PhD student in Economics Department at Fordham University. Email: wye22@fordham.edu}
+    \\ Macroeconomics 1}
+\date{2021 Fall, no due date}
+
+\begin{document}
+	\maketitle
+Macroeconomics 1 at Fordham University is not hard, and so for homework. Professor Moore gave us a bunch of questions and there was no need to submit. 
+He also gave us solutions in scan version(bad), which is not a good reference for future students. I will select some questions from the questions sheet and do them by myself.
+All errors are my own. My principle is for questions with same logistics, I only do one. 
+
+\section{Simple models of rational expectations equilibrium}
+\begin{enumerate}
+    \item
+    \begin{enumerate}
+    \item Since this geometric series has infinite terms, thus: \begin{equation*}
+        1+\beta+\beta^2+\beta^3+...=\frac{1}{1-\beta}
+    \end{equation*}
+    \item This geometric series has \textbf{finite} terms, thus:
+        \begin{equation*}
+            1+\beta+\beta^2+\beta^3+...+\beta^N=\frac{1-\beta^{N+1}}{1-\beta}
+        \end{equation*}
+    \item This question is a little tricky, but it still can be solvable:
+    \begin{align*}
+        \sum_{j=0}^\infty \beta^j j&= 0+\beta+\beta^2+3\beta^3+...\\
+                &=\beta(1+2\beta+3\beta^2+4\beta^3+...)\\
+                &=\beta((1+\beta+\beta^2+\beta^3+...)+(\beta+\beta^2+\beta^3+\beta^4)+(\beta^2+\beta^3+...)+...)\\
+                &=\beta((1+\beta+\beta^2+\beta^3+...)+\beta(1+\beta+\beta^2+...)+\beta^2(1+\beta+\beta^2+\beta^3+...)+...)\\
+                &=\beta((1+\beta+\beta^2+...)(1+\beta+\beta^2+...))\\
+                &=\beta(\frac{1}{1-\beta}\cdot \frac{1}{1-\beta})\\
+                &=\frac{\beta}{(1-\beta)^2}
+    \end{align*}
+    The crucial part of this question is to eliminate j and turn geometric series into what we are familar with like (a) or (b). 
+    \end{enumerate}
+
+    \item This question is backward question\footnote{Actually, it's not. I assumed it's a backward question, but when I solved this quesiton, it violates the condition of backward question. So it should be classified as forward question. Yes, we are exploring from wrong assumption, then correct it. Good! One more, I forgot $E_t$ when I first tried this question. We are not prophet, we don't have exact information about furture, if so, we would be billionaire. So, we use Expecation to express 
+    we would happen at current period given the information we have had. In mathematics, the information is called filtration. }, I will solve it in a different method with what we learnt in class. In my way, you don't memorize any formulas derived in class, just make some simple computations. Let's go!
+    \begin{enumerate}
+        \item The equation means next period real assets is positively related to this periods assets plut its associated real interests, and current income, kicking off current period of consumption. From cash flow perspective,
+         it's total cash inflow minus total cash outflow.
+        \item Derive the equation directly:
+            \begin{equation*}
+                (1-(1+r)L)a_{t+1}=y_t-c_t
+            \end{equation*}
+        Thus:
+            \begin{equation*}
+                a_{t+1}= (\frac{1}{1-(1+r)L})(y_t-c_t)
+            \end{equation*}
+            From the question, $r>0$ is given, which means $1+r >1$. From the lecture, if the parameter before L in the 
+            denominator is bigger than 1, then we need to convert this problem to \textbf{Forward Solution Method}!
+            Following what we derive above, and rearrange first:
+             \begin{equation*}
+                 a_{t+1}=(\frac{(1+r)^{-1}L^{-1}}{1-(1+r)^{-1}L^{-1}})(c_t-y_t)
+             \end{equation*}
+             The reason behind this is we need to apply the formula of sum of geometric series, if the denominator is $1-x$, it's what we learnt in high school. If it's $x-1$, we need to convet it to what we're familar with. 
+             Since it's forward method, LHS should be our current time instead of future time.
+             \begin{align*}
+                 a_t&=(\frac{1+r}{1-(1+r)^{-1}L^{-1}})(c_t-y_t)\\
+                 &= \frac{1}{1+r}(\frac{1}{1-(1+r)^{-1}L^{-1}})(c_t-y_t)\\
+                 &= \frac{1}{1+r}((c_t+(1+r)\textcolor{red}{E_t}c_{t+1}+(1+r)^2\textcolor{red}{E_t}c_{t+2}+...)-(y_t+(1+r)\textcolor{red}{E_t}y_{t+1}+(1+r)^2\textcolor{red}{E_t}y_{t+2}+...))\\
+                 &= \frac{1}{1+r}(\sum_{j=0}^\infty (1+r)^j\textcolor{red}{E_t}(c_{t+j}-y_{t+j}))
+             \end{align*}
+             It's obvious that the present discounted value consumption and the present discounted value of income are \textit{positively} correlated. 
+             In economics, it means you only consume what you earn. If not, there will be ponzi scheme.\footnote{See Dirk Krueger's lecture notes Chapter2, p19, version: 2012. \url{https://www.ssc.wisc.edu/~aseshadr/econ714/MacroTheory.pdf} }
+    \end{enumerate}
+    \item Use law of iterated expectations (LIE) to solve REE Price model in class\footnote{Somehow I didn't get what the professor asked us to do. After reading his solution manual, I was still confused.}. Before we solve this problem, let me reiterate the formula we will use in this quesiton:
+         $P_t(1+r)=E_t(P_{t+1}+D_{t+1})$ (The logistics is simple, because the price today plus the potential interest are equal to future price and dividends. This is also assumed no arbitrage.)
+         
+         \textbf{My Solution:}
+        
+         Since $P_t(1+r)=E_t(P_{t+1}+D_{t+1})$, rearrange this equation would
+        $P_t=\frac{1}{1+r}E_t(P_{t+1}+D_{t+1})$. 
+        
+        Do some simple algebras by forwarding the equation:
+        \begin{equation}
+            P_{t+1}=\frac{1}{1+r}E_{t+1}(P_{t+2}+D_{t+2})
+        \end{equation}
+        \begin{equation}
+            P_{t+2}=\frac{1}{1+r}E_{t+2}(P_{t+3}+D_{t+3})
+        \end{equation}
+    There are infinite equations, but I only write down two. Put the infinite equations back to the function of $P_t$.
+        \begin{align*}
+            P_t&=(\frac{1}{1+r})^nE_{t+n}...E_t(P_{t+n})+\sum_{i=0}^n(\frac{1}{1+n})^iE_t(\sum_{i=0}^n D_{t+i})\\
+            &=(\frac{1}{1+n})^nE_tP_{t+n}+\sum_{i=0}^n(\frac{1}{1+n})^iE_t(\sum_{i=0}^n D_{t+i})\\
+            &=0+\sum_{i=0}^n (\frac{1}{1+n})^iD_{t+i}
+        \end{align*}
+    The second equation is by LIE, and the third equation is due to $E_t P_{t+n}$ is a constant number, if we discounted a constatn number from infinite future to today, it approximates to 0.
+    \item As before, the price equation is $(1+r)P_t=E_t(P_{t+1}+D_{t+1})$.
+        \begin{enumerate}
+            \item If there is MA(1) process: $D_t=\epsilon_t+\theta\epsilon_{t-1}$. Pluging this into our previous equation, it becomes:
+                \begin{equation}
+                    (1+r)P_t=E_t(P_{t+1}+\epsilon_{t+1}+\theta\epsilon_t)
+                \end{equation}
+                Rearrange this again:
+                \begin{equation}
+                    P_t=(\frac{1}{1+r})E_t(P_{t+1}+\epsilon_{t+1}+\theta\epsilon_{t})
+                \end{equation}
+            The logic is the same with Question 3, then:
+            \begin{align*}
+                P_t&= (\frac{1}{1+r})^nE_t(P_{t+n})+E_t(\sum_{i=1}^n\epsilon_{t+i}+\theta\epsilon_t)\\
+                    &=0+0+\theta\epsilon_t\\
+                    &=\theta\epsilon_t
+            \end{align*}
+            For the second equation, the second is 0 because $E_t(\epsilon_{t+i})=0 \ for\  \forall i\neq 0$. The third term is $\theta \epsilon_t$ because at time t, the information of $\epsilon_t$ is known, so it can be assumed as a number. 
+            
+            \item Now the dividends function becomes AR(1) instead of MA(1): $D_t=\mu+\rho D_{t-1}+\epsilon_t$. $P_t=E_t(P_{t+1}+\mu+\rho D_{t-1}+\epsilon_t)$
+            \textcolor{red}{Leave it intendedly, so tedious. Need to figure out later.}
+            \item If $\phi$ increases, the possibility of higher amount of dividends distributed increases as well. Because we know higher dividends implies less prices, so the future price will be affected negatively. 
+        \end{enumerate}
+    
+    \item \begin{enumerate}
+        \item For equation (1), we rearranging this equation to a new one, $\log(\frac{M_t}{P_t})=\gamma-\alpha R_t$. Now it's clear! The log ratio of money supply over price level is negatively related with nominal interest rate, which means if 
+              If money supply increases, the corresponding nominal interest rate will decrease\footnote{This conclusion is somehow confusing. However, let me explain it more intuitively. Money supply is for capital money supply, like saving amount in capital market.
+              If saving amount is much higher, which means there is more redundent money in the market than actual needed, so interest rate will decrease to refect this relationship.}.
+              
+              For equation (2), it's Fisher Equation. $E_t(p_{t+1}-p_t)=E_t(\log(\frac{P_{t+1}}{P_t}))$ to refect the expected inflation rate. So it's obvious that norminal interest rate is equationt to real interest rate plus expected inflation rate.
+        \item In the quesiton, we have been given $m_t=\mu+\epsilon$. Rearranging our two equations to become:
+             \begin{equation}
+                 \mu+\epsilon_t-p_t=\gamma-\alpha r-\alpha E_t(p_{t+1}-p_t)
+             \end{equation}
+             Thus:
+             \begin{equation}\label{ree:ini}
+                 (1-\frac{1+\alpha}{\alpha}L)E_tp_{t+1}=\frac{1}{\alpha}\gamma-\frac{1}{\alpha}\mu-r-\frac{1}{\alpha}\epsilon_t
+             \end{equation}
+             Since as question 2, the parameter before $L$ is $\frac{1+\alpha}{\alpha} >1$ where $\alpha >0$. We can't use backward method, instead, we should rely on foreward method to solve.
+             Before doing computation, let's first derive :$\frac{1}{1-\frac{1+\alpha}{\alpha}L}=\frac{(\frac{1+\alpha}{\alpha})^{-1}L^{-1}}{1-(\frac{1+\alpha}{\alpha})^{-1}L^{-1}}$.
+            From equation (\ref{ree:ini}):
+            \begin{equation}\label{ree:second}
+                E_tp_{t+1}=\frac{1}{\alpha}(\frac{1}{1-\frac{1+\alpha}{\alpha}L})\gamma-\frac{1}{\alpha}(\frac{1}{1-\frac{1+\alpha}{\alpha}L})\mu-\frac{1}{1-\frac{1+\alpha}{\alpha}L}r-\frac{1}{\alpha}(\frac{1}{1-\frac{1+\alpha}{\alpha}L})\epsilon_t
+            \end{equation}
+            Thus, from equation (\ref{ree:second}):
+            \begin{equation}\label{ree:third}
+                E_tp_{t+1}=\frac{1}{\alpha}(\frac{(\frac{1+\alpha}{\alpha})^{-1}L^{-1}}{1-(\frac{1+\alpha}{\alpha})^{-1}L^{-1}})\gamma-\frac{1}{\alpha}(\frac{(\frac{1+\alpha}{\alpha})^{-1}L^{-1}}{1-(\frac{1+\alpha}{\alpha})^{-1}L^{-1}})\mu-\frac{(\frac{1+\alpha}{\alpha})^{-1}L^{-1}}{1-(\frac{1+\alpha}{\alpha})^{-1}L^{-1}}r-\frac{1}{\alpha}(\frac{(\frac{1+\alpha}{\alpha})^{-1}L^{-1}}{1-(\frac{1+\alpha}{\alpha})^{-1}L^{-1}})\epsilon_t
+            \end{equation}
+            Multiply $L$ on both sides of equation(\ref{ree:thrid}):
+                \begin{align}            
+                p_t&=\frac{1}{1+\alpha}(\frac{1}{1-(\frac{1+\alpha}{\alpha})^{-1}L^{-1}})\gamma-\frac{1}{1+\alpha}(\frac{1}{1-(\frac{1+\alpha}{\alpha})^{-1}L^{-1}})\mu-\frac{\alpha}{1+\alpha}(\frac{1}{1-(\frac{1+\alpha}{\alpha})^{-1}L^{-1}})r-\frac{1}{1+\alpha}(\frac{1}{1-(\frac{1+\alpha}{\alpha})^{-1}L^{-1}})\epsilon_t \notag\\
+                   &=\frac{1}{1+\alpha}(\frac{1}{1-(\frac{1+\alpha}{\alpha})^{-1}L^{-1}})(\gamma-\mu)-\frac{\alpha}{1+\alpha}(\frac{1}{1-(\frac{1+\alpha}{\alpha})^{-1}L^{-1}})r-\frac{1}{1+\alpha}(\frac{1}{1-(\frac{1+\alpha}{\alpha})^{-1}L^{-1}})\epsilon_t\notag\\
+                   &=\gamma-\mu-\alpha r-\frac{1}{1+\alpha}(\epsilon_t+(\frac{1+\alpha}{\alpha})^{-1}L^{-1}\epsilon_t+...)\notag\\
+                   &=\gamma-\mu-\alpha r- (-\frac{1}{1+\alpha}\epsilon_t )+\sum_{i=1}^\infty (\frac{1+\alpha}{\alpha})^{-i}E_t(\epsilon_{t+i})\notag\\
+                   &=\gamma-\mu-\alpha r +\frac{1}{1+\alpha} \epsilon_t\label{ree:four}
+                \end{align}
+                The reason behind equation (\ref{ree:four}) is that $\epsilon_t$ is white noise, thus,$E_t(\epsilon_{t+i})=0$, where $i=1,2,\cdots$
+
+                Plug equation (\ref{ree:four}) into $R_t=r+E_t(p_{t+1}-p_t)$, so we can obtain:
+                \begin{equation*}
+                    R_t=r+\gamma-\mu-\alpha r-\gamma +\mu +\alpha-\frac{1}{1+\alpha}\epsilon_t=r-\frac{1}{1+\alpha}\epsilon_t
+                \end{equation*}
+        \item Same with (b), but the expression of $p_t$ is related to the monely supply of $m_t$ instead of a constant like (b).
+    \end{enumerate}
+
+
+\end{enumerate}
+
+
+
+
+
+\section{DGE Capital Accumulation, Part A}
+
+\begin{enumerate}
+    \item Sorry, I don't have textbook, so can't do this question.
+    \item (Additional Probelm 1)
+     \textbf{Solution:}
+
+     
+\end{enumerate}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}

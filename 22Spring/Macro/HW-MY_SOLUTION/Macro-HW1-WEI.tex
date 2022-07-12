@@ -1,0 +1,232 @@
+%EX TS-program = pdflatex
+% !TEX encoding = UTF-8 Unicode
+
+% This is a simple template for a LaTeX document using the "article" class.
+% See "book", "report", "letter" for other types of document.
+
+\documentclass[11pt]{article} % use larger type; default would be 10pt
+\usepackage[utf8]{inputenc} % set input encoding (not needed with XeLaTeX)
+
+%%% Examples of Article customizations
+% These packages are optional, depending whether you want the features they provide.
+% See the LaTeX Companion or other references for full information.
+\usepackage{amsmath}
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+	\hskip -\arraycolsep
+	\let\@ifnextchar\new@ifnextchar
+	\array{#1}}
+\makeatother
+
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+%%% PAGE DIMENSIONS
+\usepackage{geometry} % to change the page dimensions
+\usepackage{listings}
+\usepackage{hyperref}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{marvosym}
+\geometry{a4paper} % or letterpaper (US) or a5paper or....
+% \geometry{margin=2in} % for example, change the margins to 2 inches all round
+% \geometry{landscape} % set up the page for landscape
+%   read geometry.pdf for detailed page layout information
+
+\usepackage{graphicx} % support the \includegraphics command and options
+% \usepackage[parfill]{parskip} % Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{amssymb}
+\usepackage{mathrsfs}
+%%% PACKAGES
+\usepackage{booktabs} % for much better looking tables
+\usepackage{array} % for better arrays (eg matrices) in maths
+\usepackage{paralist} % very flexible & customisable lists (eg. enumerate/itemize, etc.)
+\usepackage{verbatim} % adds environment for commenting out blocks of text & for better verbatim
+\usepackage{subfig} % make it possible to include more than one captioned figure/table in a single float
+% These packages are all incorporated in the memoir class to one degree or another...
+\usepackage{pgfplots}
+%%% HEADERS & FOOTERS
+\usepackage{fancyhdr} % This should be set AFTER setting up the page geometry
+\pagestyle{fancy} % options: empty , plain , fancy
+\renewcommand{\headrulewidth}{0pt} % customise the layout...
+\lhead{}\chead{}\rhead{}
+\lfoot{}\cfoot{\thepage}\rfoot{}
+
+%%% SECTION TITLE APPEARANCE
+\usepackage{sectsty}
+\allsectionsfont{\sffamily\mdseries\upshape} % (See the fntguide.pdf for font help)
+% (This matches ConTeXt defaults)
+\usepackage[thinc]{esdiff}
+\usepackage{bbold}
+\usepackage{MnSymbol,wasysym}
+%%% ToC (table of contents) APPEARANCE
+\usepackage[nottoc,notlof,notlot]{tocbibind} % Put the bibliography in the ToC
+\usepackage[titles,subfigure]{tocloft} % Alter the style of the Table of Contents
+\renewcommand{\cftsecfont}{\rmfamily\mdseries\upshape}
+\renewcommand{\cftsecpagefont}{\rmfamily\mdseries\upshape} % No bold!
+
+%%% END Article customizations
+
+%%% The "real" document content comes below...
+
+\title{Homework 1}
+\author{Wei Ye\footnote{ 1st year PhD student in Economics Department at Fordham University. Email: wye22@fordham.edu}
+    \\ ECON 7020- Macroeconomics II}
+\date{Due on Feb 3, 2022}
+\begin{document}
+\maketitle
+
+\section{Problems 1}
+\textbf{Solution:}
+
+\begin{enumerate}[a.]
+	\item Since the transition function is $x'=g(x,u,z,\phi)$, it means next period of state variable is predetermined by this period of control variable u, state variable  x, one time shocks  z and $\phi$ (Impulse Response). 
+	\item Set up Bellman Equation (Since there is only on time shock, we don't take them into value function):
+		\begin{align*}
+			V(x)&=\max_u\{r(x,u)+\beta E_t[V(x')]\}\\
+				&= \max_u\{r(x,u)+\beta E_t[V(g(x,u,z,\phi))]\}
+		\end{align*}
+	\item \begin{itemize}
+		\item FOC with respect to u:
+		\begin{equation*}
+			\frac{\partial r(x,u)}{\partial u}+\beta E_t\{V'(x')\frac{\partial g(x,u,z,\phi)}{\partial u}\}=0
+		\end{equation*}
+		\item Benveniste-Sheinkman Condition:
+		\begin{equation*}
+			v'(x)=\frac{\partial r(x,u)}{\partial x}+\beta E_t\{V'(x')\frac{\partial g(x,u,z,\phi)}{\partial x}\}
+		\end{equation*}
+	\end{itemize}
+	\item In order to satisfy Banach Fixed Point Theorem, aka, Contraction Mapping Theorem, it should have monotonicity and discounting properties.
+	At the same time, the process should be bounded on some value, and  is $\sigma$-measurable.
+\end{enumerate}
+
+
+
+\section{Problem 2}
+\textbf{Solution:}
+
+\begin{enumerate}[a.]
+	\item Set up a bellman equation:
+		\begin{align*}
+			V(k,z)&=\max_c\{\ln(c)+\beta E_t[V(k',z')|z]\}\\
+				&=\max_c\{\ln(c)+\beta  E_t[V(zk^\alpha-c,z')|z]\}
+		\end{align*}
+	\item The explicit form of Bellman Equation:
+		\begin{equation*}
+			V(k,z)=\max_c\{\ln(c)+\beta [V((p^Hz^H+(1-p^H)z^L)k^\alpha-c)]\}
+		\end{equation*}
+	\item WLOG, we guess and assume $V(k_{t+1})=\ln(k_{t+1})$. For iterations in Bellman Equation, We assume $V^0(k')=0$ like what we did in the lecture.
+		In the meanwhile, WLOG, we denote $\bar{z}=p^Hz^H+(1-p^H)z^L$.
+
+		The \textbf{first} iteration:
+		\begin{equation*}
+			V^1(k)=\max_{k'}\{\ln(\bar{z}k^\alpha-k')\}
+		\end{equation*}
+		In this case, it's obvious that when $k'=0$, we can get the maximum value $V^1(k)=\ln(\bar{z}k^\alpha)$. Plug this value into our second iteration:
+
+		The \textbf{second} iteration:
+		\begin{equation*}
+			V^2(k)=\max_{k'}\{\ln(\bar{z}k^\alpha-k')+\beta(\ln(\bar{z})+\alpha\ln(k'))\}
+		\end{equation*}
+		Taking the first order derivative w.r.t $k'$, we can obtain $\frac{-1}{\bar{z}k^\alpha-k'}+\frac{\beta\alpha}{k'}=0$, thus, $k'=\frac{\alpha\beta\bar{z}k^\alpha}{1+\alpha\beta}$. And optiam value function is $V^2(k)=\ln(\bar{z}k^\alpha-\frac{\alpha\beta\bar{z}k^\alpha}{1+\alpha\beta})+\beta\ln(\bar{z}(\frac{\alpha\beta\bar{z}k^\alpha}{1+\alpha\beta})^\alpha)=\alpha(1+\alpha\beta)\ln(k)+\phi_1$, 
+		where $\phi_1=\ln(\bar{z})-\ln(1+\alpha\beta)+\beta\ln(\bar{z})+\beta\alpha\ln(\alpha)+\alpha\beta\ln(\beta)-\alpha\ln(1+\alpha\beta)$
+
+		The \textbf{Third} iteration:
+		Take $V^2(k)$ into bellman equation:
+
+		\begin{equation*}
+			V^3(k)=\max_{k'}\{\ln(\bar{z}k^\alpha-k')+\beta\alpha(1+\alpha\beta)\ln(k')+\beta\phi_1\}
+		\end{equation*}	
+		Take the first order derivative w.r.t $k'$, we can get the optimal $K'=\frac{\alpha\beta(1+\alpha\beta)\bar{z}k^\alpha}{1+\alpha\beta(1+\alpha\beta)}$, and plug $k'$ into $V^3(\cdot)$ to gain the optimal $V^3(x)=\alpha(1+\alpha\beta(1+\alpha\beta)\ln(k))+\phi_2$, where $\phi_2=\alpha\ln(\bar{z})-\ln(1+\alpha\beta(1+\alpha\beta))+\alpha\beta(1+\alpha\beta)(\ln(\alpha\beta(1+\alpha\beta)\bar{z})-\ln(1+\alpha\beta(1+\alpha\beta)))$.
+		Take the \textbf{Fourth} iteration:
+		\begin{equation*}
+			V^4(k)=\max_{k'}\{\ln(\bar{z}k^\alpha-k')+\beta\alpha(1+\alpha\beta(1+\alpha\beta)\ln(k')+\beta\phi_2)\}
+		\end{equation*}
+		Take the first order derivative w.r.t. $K'$, And the optimal $k'=\frac{\alpha\beta(1+\alpha\beta(1+\alpha\beta))\bar{z}k^\alpha}{1+\alpha\beta(1+\alpha\beta(1+\alpha\beta))}$, and the optimal value function of $V^4(k)=\alpha(1+\alpha\beta(1+\alpha\beta(1+\alpha\beta)))\ln(k)+\phi_3$, $\phi_3$ is the term that is not revelant to k.
+		If the initial guess is different, we may get different functions\footnote{See \url{https://lhendricks.org/econ720/ih1/Dp_ln.pdf}}.
+\end{enumerate}
+
+
+
+
+
+
+
+\section{Problem 3}
+\textbf{Solution:}
+
+\begin{enumerate}[a.]
+	\item Before we set up a bellman equation, we need to rearrange the sequence problem to:
+	 \begin{equation*}
+		 W=\sum_{t=0}^\infty \beta^t u(f(k_t,n_t)-k_{t+1},1-n_t)
+	 \end{equation*}
+	 We then set up a bellman equation:
+	 \begin{equation*}
+		 V(k)=\max_{n,k'}\{u(f(k,n)-k',1-n)+\beta V(k')\}
+	 \end{equation*}
+	\item We hope to gain the policy function,i.e., a control variable can be expressed by the state variable k. Once We
+	 		know n and k, we know c automatically. 
+	\item First, we take the first order condition w.r.t n:
+	 \begin{equation*}
+		 u_c(c,n)(\frac{\partial f(k,n)}{\partial n}-\frac{\partial f(k,n)}{\partial n})+u_n(c,n)(-1)+\beta V'(k')\frac{\partial f(k,n)}{\partial k}=0
+	 \end{equation*}
+	 Second, we use Envelop Theorem:
+	 \begin{equation*}
+		 V'(k)=u_c(c,n)\frac{\partial f(k,n)}{\partial k}
+	 \end{equation*}
+	\item Back to our sequence problem, and set up a lagrangian equation:
+	 	\begin{equation*}
+			 \mathcal{L}:=\sum_{t=0}^\infty \beta^t u(c_t,1-n_t)+\lambda_t(f(k_t,n_t)-c_t-k_{t+1})
+		 \end{equation*}
+		 Take first order derivative w.r.t c and n respectively.
+		 \begin{equation*}
+			 \beta^tu_c(c_t,1-n_t)=-\lambda_t
+		 \end{equation*}
+		 \begin{equation*}
+			 \beta^tu_n(c_t,1-n_t)(-1)=\lambda_t f_n(k_t,n_t)
+		 \end{equation*}
+		 Thus, we can get:
+		 \begin{equation*}
+			\frac{MU_c}{MU_n}=\frac{1}{f_n(k_t,n_t)} 
+		 \end{equation*}
+	\item Replace value function with the equation we derived in envelop theorem:
+		 \begin{equation*}
+			 u_n(c,n)=\beta\frac{\partial f(k,n)}{\partial k}u_c(c',n')\frac{\partial  f(k',n')}{\partial k}
+		 \end{equation*}
+\end{enumerate}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}

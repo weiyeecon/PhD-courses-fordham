@@ -1,0 +1,151 @@
+%EX TS-program = pdflatex
+% !TEX encoding = UTF-8 Unicode
+
+% This is a simple template for a LaTeX document using the "article" class.
+% See "book", "report", "letter" for other types of document.
+
+\documentclass[11pt]{article} % use larger type; default would be 10pt
+\usepackage[utf8]{inputenc} % set input encoding (not needed with XeLaTeX)
+
+%%% Examples of Article customizations
+% These packages are optional, depending whether you want the features they provide.
+% See the LaTeX Companion or other references for full information.
+\usepackage{amsmath}
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+	\hskip -\arraycolsep
+	\let\@ifnextchar\new@ifnextchar
+	\array{#1}}
+\makeatother
+
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+%%% PAGE DIMENSIONS
+\usepackage{geometry} % to change the page dimensions
+\usepackage{listings}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{marvosym}
+\geometry{a4paper} % or letterpaper (US) or a5paper or....
+% \geometry{margin=2in} % for example, change the margins to 2 inches all round
+% \geometry{landscape} % set up the page for landscape
+%   read geometry.pdf for detailed page layout information
+
+\usepackage{graphicx} % support the \includegraphics command and options
+% \usepackage[parfill]{parskip} % Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{amssymb}
+\usepackage{natbib}
+\usepackage{hyperref}
+\usepackage{mathrsfs}
+%%% PACKAGES
+\usepackage{booktabs} % for much better looking tables
+\usepackage{array} % for better arrays (eg matrices) in maths
+\usepackage{paralist} % very flexible & customisable lists (eg. enumerate/itemize, etc.)
+\usepackage{verbatim} % adds environment for commenting out blocks of text & for better verbatim
+\usepackage{subfig} % make it possible to include more than one captioned figure/table in a single float
+% These packages are all incorporated in the memoir class to one degree or another...
+\usepackage{pgfplots}
+%%% HEADERS & FOOTERS
+\usepackage{fancyhdr} % This should be set AFTER setting up the page geometry
+\pagestyle{fancy} % options: empty , plain , fancy
+\renewcommand{\headrulewidth}{0pt} % customise the layout...
+\lhead{}\chead{}\rhead{}
+\lfoot{}\cfoot{\thepage}\rfoot{}
+
+%%% SECTION TITLE APPEARANCE
+\usepackage{sectsty}
+\allsectionsfont{\sffamily\mdseries\upshape} % (See the fntguide.pdf for font help)
+% (This matches ConTeXt defaults)
+\usepackage[thinc]{esdiff}
+\usepackage{bbold}
+\usepackage{MnSymbol,wasysym}
+%%% ToC (table of contents) APPEARANCE
+\usepackage[nottoc,notlof,notlot]{tocbibind} % Put the bibliography in the ToC
+\usepackage[titles,subfigure]{tocloft} % Alter the style of the Table of Contents
+\renewcommand{\cftsecfont}{\rmfamily\mdseries\upshape}
+\renewcommand{\cftsecpagefont}{\rmfamily\mdseries\upshape} % No bold!
+
+%%% END Article customizations
+
+%%% The "real" document content comes below...
+
+\title{Homework 2}
+\author{Wei Ye\footnote{ 1st year PhD student in Economics Department at Fordham University. Email: wye22@fordham.edu}
+    \\ ECON 7920- Econometrics II}
+\date{Due on Feb 15, 2022}
+\begin{document}
+\maketitle
+
+\section{Problem 1}
+\textbf{Solution:}
+
+\begin{enumerate}[a.]
+    \item For identification, from (\citet{wooldridge2010econometric}) Assumption NLS.2: $E\{[m(x,\theta)-m(x,\theta_0)]^2\}>0$ for all $\theta \in \Theta$, $\theta \neq \theta_0$. 
+    \item For this question, we should have following function:
+        \begin{equation}\label{eqn1}
+            \min \frac{1}{N} \sum_i^N (\exp(\theta_{01}+\theta_{02}rooms_i+\theta_{03}baths_i)-\exp(\theta_1+\theta_2rooms_i+\theta_3baths_i))^2
+        \end{equation}
+    Under above min optimization problem, we assume there are N numbers of data in the dataset, and our goal is to minimize the regression errors. Based on (a.), we assume $\theta_0\neq \theta$ and the sum of square is strictly larger than 0. 
+    \item Since we want to get the score of objective function: $s(w_i,\theta)$, we take the F.O.C wrt $\theta$ on \ref{eqn1}:
+        \begin{align}
+             s(w_i,\theta)&= [\exp(\cdot),\exp(\cdot)rooms_i,\exp(\cdot)baths_i]
+        \end{align}
+    \item The expected Hessian matrix is the second order derivate of our min problem, like in the lecture notes, we denote the min problem as minimizing $q(w_i,\theta)$. Thus:
+        \begin{align}
+            \ddot{H}_i&= \frac{\partial^2 q(w_i,\theta)}{\partial \theta^2}\\\notag
+            &= [\exp(\cdot),\exp(\cdot)rooms_i^2,\exp(\cdot)baths_i^2]
+        \end{align}
+        If we take the expected value of each hessian matrix $\ddot{H}_i$, it will be:
+        \begin{align*}
+            \frac{1}{N}\sum_i^N \ddot{H}_i&\rightarrow^p E[H(w_j,\theta_0)]\\
+                                         &= A_0 (\text{Nonsingular})\\
+                                         &=\textcolor{Maroon}{O_p(1)}
+        \end{align*}
+        The first limit uses the (\citet{wooldridge2010econometric}) Lemma 12.1, The second is used by assumption, and the third is by the Definition 3.2. 
+    \item From the NLS regression, $b0=10.29226, b1=0.04148, b2=0.36908$, both b0 and b2 are significant, but b1 is not. So the estimation model should be: 
+        \begin{equation}
+           price= m(x,\theta_0)=\exp(10.29226+0.36908 baths)
+        \end{equation}
+    \item From an online lecture slides\footnote{See here: \url{http://cameron.econ.ucdavis.edu/bgpe2011/bgpev2_nonlinear.pdf}}, we first can use gradient methods, to estimate whether the partial effect is zero, the codes are similar like what we did in class. The second method, is to use Newton-Raphson method to upate infomation consistently to estimate the partial effect. \textcolor{Maroon}{Check this question later!!! }
+\end{enumerate}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\bibliography{ref}
+\bibliographystyle{econ}
+
+
+\end{document}

@@ -1,0 +1,50 @@
+-------------------------------------------------------------------------------
+       log:  C:\mitbook\textfiles\nbasal.des
+  log type:  text
+ opened on:  22 Apr 2002, 11:02:54
+
+. ds
+marr      wage      exper     age       educ      games     minutes   guard    
+forward   center    points    rebounds  assists   draft     allstar   avgmin   
+lwage     black     children  expersq   agesq     marrblck  
+
+. des
+
+Contains data from nbasal.dta
+  obs:           294                          
+ vars:            22                          22 Aug 2001 14:33
+ size:        14,112 (98.3% of memory free)
+-------------------------------------------------------------------------------
+              storage  display     value
+variable name   type   format      label      variable label
+-------------------------------------------------------------------------------
+marr            byte   %9.2f                  =1 if married
+wage            float  %9.2f                  annual salary, millions $
+exper           byte   %9.2f                  years as a professional player
+age             byte   %9.2f                  age in years
+educ            byte   %9.2f                  years playing at college
+games           byte   %9.2f                  average games per year
+minutes         int    %9.2f                  minutes per season
+guard           byte   %9.2f                  =1 if guard
+forward         byte   %9.2f                  =1 if forward
+center          byte   %9.2f                  =1 if center
+points          float  %9.2f                  points per game
+rebounds        float  %9.2f                  rebounds per game 
+assists         float  %10.2f                 assists per game
+draft           int    %9.2f                  draft number
+allstar         byte   %9.2f                  all-star player
+avgmin          float  %9.2f                  minutes per game
+lwage           float  %9.2f                  natural log of wage
+black           byte   %9.2f                  =1 if black
+children        byte   %9.2f                  =1 if has children
+expersq         int    %9.2f                  exper^2
+agesq           int    %9.0g                  age^2
+marrblck        byte   %9.0g                  marr*black
+-------------------------------------------------------------------------------
+Sorted by:  
+
+. log close
+       log:  C:\mitbook\textfiles\nbasal.des
+  log type:  text
+ closed on:  22 Apr 2002, 11:03:30
+-------------------------------------------------------------------------------

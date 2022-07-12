@@ -1,0 +1,38 @@
+-------------------------------------------------------------------------------
+       log:  C:\mitbook\statafiles\attend.des
+  log type:  text
+ opened on:   2 Apr 2002, 16:55:18
+
+. ds
+attend    termgpa   priGPA    ACT       final     atndrte   hwrte     frosh    
+soph      skipped   stndfnl   
+
+. des
+
+Contains data from attend.dta
+  obs:           680                          
+ vars:            11                          6 Jul 1999 16:12
+ size:        20,400 (97.8% of memory free)   (_dta has notes)
+-------------------------------------------------------------------------------
+              storage  display     value
+variable name   type   format      label      variable label
+-------------------------------------------------------------------------------
+attend          byte   %8.0g                  classes attended out of 32
+termgpa         float  %9.0g                  GPA for term
+priGPA          float  %9.0g                  cumulative GPA prior to term
+ACT             byte   %8.0g                  ACT score
+final           byte   %8.0g                  final exam score
+atndrte         float  %9.0g                  percent classes attended
+hwrte           float  %9.0g                  percent homework turned in
+frosh           byte   %8.0g                  =1 if freshman
+soph            byte   %8.0g                  =1 if sophomore
+skipped         byte   %9.0g                  number of classes skipped
+stndfnl         float  %9.0g                  (final - mean)/sd
+-------------------------------------------------------------------------------
+Sorted by:  
+
+. log close
+       log:  C:\mitbook\statafiles\attend.des
+  log type:  text
+ closed on:   2 Apr 2002, 16:55:23
+-------------------------------------------------------------------------------

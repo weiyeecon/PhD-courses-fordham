@@ -1,0 +1,64 @@
+-------------------------------------------------------------------------------
+       log:  C:\mitbook\statafiles\card.des
+  log type:  text
+ opened on:   2 Apr 2002, 16:58:38
+
+. ds
+id        nearc2    nearc4    educ      age       fatheduc  motheduc  weight   
+momdad14  sinmom14  step14    reg661    reg662    reg663    reg664    reg665   
+reg666    reg667    reg668    reg669    south66   black     smsa      south    
+smsa66    wage      enroll    kww       iq        married   libcrd14  exper    
+lwage     expersq   
+
+. des
+
+Contains data from card.dta
+  obs:         3,010                          
+ vars:            34                          2 Sep 1996 15:51
+ size:       144,480 (85.6% of memory free)
+-------------------------------------------------------------------------------
+              storage  display     value
+variable name   type   format      label      variable label
+-------------------------------------------------------------------------------
+id              int    %9.0g                  
+nearc2          byte   %9.0g                  =1 if near 2 yr college, 1966
+nearc4          byte   %9.0g                  =1 if near 4 yr college, 1966
+educ            byte   %9.0g                  years of schooling, 1976
+age             byte   %9.0g                  in years
+fatheduc        byte   %9.0g                  father's schooling
+motheduc        byte   %9.0g                  mother's schooling
+weight          float  %9.0g                  NLS sampling weight, 1976
+momdad14        byte   %9.0g                  =1 if live with mom, dad at 14
+sinmom14        byte   %9.0g                  =1 if with single mom at 14
+step14          byte   %9.0g                  =1 if with step parent at 14
+reg661          byte   %9.0g                  regional dummy, 1966
+reg662          byte   %9.0g                  
+reg663          byte   %9.0g                  
+reg664          byte   %9.0g                  
+reg665          byte   %9.0g                  
+reg666          byte   %9.0g                  
+reg667          byte   %9.0g                  
+reg668          byte   %9.0g                  
+reg669          byte   %9.0g                  
+south66         byte   %9.0g                  =1 if in south in 1966
+black           byte   %9.0g                  =1 if black
+smsa            byte   %9.0g                  =1 in in SMSA, 1976
+south           byte   %9.0g                  =1 if in south, 1976
+smsa66          byte   %9.0g                  =1 if in SMSA, 1966
+wage            int    %9.0g                  hourly wage in cents, 1976
+enroll          byte   %9.0g                  =1 if enrolled in school, 1976
+kww             byte   %9.0g                  knowledge world of work score
+iq              int    %9.0g                  IQ score
+married         byte   %9.0g                  =1 if married, 1976
+libcrd14        byte   %9.0g                  =1 if lib. card in home at 14
+exper           byte   %9.0g                  age - educ - 6
+lwage           float  %9.0g                  log(wage)
+expersq         int    %9.0g                  exper^2
+-------------------------------------------------------------------------------
+Sorted by:  
+
+. log close
+       log:  C:\mitbook\statafiles\card.des
+  log type:  text
+ closed on:   2 Apr 2002, 16:58:51
+-------------------------------------------------------------------------------

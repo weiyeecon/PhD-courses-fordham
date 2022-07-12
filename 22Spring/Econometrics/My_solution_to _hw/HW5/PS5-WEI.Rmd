@@ -1,0 +1,87 @@
+---
+title: "Econometrics-HW5"
+author: "Wei Ye"
+date: "4/18/2022"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(tidyverse)
+apple <- read_csv("apple.csv")
+head(apple)
+
+
+#create dummy variables
+apple$ecobuy <- ifelse(apple$ecolbs>0,1,0)
+
+attach(apple)
+```
+## a. Derive the log-likelihood function.
+
+$\max l_i=p_1^{regprc_i}p_2^{ecoprc_i}(1-p_1-p_2)^{age_i}$
+Take log on the above eqn:
+$\max \sum_i^N \log l_i=\sum_i^N regprc_i\log p_i+ecoprc_i\log p_2+age_i\log (1-p_1-p_2)$
+
+
+## b. Estimate the parameters of interest via M-estimation
+```{r}
+source('~/Dropbox/My Mac (Wei’s MacBook Air)/Downloads/PhD-Coursework/22Spring/Econometrics/My_solution_to _hw/HW5/qfunction.R', encoding = 'UTF-8')
+ source('~/Dropbox/My Mac (Wei’s MacBook Air)/Downloads/PhD-Coursework/22Spring/Econometrics/My_solution_to _hw/HW5/qderivfun.R', encoding = 'UTF-8')
+ source('~/Dropbox/My Mac (Wei’s MacBook Air)/Downloads/PhD-Coursework/22Spring/Econometrics/My_solution_to _hw/HW5/qderivfun2.R', encoding = 'UTF-8')
+```
+
+```{r}
+X=cbind(regprc,ecoprc,age)
+thetahat=cbind(0.2,0.6,0.2)
+out <- qderivfun(ecobuy,X,t(thetahat))
+out1 <- qderivfun2(ecobuy,X,t(thetahat))
+out1
+```
+
+
+## c. Make t-test:
+```{r}
+ava_theta <- solve(out1$A0hat)%*% out$B0hat %*% solve(out1$A0hat)/length(ecobuy)
+ava_theta
+```
+
+```{r}
+se_theta <- diag(ava_theta)^(1/2)
+se_theta
+```
+Now, make some t-tests on theta:
+```{r}
+t_1 <- log(thetahat)/se_theta
+t_2 <- thetahat/se_theta
+t_1
+```
+```{r}
+t_2
+```
+No matther what, abs of t_test values are way larger than 1.96. So we can react the zero null for all variables.
+
+
+## d. Use probit command in R:
+```{r}
+probitout <- glm(ecobuy~regprc+ecoprc+age,family=binomial(link="probit"))
+probitout
+```
+The conclusions will not be changed.
+
+## e. Compute the likelihood ratio test and justify whether reject the null hypothesis.
+```{r}
+probitout_red <- glm(ecobuy~ecoprc+age,family=binomial(link="probit"))
+probitout_red
+```
+
+```{r}
+#compute likelihood ratio
+library(epiDisplay)
+lrtest(probitout,probitout_red)
+```
+Actually from the command we can derive Chi-squared number from lrtest command without replying on dchisq. It's chi-squared value is high, and P-value is way lower than 0.05, therefore, we reject the null hypothesis.
+

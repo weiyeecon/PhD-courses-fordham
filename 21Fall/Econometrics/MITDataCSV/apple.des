@@ -1,0 +1,45 @@
+-------------------------------------------------------------------------------
+       log:  C:\mitbook\statafiles\apple.des
+  log type:  text
+ opened on:   2 Apr 2002, 16:54:16
+
+. ds
+id        educ      date      state     regprc    ecoprc    inseason  hhsize   
+male      faminc    age       reglbs    ecolbs    numlt5    num5_17   num18_64 
+numgt64   
+
+. des
+
+Contains data from apple.dta
+  obs:           660                          
+ vars:            17                          1 Jul 1999 15:05
+ size:        27,060 (97.1% of memory free)
+-------------------------------------------------------------------------------
+              storage  display     value
+variable name   type   format      label      variable label
+-------------------------------------------------------------------------------
+id              int    %8.0g                  respondent identifier
+educ            byte   %8.0g                  years schooling
+date            str6   %9s                    date:  month/day/year
+state           str2   %9s                    home state
+regprc          float  %9.0g                  price of regular apples
+ecoprc          float  %9.0g                  price of ecolabeled apples
+inseason        byte   %9.0g                  =1 if interviewed in Nov.
+hhsize          byte   %9.0g                  household size
+male            byte   %9.0g                  =1 if male
+faminc          int    %9.0g                  family income, thousands
+age             byte   %9.0g                  in years
+reglbs          float  %9.0g                  quantity regular apples, pounds
+ecolbs          float  %9.0g                  quantity ecolabeled apples, lbs
+numlt5          byte   %9.0g                  # in household younger than 5
+num5_17         byte   %9.0g                  # in household 5 to 17
+num18_64        byte   %9.0g                  # in household 18 to 64
+numgt64         byte   %9.0g                  # in household older than 64
+-------------------------------------------------------------------------------
+Sorted by:  
+
+. log close
+       log:  C:\mitbook\statafiles\apple.des
+  log type:  text
+ closed on:   2 Apr 2002, 16:54:45
+-------------------------------------------------------------------------------

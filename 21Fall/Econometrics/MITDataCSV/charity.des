@@ -1,0 +1,38 @@
+-------------------------------------------------------------------------------------------------------------------------
+      name:  <unnamed>
+       log:  C:\mitbook1_2e\textfiles\charity.des
+  log type:  text
+ opened on:   8 Feb 2011, 17:48:48
+
+. ds
+respond    gift       resplast   weekslast  propresp   mailsyear  giftlast   avggift    lgift      lavggift
+
+. des
+
+Contains data from charity.dta
+  obs:         4,268                          
+ vars:            10                          8 Feb 2011 17:48
+ size:       162,184 (99.9% of memory free)
+-------------------------------------------------------------------------------------------------------------------------
+              storage  display     value
+variable name   type   format      label      variable label
+-------------------------------------------------------------------------------------------------------------------------
+respond         byte   %9.0g                  =1 if responded with gift
+gift            int    %9.0g                  amount of gift, Dutch guilders
+resplast        byte   %9.0g                  =1 if responded to most recent mailing
+weekslast       float  %9.0g                  number of weeks since last response
+propresp        float  %9.0g                  response rate to mailings
+mailsyear       float  %9.0g                  number of mailings per year
+giftlast        int    %9.0g                  amount of most recent gift
+avggift         float  %9.0g                  average of past gifts
+lgift           float  %9.0g                  log(gift); missing if gift = 0
+lavggift        float  %9.0g                  log(avggift)
+-------------------------------------------------------------------------------------------------------------------------
+Sorted by:  
+
+. log close
+      name:  <unnamed>
+       log:  C:\mitbook1_2e\textfiles\charity.des
+  log type:  text
+ closed on:   8 Feb 2011, 17:48:54
+-------------------------------------------------------------------------------------------------------------------------

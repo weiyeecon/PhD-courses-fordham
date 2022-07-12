@@ -1,0 +1,59 @@
+-------------------------------------------------------------------------------
+       log:  C:\mitbook\textfiles\injury.des
+  log type:  text
+ opened on:  22 Apr 2002, 10:45:54
+
+. ds
+durat     afchnge   highearn  male      married   hosp      indust    injtype  
+age       prewage   totmed    injdes    benefit   ky        mi        ldurat   
+afhigh    lprewage  lage      ltotmed   head      neck      upextr    trunk    
+lowback   lowextr   occdis    manuf     construc  highlpre  
+
+. des
+
+Contains data from injury.dta
+  obs:         7,150                          
+ vars:            30                          27 Jun 1997 14:53
+ size:       443,300 (56.3% of memory free)
+-------------------------------------------------------------------------------
+              storage  display     value
+variable name   type   format      label      variable label
+-------------------------------------------------------------------------------
+durat           float  %9.0g                  duration of benefits
+afchnge         byte   %9.0g                  =1 if after change in benefits
+highearn        byte   %9.0g                  =1 if high earner
+male            byte   %9.0g                  =1 if male
+married         byte   %9.0g                  =1 if married
+hosp            byte   %9.0g                  =1 if inj. required hosp. stay
+indust          byte   %9.0g                  industry
+injtype         byte   %9.0g                  type of injury
+age             byte   %9.0g                  age at time of injury
+prewage         float  %9.0g                  previous weekly wage, 1982 $
+totmed          float  %9.0g                  total med. costs, 1982 $
+injdes          int    %9.0g                  4 digit injury description
+benefit         float  %9.0g                  real dollar value of benefit
+ky              byte   %9.0g                  =1 for kentucky
+mi              byte   %9.0g                  =1 for michigan
+ldurat          float  %9.0g                  log(durat)
+afhigh          byte   %9.0g                  afchnge*highearn
+lprewage        float  %9.0g                  log(wage)
+lage            float  %9.0g                  log(age)
+ltotmed         float  %9.0g                  log(totmed); = 0 if totmed < 1
+head            byte   %9.0g                  =1 if head injury
+neck            byte   %9.0g                  =1 if neck injury
+upextr          byte   %9.0g                  =1 if upper extremities injury
+trunk           byte   %9.0g                  =1 if trunk injury
+lowback         byte   %9.0g                  =1 if lower back injury
+lowextr         byte   %9.0g                  =1 if lower extremities injury
+occdis          byte   %9.0g                  =1 if occupational disease
+manuf           byte   %9.0g                  =1 if manufacturing industry
+construc        byte   %9.0g                  =1 if construction industry
+highlpre        float  %9.0g                  highearn*lprewage
+-------------------------------------------------------------------------------
+Sorted by:  
+
+. log close
+       log:  C:\mitbook\textfiles\injury.des
+  log type:  text
+ closed on:  22 Apr 2002, 10:46:05
+-------------------------------------------------------------------------------

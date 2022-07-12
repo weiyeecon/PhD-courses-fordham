@@ -1,0 +1,86 @@
+-------------------------------------------------------------------------------
+       log:  C:\mitbook\textfiles\mathpnl.des
+  log type:  text
+ opened on:  22 Apr 2002, 11:00:07
+
+. ds
+distid    intid     lunch     enrol     ptr       found     expp      revpp    
+avgsal    drop      grad      math4     math7     choice    psa       year     
+staff     avgben    y92       y93       y94       y95       y96       y97      
+y98       lexpp     lfound    lexpp_1   lfnd_1    lenrol    lenrolsq  lunchsq  
+lfndsq    math4_1   cmath4    gexpp     gexpp_1   w1        gfound    gfnd_1   
+clunch    clnchsq   genrol    genrolsq  expp92    lexpp92   math4_92  cpi      
+rexpp     lrexpp    lrexpp_1  grexpp    z1        grexpp_1  
+
+. des
+
+Contains data from mathpnl.dta
+  obs:         3,850                          
+ vars:            54                          19 Dec 2001 15:26
+ size:       693,000 (31.8% of memory free)
+-------------------------------------------------------------------------------
+              storage  display     value
+variable name   type   format      label      variable label
+-------------------------------------------------------------------------------
+distid          float  %9.0g                  district identifier
+intid           byte   %9.0g                  intermediate school district
+lunch           float  %9.0g                  % eligible for free lunch
+enrol           float  %9.0g                  school enrollment
+ptr             float  %9.0g                  pupil/teacher: 1995-98
+found           int    %9.0g                  foundation grant, $:  1995-98
+expp            int    %9.0g                  expenditure per pupil
+revpp           int    %9.0g                  revenue per pupil
+avgsal          float  %9.0g                  average teacher salary
+drop            float  %9.0g                  high school dropout rate, %
+grad            float  %9.0g                  high school grad. rate, %
+math4           float  %9.0g                  % satisfactory, 4th grade math
+math7           float  %9.0g                  % satisfactory, 7th grade math
+choice          int    %9.0g                  number choice students
+psa             int    %9.0g                  # public school academy studs.
+year            int    %9.0g                  1992-1998
+staff           float  %9.0g                  staff per 1000 students
+avgben          int    %9.0g                  avg teacher fringe benefits
+y92             byte   %9.0g                  =1 if year == 1992
+y93             byte   %9.0g                  =1 if year == 1993
+y94             byte   %9.0g                  =1 if year == 1994
+y95             byte   %9.0g                  =1 if year == 1995
+y96             byte   %9.0g                  =1 if year == 1996
+y97             byte   %9.0g                  =1 if year == 1997
+y98             byte   %9.0g                  =1 if year == 1998
+lexpp           float  %9.0g                  log(expp)
+lfound          float  %9.0g                  log(found)
+lexpp_1         float  %9.0g                  lexpp[_n-1]
+lfnd_1          float  %9.0g                  lfnd[_n-1]
+lenrol          float  %9.0g                  log(enrol)
+lenrolsq        float  %9.0g                  lenrol^2
+lunchsq         float  %9.0g                  lunch^2
+lfndsq          float  %9.0g                  lfnd^2
+math4_1         float  %9.0g                  math4[_n-1]
+cmath4          float  %9.0g                  math4 - math4_1
+gexpp           float  %9.0g                  lexpp - lexpp_1
+gexpp_1         float  %9.0g                  gexpp[_n-1
+w1              float  %9.0g                  gexpp_1 - gexpp
+gfound          float  %9.0g                  lfound - lfnd_1
+gfnd_1          float  %9.0g                  gfound[_n-1]
+clunch          float  %9.0g                  lunch - lunch[_n-1]
+clnchsq         float  %9.0g                  lunchsq - lunchsq[_n-1]
+genrol          float  %9.0g                  lenrol - lenrol[_n-1]
+genrolsq        float  %9.0g                  genrol^2
+expp92          int    %9.0g                  expp in 1992
+lexpp92         float  %9.0g                  log(expp92)
+math4_92        float  %9.0g                  math4 in 1992
+cpi             float  %9.0g                  consumer price index
+rexpp           float  %9.0g                  real spending per pupil, 1997$
+lrexpp          float  %9.0g                  log(rexpp)
+lrexpp_1        float  %9.0g                  lrexpp[_n-1]
+grexpp          float  %9.0g                  lrexpp - lrexpp_1
+z1              float  %9.0g                  lrexpp_1 - lrexpp
+grexpp_1        float  %9.0g                  grexpp[_n-1]
+-------------------------------------------------------------------------------
+Sorted by:  distid  year  
+
+. log close
+       log:  C:\mitbook\textfiles\mathpnl.des
+  log type:  text
+ closed on:  22 Apr 2002, 11:00:35
+-------------------------------------------------------------------------------

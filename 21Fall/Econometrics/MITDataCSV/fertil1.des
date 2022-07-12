@@ -1,0 +1,48 @@
+-------------------------------------------------------------------------------
+       log:  C:\mitbook\textfiles\fertil1.des
+  log type:  text
+ opened on:  22 Apr 2002, 10:33:57
+
+. ds
+year      educ      meduc     feduc     age       kids      black     east     
+northcen  west      farm      othrural  town      smcity    y74       y76      
+y78       y80       y82       y84       
+
+. des
+
+Contains data from fertil1.dta
+  obs:         1,129                          
+ vars:            20                          2 Sep 1996 15:46
+ size:        27,096 (97.1% of memory free)
+-------------------------------------------------------------------------------
+              storage  display     value
+variable name   type   format      label      variable label
+-------------------------------------------------------------------------------
+year            byte   %9.0g                  
+educ            byte   %9.0g                  years of schooling
+meduc           byte   %9.0g                  mother's education
+feduc           byte   %9.0g                  father's education
+age             byte   %9.0g                  in years
+kids            byte   %9.0g                  # children ever born
+black           byte   %9.0g                  = 1 if black
+east            byte   %9.0g                  = 1 if lived in east at 16
+northcen        byte   %9.0g                  = 1 if lived in nc at 16
+west            byte   %9.0g                  = 1 if lived in west at 16
+farm            byte   %9.0g                  = 1 if on farm at 16
+othrural        byte   %9.0g                  = 1 if other rural at 16
+town            byte   %9.0g                  = 1 if lived in town at 16
+smcity          byte   %9.0g                  = 1 if in small city at 16
+y74             byte   %9.0g                  = 1 if year = 74
+y76             byte   %9.0g                  
+y78             byte   %9.0g                  
+y80             byte   %9.0g                  
+y82             byte   %9.0g                  
+y84             byte   %9.0g                  
+-------------------------------------------------------------------------------
+Sorted by:  
+
+. log close
+       log:  C:\mitbook\textfiles\fertil1.des
+  log type:  text
+ closed on:  22 Apr 2002, 10:34:02
+-------------------------------------------------------------------------------

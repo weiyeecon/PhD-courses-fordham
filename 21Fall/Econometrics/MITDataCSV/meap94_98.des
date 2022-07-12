@@ -1,0 +1,56 @@
+-------------------------------------------------------------------------------------------------------------------------
+      name:  <unnamed>
+       log:  C:\mitbook1_2e\textfiles\meap94_98.des
+  log type:  text
+ opened on:   8 Feb 2011, 21:27:54
+
+. ds
+distid     enrol      year       lrexpp     lavgrexp   lunchb     y95        y98        y97b
+schid      exppp      cpi        lenrol     tobs       lenrolb    y96        y95b       y98b
+lunch      math4      rexppp     avgrexp    lavgrexpb  y94        y97        y96b
+
+. des
+
+Contains data from meap94_98.dta
+  obs:         7,150                          
+ vars:            26                          8 Feb 2011 21:27
+ size:       815,100 (99.8% of memory free)
+-------------------------------------------------------------------------------------------------------------------------
+              storage  display     value
+variable name   type   format      label      variable label
+-------------------------------------------------------------------------------------------------------------------------
+distid          float  %9.0g                  district identifier
+schid           int    %9.0g                  school identifier
+lunch           float  %9.0g                  % eligible for free lunch
+enrol           int    %9.0g                  number of students
+exppp           int    %9.0g                  expenditure per pupil
+math4           float  %9.0g                  % satisfactory, 4th grade math test
+year            int    %9.0g                  1992=school yr 1991-2
+cpi             float  %9.0g                  consumer price index
+rexppp          float  %9.0g                  (exppp/cpi)*1.695: 1997 $
+lrexpp          float  %9.0g                  log(rexpp)
+lenrol          float  %9.0g                  log(enrol)
+avgrexp         float  %9.0g                  (rexppp + rexppp_1)/2
+lavgrexp        float  %9.0g                  log(avgrexp)
+tobs            byte   %9.0g                  number of time periods
+lavgrexpb       double %10.0g                 time average of lavgrexp
+lunchb          double %10.0g                 time average of lunch
+lenrolb         double %10.0g                 time average of lenrol
+y94             byte   %9.0g                  =1 if year == 1994
+y95             byte   %9.0g                  =1 if year == 1995
+y96             byte   %9.0g                  =1 if year == 1996
+y97             byte   %9.0g                  =1 if year == 1997
+y98             byte   %9.0g                  =1 if year == 1998
+y95b            double %10.0g                 time average of y95
+y96b            double %10.0g                 time average of y96
+y97b            double %10.0g                 time average of y97
+y98b            double %10.0g                 time average of y98
+-------------------------------------------------------------------------------------------------------------------------
+Sorted by:  schid  year
+
+. log close
+      name:  <unnamed>
+       log:  C:\mitbook1_2e\textfiles\meap94_98.des
+  log type:  text
+ closed on:   8 Feb 2011, 21:27:58
+-------------------------------------------------------------------------------------------------------------------------

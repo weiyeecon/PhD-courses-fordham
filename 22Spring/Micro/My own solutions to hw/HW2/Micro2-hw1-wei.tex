@@ -1,0 +1,234 @@
+%EX TS-program = pdflatex
+% !TEX encoding = UTF-8 Unicode
+
+% This is a simple template for a LaTeX document using the "article" class.
+% See "book", "report", "letter" for other types of document.
+
+\documentclass[11pt]{article} % use larger type; default would be 10pt
+\usepackage[utf8]{inputenc} % set input encoding (not needed with XeLaTeX)
+
+%%% Examples of Article customizations
+% These packages are optional, depending whether you want the features they provide.
+% See the LaTeX Companion or other references for full information.
+\usepackage{amsmath}
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+	\hskip -\arraycolsep
+	\let\@ifnextchar\new@ifnextchar
+	\array{#1}}
+\makeatother
+
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+%%% PAGE DIMENSIONS
+\usepackage{geometry} % to change the page dimensions
+\usepackage{listings}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{marvosym}
+\geometry{a4paper} % or letterpaper (US) or a5paper or....
+% \geometry{margin=2in} % for example, change the margins to 2 inches all round
+% \geometry{landscape} % set up the page for landscape
+%   read geometry.pdf for detailed page layout information
+
+\usepackage{graphicx} % support the \includegraphics command and options
+% \usepackage[parfill]{parskip} % Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{amssymb}
+\usepackage{mathrsfs}
+%%% PACKAGES
+\usepackage{booktabs} % for much better looking tables
+\usepackage{array} % for better arrays (eg matrices) in maths
+\usepackage{paralist} % very flexible & customisable lists (eg. enumerate/itemize, etc.)
+\usepackage{verbatim} % adds environment for commenting out blocks of text & for better verbatim
+\usepackage{subfig} % make it possible to include more than one captioned figure/table in a single float
+% These packages are all incorporated in the memoir class to one degree or another...
+\usepackage{pgfplots}
+%%% HEADERS & FOOTERS
+\usepackage{fancyhdr} % This should be set AFTER setting up the page geometry
+\pagestyle{fancy} % options: empty , plain , fancy
+\renewcommand{\headrulewidth}{0pt} % customise the layout...
+\lhead{}\chead{}\rhead{}
+\lfoot{}\cfoot{\thepage}\rfoot{}
+
+%%% SECTION TITLE APPEARANCE
+\usepackage{sectsty}
+\allsectionsfont{\sffamily\mdseries\upshape} % (See the fntguide.pdf for font help)
+% (This matches ConTeXt defaults)
+\usepackage[thinc]{esdiff}
+\usepackage{bbold}
+\usepackage{MnSymbol,wasysym}
+%%% ToC (table of contents) APPEARANCE
+\usepackage[nottoc,notlof,notlot]{tocbibind} % Put the bibliography in the ToC
+\usepackage[titles,subfigure]{tocloft} % Alter the style of the Table of Contents
+\renewcommand{\cftsecfont}{\rmfamily\mdseries\upshape}
+\renewcommand{\cftsecpagefont}{\rmfamily\mdseries\upshape} % No bold!
+
+%%% END Article customizations
+
+%%% The "real" document content comes below...
+
+\title{Homework 2}
+\author{Wei Ye\footnote{ 1st year PhD student in Economics Department at Fordham University. Email: wye22@fordham.edu}
+    \\ ECON 7010- Microeconomics II}
+\date{Due on Feb 2, 2022}
+\begin{document}
+\maketitle
+
+\section{Qeustion 1 -- 2.E.1}
+\textbf{Solution:}
+
+We apply $\mathcal{P}\cdot \mathcal{X}$: $\sum_i^3p_i*x_i=\frac{w(\beta p_1+p_2+p_3)}{p_1+p_2+p_3}$
+
+\begin{itemize}
+    \item When $\beta=1$, $\sum_i^3p_i*x_i=w$, it satisfies  Walras' law. $x_1(\alpha p,\alpha w)=\frac{\alpha p_2}{\alpha (p_1+p_2+p_3)}\frac{\alpha w}{\alpha p_1}=x_1(p,w)$. Using the same method to derive other two, we get the same result, thus, it satisfies homogeneity of degree zero.
+    \item When $\beta\in (0,1)$, $\sum_i^3p_i*x_i<w$, it violates Walras' law. For $x_1$ and $x_2$, they are same with previous, so we only watch for $x_3$, $x_3(\alpha p,\alpha w)=\frac{\alpha \beta p_1}{\alpha (p_1+p_2+p_3)}\frac{\alpha w}{\alpha p_3}=x_3(p,w)$, therefore, it satisfies homogeneity of degree zero.
+\end{itemize}
+
+\section{Question 2 -- 2.E.7}
+\textbf{Solution:}
+
+By Walras' law, $p_1x_1(p,w)+p_2x_2(p,w)=w$, plugging $x_1=\frac{\alpha w}{p_1}$ into Walras' law equation. We can obtain:
+$p_1\cdot \frac{\alpha w}{p_1}+p_2\cdot x_2(p,w)=w$, then deriving this equation, $x_2(p,w)=\frac{(1-\alpha)w}{p_2}$
+
+To test homegeneity of degree zero:
+$$x_1(\alpha p,\alpha w)=\frac{\alpha^2w}{\alpha p_1}=x_1(p,w)$$
+\begin{equation*}
+    x_2(\alpha p,\alpha w)=\frac{\alpha(1-\alpha)w}{\alpha p_2}=x_2(p,w)
+\end{equation*}
+
+Thus, her demand function satisfies homogeneity of degree zero.
+
+
+
+
+\section{Question 3 -- 2.F.3}
+\textbf{Solution:}
+
+\begin{enumerate}[(a)]
+    \item 
+        This question is a little tricky, now if we assume her behavior is consistent, i.e., satisfing WARP, it means 
+        $p_1x_1'+p_2x_2' \leq p_1x_1+p_2x_2$ and $p_1'x_1+p_2'x_2> p_1'x_1'+p_2'x_2'$, however, if it violates WARP, we need to make induction condition have converse direction, 
+        which means $p_1'x_1+p_2'x_2 \leq p_1'x_1'+p_2'x_2'$
+        
+        Combine:
+        \begin{equation}
+            p_1x_1'+p_2x_2' \leq p_1x_1+p_2x_2 
+        \end{equation}
+        \begin{equation}
+            p_1'x_1+p_2'x_2 \leq p_1'x_1'+p_2'x_2'
+        \end{equation}
+
+        Plug $p_1=100$, $p_1'=120$, $p_2=100$, $p_2'=80$, $x_1=100$, $x_1'=120$, $x_2=100$ into the above two equations.
+        \begin{equation*}
+            100*120+100x_2'\leq 100*100+100*100
+        \end{equation*}
+        \begin{equation*}
+            100*100+80*100\leq 100*120+80x_2'
+        \end{equation*}
+Thus, $x_2'\in [75,80]$
+
+        \item Since year 1's bundle is revealed preferred to the bundle in year 2.
+            \begin{equation}
+                p_1x_1'+p_2x_2'\leq  p_1x_1+p_2x_2
+            \end{equation}
+            \begin{equation}
+                p_1'x_1+p_2'x_2>p_1'x_1'+p_2'x_2'
+            \end{equation}
+        Plug values into these equations:
+            \begin{equation*}
+                100*120+100x_2'\leq 100*100+100*100
+            \end{equation*}
+            \begin{equation*}
+                100*100+80*100>100*100+80x_2'
+            \end{equation*}
+    Therefore, $x_2' <75$.
+        \item As year 2's consumption bundle is revealed preferred to year 2's:
+            \begin{equation}
+                p_1'x_1+p_2'x_2\leq p_1'x_1'+p_2'x_2'
+            \end{equation}
+            \begin{equation}
+                p_1x_1'+p_2x_2'>p_1x_1+p_2x_2
+            \end{equation}
+            Plug values into these two equations:
+            \begin{equation*}
+                100*100+80*100\leq 100*120+80x_2'
+            \end{equation*}
+            \begin{equation*}
+                100*120>100*100+100*100
+            \end{equation*}
+    Hence, $x_2'>80$
+\end{enumerate}
+
+
+\section{Question 4 -- 2.F.16}
+\textbf{Solution:}
+
+\begin{enumerate}[(a)]
+    \item $$x_1(\alpha p, \alpha w)=\frac{\alpha p_2}{\alpha p_3}=\frac{p_2}{p_3}=x_1(p,w)$$
+        \begin{equation*}
+            x_2(\alpha p,\alpha w)=-\frac{\alpha p_1}{\alpha p_3}=-\frac{p_1}{p_3}=x_2(p,w)
+        \end{equation*}
+        \begin{equation*}
+            x_3(\alpha p, \alpha w)=\frac{\alpha w}{\alpha p_3}=\frac{w}{p_3}=x_3(p,w)
+        \end{equation*}
+        Thus, $x(p,w)$ satisfies homogeneity of degree zero.
+        Now, let's  prove Walras' law:
+        \begin{align*}
+            \sum_i^3 p_ix_i&= p_1\cdot \frac{p_2}{p_3}+p_2\cdot \frac{-p_1}{p_3}+p_3\cdot \frac{2}{p_3}\\
+                            &= \frac{p_1p_2-p_1p_2+wp_3}{p_3}\\
+                            &=w
+        \end{align*}
+        It satisfies Walras' law.
+    \item If x satisfies WARP, it should $px'\leq w$,  $p'x>w$,  we prove by contradiction:
+        Let $p=(1,2,1)$, w=1, thus, $x=(2,-1,1)$, let $p'=(1,1,1)$, $w'=2$,thus, $x'=(1,-1,2)$.
+        \begin{equation*}
+            p*x'=2>w
+        \end{equation*}
+        \begin{equation*}
+            p'*x=2=w'
+        \end{equation*}
+        Therefore, it violates WARP.
+\end{enumerate}
+
+\section{Question 5 -- 2.F.17}
+\textbf{Solution:}
+
+\begin{enumerate}[(a)]
+    \item \begin{align*}
+        x_k(\alpha x, \alpha w)&=\frac{\alpha w}{\alpha \sum_{l=1}^L p_l}\\
+                                &=\frac{w}{\sum_{l=1}^L p_l}\\
+                                &=x_k(x,w)
+    \end{align*}
+    Thus, it's homogeneous of degree zero.
+    \item \begin{align*}
+        \sum_k^Lx_k(p,w)p_k&=\sum_k^Lp_k\cdot \frac{w}{\sum_{l=1}^L p_l}\\
+                            &= \frac{w}{\sum_{l=1}^L p_l}\sum_k^Lp_k\\
+                            &=\frac{w}{\sum_{l=1}^L p_l}\cdot \sum_{l=1}^L p_l\\
+                            &=w
+    \end{align*}
+    Yes, it satisfies Walras' law.
+    \item Suppose $px_k(p',w')\leq w$ and $p'x_k(p,w)\leq w'$. From the first inequality, $\sum_k^L p_k \frac{w'}{\sum_{l=1}^L p_l}\leq w$, which means $\frac{w'}{\sum_{l=1}^L p_l'}\leq \frac{w}{\sum_{l=1}^L p_l}$,
+    from the second inequality, $\sum_k^Lp_k'\frac{w}{\sum_{l=1}^L p_l}\leq w'$, thus, $\frac{w'}{\sum_{l=1}^L p_l'}\geq \frac{w}{\sum_{l=1}^L p_l}$,
+    Hence, $x_k(p,w)=x_k(p',w')$, it satisfies WARP.  
+\end{enumerate}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}

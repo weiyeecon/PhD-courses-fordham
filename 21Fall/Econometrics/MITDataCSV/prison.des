@@ -1,0 +1,76 @@
+-------------------------------------------------------------------------------
+       log:  C:\mitbook\textfiles\prison.des
+  log type:  text
+ opened on:  22 Apr 2002, 11:15:22
+
+. ds
+state     year      govelec   black     metro     unem      criv      crip     
+lcriv     lcrip     gcriv     gcrip     y81       y82       y83       y84      
+y85       y86       y87       y88       y89       y90       y91       y92      
+y93       ag0_14    ag15_17   ag18_24   ag25_34   incpc     polpc     gincpc   
+gpolpc    cag0_14   cag15_17  cag18_24  cag25_34  cunem     cblack    cmetro   
+pris      lpris     gpris     final1    final2    
+
+. des
+
+Contains data from prison.dta
+  obs:           714                          
+ vars:            45                          4 Dec 2001 15:17
+ size:        92,820 (90.5% of memory free)
+-------------------------------------------------------------------------------
+              storage  display     value
+variable name   type   format      label      variable label
+-------------------------------------------------------------------------------
+state           byte   %9.0g                  alphabetical; DC = 9
+year            byte   %9.0g                  80 to 93
+govelec         byte   %9.0g                  =1 if gubernatorial election
+black           float  %9.0g                  proportion black
+metro           float  %9.0g                  proportion in metro. areas
+unem            float  %9.0g                  proportion unemployed
+criv            float  %9.0g                  viol. crimes per 100,000
+crip            float  %9.0g                  prop. crimes per 100,000
+lcriv           float  %9.0g                  log(criv)
+lcrip           float  %9.0g                  log(crip)
+gcriv           float  %9.0g                  lcriv - lcriv_1
+gcrip           float  %9.0g                  lcrip - lcrip_1
+y81             byte   %9.0g                  =1 if year == 81
+y82             byte   %9.0g                  
+y83             byte   %9.0g                  
+y84             byte   %9.0g                  
+y85             byte   %9.0g                  
+y86             byte   %9.0g                  
+y87             byte   %9.0g                  
+y88             byte   %9.0g                  
+y89             byte   %9.0g                  
+y90             byte   %9.0g                  
+y91             byte   %9.0g                  
+y92             byte   %9.0g                  
+y93             byte   %9.0g                  
+ag0_14          float  %9.0g                  prop. pop. 0 to 14 yrs
+ag15_17         float  %9.0g                  prop. pop. 15 to 17 yrs
+ag18_24         float  %9.0g                  prop. pop. 18 to 24 yrs
+ag25_34         float  %9.0g                  prop. pop. 25 to 34 yrs
+incpc           float  %9.0g                  per capita income, nominal
+polpc           float  %9.0g                  police per 100,000 residents
+gincpc          float  %9.0g                  log(incpc) - log(incpc_1)
+gpolpc          float  %9.0g                  lpolpc - lpolpc_1
+cag0_14         float  %9.0g                  change in ag0_14
+cag15_17        float  %9.0g                  change in ag15_17
+cag18_24        float  %9.0g                  change in ag18_24
+cag25_34        float  %9.0g                  change in ag25_34
+cunem           float  %9.0g                  change in unem
+cblack          float  %9.0g                  change in black
+cmetro          float  %9.0g                  change in metro
+pris            float  %9.0g                  prison pop. per 100,000
+lpris           float  %9.0g                  log(pris)
+gpris           float  %9.0g                  lpris - lpris[_n-1]
+final1          byte   %9.0g                  =1 if fnl dec on litig, curr yr
+final2          byte   %9.0g                  =1 if dec on litig, prev 2 yrs
+-------------------------------------------------------------------------------
+Sorted by:  state  year  
+
+. log close
+       log:  C:\mitbook\textfiles\prison.des
+  log type:  text
+ closed on:  22 Apr 2002, 11:15:30
+-------------------------------------------------------------------------------

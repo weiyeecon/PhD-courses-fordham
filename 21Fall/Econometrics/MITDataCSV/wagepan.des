@@ -1,0 +1,75 @@
+-------------------------------------------------------------------------------
+       log:  C:\mitbook\textfiles\wagepan.des
+  log type:  text
+ opened on:  22 Apr 2002, 11:28:51
+
+. ds
+nr        year      agric     black     bus       construc  ent       exper    
+fin       hisp      poorhlth  hours     manuf     married   min       nrthcen  
+nrtheast  occ1      occ2      occ3      occ4      occ5      occ6      occ7     
+occ8      occ9      per       pro       pub       rur       south     educ     
+tra       trad      union     lwage     d81       d82       d83       d84      
+d85       d86       d87       expersq   
+
+. des
+
+Contains data from wagepan.dta
+  obs:         4,360                          
+ vars:            44                          2 Apr 2002 22:39
+ size:       239,800 (76.1% of memory free)
+-------------------------------------------------------------------------------
+              storage  display     value
+variable name   type   format      label      variable label
+-------------------------------------------------------------------------------
+nr              int    %9.0g                  person identifier
+year            int    %9.0g                  1980 to 1987
+agric           byte   %9.0g                  =1 if in agriculture
+black           byte   %9.0g                  =1 if black
+bus             byte   %9.0g                  =1 if business & repair serv.
+construc        byte   %9.0g                  =1 if in construction
+ent             byte   %9.0g                  =1 if entertainment
+exper           byte   %9.0g                  labor mkt experience
+fin             byte   %9.0g                  =1 if finance
+hisp            byte   %9.0g                  =1 if Hispanic
+poorhlth        byte   %9.0g                  =1 if in poor health
+hours           int    %9.0g                  annual hours worked
+manuf           byte   %9.0g                  =1 if in manufacturing
+married         byte   %9.0g                  =1 if married
+min             byte   %9.0g                  =1 if mining
+nrthcen         byte   %9.0g                  =1 if north central
+nrtheast        byte   %9.0g                  =1 if north east
+occ1            byte   %9.0g                  =1 if professional, technical
+occ2            byte   %9.0g                  =1 if mgr, official, proprietor
+occ3            byte   %9.0g                  =1 if sales
+occ4            byte   %9.0g                  =1 if clerical
+occ5            byte   %9.0g                  =1 if craftsman, foreman
+occ6            byte   %9.0g                  =1 if operative
+occ7            byte   %9.0g                  =1 if laborer, farmer
+occ8            byte   %9.0g                  =1 if farm laborer, foreman
+occ9            byte   %9.0g                  =1 if service
+per             byte   %9.0g                  =1 if personal service
+pro             byte   %9.0g                  =1 if professional & related
+pub             byte   %9.0g                  =1 if public administration
+rur             byte   %9.0g                  =1 if live in rural area
+south           byte   %9.0g                  =1 if south
+educ            byte   %9.0g                  years of schooling
+tra             byte   %9.0g                  =1 if transportation
+trad            byte   %9.0g                  =1 if trade
+union           byte   %9.0g                  =1 if in union
+lwage           float  %9.0g                  log(wage)
+d81             byte   %9.0g                  =1 if year == 1981
+d82             byte   %9.0g                  =1 if year == 1982
+d83             byte   %9.0g                  =1 if year == 1983
+d84             byte   %9.0g                  =1 if year == 1984
+d85             byte   %9.0g                  =1 if year == 1985
+d86             byte   %9.0g                  =1 if year == 1986
+d87             byte   %9.0g                  =1 if year == 1987
+expersq         int    %9.0g                  exper^2
+-------------------------------------------------------------------------------
+Sorted by:  nr  year  
+
+. log close
+       log:  C:\mitbook\textfiles\wagepan.des
+  log type:  text
+ closed on:  22 Apr 2002, 11:29:05
+-------------------------------------------------------------------------------

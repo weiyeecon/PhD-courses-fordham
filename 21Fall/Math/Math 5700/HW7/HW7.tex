@@ -1,0 +1,469 @@
+%EX TS-program = pdflatex
+% !TEX encoding = UTF-8 Unicode
+
+% This is a simple template for a LaTeX document using the "article" class.
+% See "book", "report", "letter" for other types of document.
+
+\documentclass[11pt]{article} % use larger type; default would be 10pt
+
+\usepackage[utf8]{inputenc} % set input encoding (not needed with XeLaTeX)
+
+%%% Examples of Article customizations
+% These packages are optional, depending whether you want the features they provide.
+% See the LaTeX Companion or other references for full information.
+\usepackage{amsmath}
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+	\hskip -\arraycolsep
+	\let\@ifnextchar\new@ifnextchar
+	\array{#1}}
+\makeatother
+%%% PAGE DIMENSIONS
+\usepackage{geometry} % to change the page dimensions
+\usepackage{marvosym}
+\geometry{a4paper} % or letterpaper (US) or a5paper or....
+% \geometry{margin=2in} % for example, change the margins to 2 inches all round
+% \geometry{landscape} % set up the page for landscape
+%   read geometry.pdf for detailed page layout information
+
+\usepackage{graphicx} % support the \includegraphics command and options
+% \usepackage[parfill]{parskip} % Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{amssymb}
+%%% PACKAGES
+\usepackage{booktabs} % for much better looking tables
+\usepackage{array} % for better arrays (eg matrices) in maths
+\usepackage{paralist} % very flexible & customisable lists (eg. enumerate/itemize, etc.)
+\usepackage{verbatim} % adds environment for commenting out blocks of text & for better verbatim
+\usepackage{subfig} % make it possible to include more than one captioned figure/table in a single float
+% These packages are all incorporated in the memoir class to one degree or another...
+\usepackage{pgfplots}
+%%% HEADERS & FOOTERS
+\usepackage{fancyhdr} % This should be set AFTER setting up the page geometry
+\pagestyle{fancy} % options: empty , plain , fancy
+\renewcommand{\headrulewidth}{0pt} % customise the layout...
+\lhead{}\chead{}\rhead{}
+\lfoot{}\cfoot{\thepage}\rfoot{}
+
+%%% SECTION TITLE APPEARANCE
+\usepackage{sectsty}
+\allsectionsfont{\sffamily\mdseries\upshape} % (See the fntguide.pdf for font help)
+% (This matches ConTeXt defaults)
+\usepackage[thinc]{esdiff}
+\usepackage{bbold}
+\usepackage{MnSymbol,wasysym}
+%%% ToC (table of contents) APPEARANCE
+\usepackage[nottoc,notlof,notlot]{tocbibind} % Put the bibliography in the ToC
+\usepackage[titles,subfigure]{tocloft} % Alter the style of the Table of Contents
+\renewcommand{\cftsecfont}{\rmfamily\mdseries\upshape}
+\renewcommand{\cftsecpagefont}{\rmfamily\mdseries\upshape} % No bold!
+
+%%% END Article customizations
+
+%%% The "real" document content comes below...
+
+\title{HW7}
+\author{Wei Ye\footnote{I worked on my assignment sololy. Email: wye22@fordham.edu}  	\\
+	ECON 5700}
+\date{Due on August 22, 2020.}
+
+
+\begin{document}
+	\maketitle
+	\section{Question 1}
+	\textbf{Solution:}
+
+\begin{enumerate}
+	\item 
+	
+	let 
+$\vec{u}= \begin{pmatrix}
+	x_1\\
+	y_1\\
+	z_1
+\end{pmatrix}$, $\vec{v}=
+\begin{pmatrix}
+	x_2\\
+	y_2\\
+	z_2
+\end{pmatrix}$, and $\vec{m}= \begin{pmatrix}
+x_3\\
+y_3\\
+z_3
+\end{pmatrix}$.
+\begin{align*}
+	\mathcal{T}(\vec{u}+\vec{v}+\vec{m})&=\mathcal{T}(\begin{pmatrix}
+			x_1\\
+		y_1\\
+		z_1
+	\end{pmatrix}+
+\begin{pmatrix}
+x_2\\
+y_2\\
+z_2
+\end{pmatrix}+
+\begin{pmatrix}
+x_3\\
+y_3\\
+z_3
+\end{pmatrix})\\
+&=\mathcal{T}(\begin{pmatrix}
+	x_1+x_2+x_3\\
+	y_1+y_2+y_3\\
+	z_1+z_2+z_3
+\end{pmatrix})\\
+&=\begin{pmatrix}
+	x_1-y_1+z_1\\
+	2x_1+y_1-3z_1\\
+	z_1
+\end{pmatrix}+
+\begin{pmatrix}
+	x_2-y_2+z_2\\
+	2x_2+y_2-3z_2\\
+	z_2
+\end{pmatrix}+
+\begin{pmatrix}
+	x_3-y_3+z_3\\
+	2x_3+y_3-3z_3\\
+	z_3
+\end{pmatrix}\\
+&=\mathcal{T}(\vec{u})+\mathcal{T}(\vec{v})+\mathcal{T}(\vec{m})
+\end{align*}
+
+Now, we prove under scalar mulplication, TL still exists. Sill let $\vec{v}=\begin{pmatrix}
+	x\\
+	y\\
+	z
+\end{pmatrix}$. 
+
+\begin{align*}
+	\mathcal{T}(c\vec{v})&=\mathcal{T}(\begin{pmatrix}
+		cx\\
+		cy\\
+		cz
+	\end{pmatrix})\\
+&=\begin{pmatrix}
+	c(x-y+z)\\
+	c(2x+y-3z)\\
+	cz
+\end{pmatrix}\\
+&=c\mathcal{T}(\vec{v})
+\end{align*}
+
+Thus, we can prove this is linear transformation.
+
+\item
+Let $\vec{u}=\begin{pmatrix}
+	x_1\\
+	y_1
+\end{pmatrix}$, and $\vec{v}=\begin{pmatrix}
+x_2\\
+y_2
+\end{pmatrix}$.
+\begin{align*}
+	\mathcal{T}(\vec{u}+\vec{v})&=\mathcal{T}(\begin{pmatrix}
+		x_1+x_2\\
+		y_1+y_2
+	\end{pmatrix})\\
+&=\begin{pmatrix}
+	-y_1-y_2\\
+	x_1+x_2+2y_1+2y_2\\
+	3x_1+3x_2-4y_1-4y_2
+\end{pmatrix}\\
+&=\begin{pmatrix}
+	-y_1\\
+	x_1+2y_1\\
+	3x_1-4y_1
+\end{pmatrix}+\begin{pmatrix}
+-y_2\\
+x_2+2y_2\\
+3x_2-4y_2
+\end{pmatrix}\\
+&=\mathcal{T}(\vec{u})+\mathcal{T}(\vec{v})
+\end{align*}
+New, we prove even in scalar multiplication, LT still exists.
+\begin{align*}
+	\mathcal{T}(c\begin{pmatrix}
+		x\\
+		y
+	\end{pmatrix})&=\begin{pmatrix}
+	c\begin{pmatrix}
+		-y\\
+		x+2y\\
+		3x-4y
+	\end{pmatrix}
+\end{pmatrix}\\
+&=c\begin{pmatrix}
+	-y\\
+	x+2y\\
+	3x-4y
+\end{pmatrix}\\
+&=c\mathcal{T}(\begin{pmatrix}
+	x\\
+	y
+\end{pmatrix})
+\end{align*}
+
+All in one, we can prove LT exist in our case.$\smiley$
+\end{enumerate}
+
+
+\section{Question 2}
+\textbf{Solution:}
+Since $T_A$ is matrix transformation. 
+
+$$T_A(u)= \begin{bmatrix}
+	2&-1\\
+	3&4
+\end{bmatrix}\begin{bmatrix}
+1\\2
+\end{bmatrix}=\begin{bmatrix}
+0\\11
+\end{bmatrix}$$
+$$T_A(v)=\begin{bmatrix}
+	2&-1\\2&4
+\end{bmatrix}\begin{bmatrix}
+3\\2
+\end{bmatrix}=\begin{bmatrix}
+4\\17
+\end{bmatrix}$$.
+
+
+
+\section{Question 3}
+\textbf{Solution:}
+
+The first and the second matrices are both not linear transformation. 
+
+Because the first matrix does not exist under scalar mulplication. 
+\begin{align*}
+	\mathcal{T}(c\begin{bmatrix}
+		x\\y
+	\end{bmatrix})&=\begin{bmatrix}
+	cy\\
+	c^2x^2
+\end{bmatrix}\\
+&\neq c\mathcal{T}(\begin{bmatrix}
+	x\\y
+\end{bmatrix})
+\end{align*}
+For the second matrix, it doesn't exist due to the same reason. 
+\begin{align*}
+	\mathcal{T}(c\begin{bmatrix}
+		x\\y
+	\end{bmatrix})&=\begin{bmatrix}
+	cxcy\\
+	c(x+y)
+\end{bmatrix}\\
+&\neq c\mathcal{T}(\begin{bmatrix}
+	x\\
+	y
+\end{bmatrix})
+\end{align*}
+Thus, they are not linear transformation. 
+
+\section{Question 4}
+\textbf{Solution:}
+
+\begin{enumerate}
+	\item By direct subsititution:
+	\begin{align*}
+		S^\circ T(a)&=S\begin{bmatrix}
+			x_1+2x_2\\
+			2x_2-x_3
+		\end{bmatrix}\\
+	&=\begin{bmatrix}
+		x_1+2x_2-(2x_2-x_3)\\
+		x_1+2x_2+2x_2-x_3\\
+		-x_1-2x_2+2x_2-x_3
+	\end{bmatrix}\\
+&=\begin{bmatrix}
+	x_1+x_3\\
+	x_1+4x_2-x_3\\
+	-x_1-x_3
+\end{bmatrix}
+	\end{align*}
+
+\item By matrix multiplication:
+
+$$S=y_1\begin{bmatrix}
+	1\\
+	1\\
+	1
+\end{bmatrix}+y_2\begin{bmatrix}
+-1\\
+1\\
+1
+\end{bmatrix}$$
+
+$$ [S ]=\begin{bmatrix}
+	1&-1\\
+	1&1\\
+	-1&1
+\end{bmatrix}
+$$
+$$T=\begin{bmatrix}
+	x_1+2x_2\\
+	2x_2-x_3
+\end{bmatrix}=x_1\begin{bmatrix}
+1\\
+0
+\end{bmatrix}+x_2\begin{bmatrix}
+2\\
+2
+\end{bmatrix}+x_3\begin{bmatrix}
+0\\-1
+\end{bmatrix}$$
+$$[T]=\begin{bmatrix}
+	1&2&0\\
+	0&2&-1
+\end{bmatrix}$$
+Thus:
+
+\begin{align*}
+	[S][T]&=\begin{bmatrix}
+		1&-1\\
+		1&1\\
+		-1&1
+	\end{bmatrix}\begin{bmatrix}
+	1&2&0\\
+	0&2&-1
+\end{bmatrix}\\
+&=\begin{bmatrix}
+	1&0&1\\
+	1&4&-1\\
+	-1&0&-1
+\end{bmatrix}
+\end{align*}
+\end{enumerate}
+
+
+\section{Question 5}
+
+\textbf{Solution:}
+
+\begin{align*}
+	|A-\lambda I|&=\begin{bmatrix}
+		-\lambda & 1&1\\
+		1&-\lambda&1\\
+		1&1&-\lambda
+	\end{bmatrix}\\
+&=-\lambda^3+3\lambda+2=0
+\end{align*}
+Thus, $\lambda_1=-1$, and $\lambda_2=2$. 
+\begin{itemize}
+	\item When $\lambda=-1$:
+	\begin{align*}
+		\begin{bmatrix}[ccc|c]
+			1&1&1&0\\
+			1&1&1&0\\
+			1&1&1&0
+		\end{bmatrix}&=\begin{bmatrix}[ccc|c]
+		1&1&1&0\\
+		0&0&0&0\\
+		0&0&0&0
+	\end{bmatrix}\\
+&=x_1+x_2+x_3=0
+	\end{align*}
+Let $x_1=t$, $x_2=m$, and $x_3=-t-m$. 
+$$\begin{bmatrix}
+	t\\
+	m\\
+	-t-m
+\end{bmatrix}=t\begin{bmatrix}
+1\\0\\-1
+\end{bmatrix}+m\begin{bmatrix}
+0\\1\\-1
+\end{bmatrix}$$
+Thus, the eigenvectco associate with the eigenvalue of -1 is $\begin{pmatrix}
+	1&0\\
+	0&1\\
+	-1&-1
+\end{pmatrix}$.
+\item When $\lambda=2:$
+$$\begin{pmatrix}[ccc|c]
+	-2&1&1&0\\
+	1&-2&1&0\\
+	1&1&-2&0
+\end{pmatrix}=\begin{pmatrix}[ccc|c]
+1&0&0&0\\
+0&1&0&0\\
+0&0&1&0
+\end{pmatrix}$$
+Thus, in the case the eigenvector is $\begin{pmatrix}
+	1&0&0\\
+	0&1&0\\
+	0&0&1
+\end{pmatrix}$
+
+\end{itemize}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}

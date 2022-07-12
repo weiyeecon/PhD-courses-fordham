@@ -1,0 +1,224 @@
+%EX TS-program = pdflatex
+% !TEX encoding = UTF-8 Unicode
+
+% This is a simple template for a LaTeX document using the "article" class.
+% See "book", "report", "letter" for other types of document.
+
+\documentclass[11pt]{article} % use larger type; default would be 10pt
+\usepackage[utf8]{inputenc} % set input encoding (not needed with XeLaTeX)
+
+%%% Examples of Article customizations
+% These packages are optional, depending whether you want the features they provide.
+% See the LaTeX Companion or other references for full information.
+\usepackage{amsmath}
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+	\hskip -\arraycolsep
+	\let\@ifnextchar\new@ifnextchar
+	\array{#1}}
+\makeatother
+
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+%%% PAGE DIMENSIONS
+\usepackage{geometry} % to change the page dimensions
+\usepackage{listings}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{marvosym}
+\geometry{a4paper} % or letterpaper (US) or a5paper or....
+% \geometry{margin=2in} % for example, change the margins to 2 inches all round
+% \geometry{landscape} % set up the page for landscape
+%   read geometry.pdf for detailed page layout information
+
+\usepackage{graphicx} % support the \includegraphics command and options
+% \usepackage[parfill]{parskip} % Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{amssymb}
+\usepackage{mathrsfs}
+%%% PACKAGES
+\usepackage{booktabs} % for much better looking tables
+\usepackage{array} % for better arrays (eg matrices) in maths
+\usepackage{paralist} % very flexible & customisable lists (eg. enumerate/itemize, etc.)
+\usepackage{verbatim} % adds environment for commenting out blocks of text & for better verbatim
+\usepackage{subfig} % make it possible to include more than one captioned figure/table in a single float
+% These packages are all incorporated in the memoir class to one degree or another...
+\usepackage{pgfplots}
+%%% HEADERS & FOOTERS
+\usepackage{fancyhdr} % This should be set AFTER setting up the page geometry
+\pagestyle{fancy} % options: empty , plain , fancy
+\renewcommand{\headrulewidth}{0pt} % customise the layout...
+\lhead{}\chead{}\rhead{}
+\lfoot{}\cfoot{\thepage}\rfoot{}
+
+%%% SECTION TITLE APPEARANCE
+\usepackage{sectsty}
+\allsectionsfont{\sffamily\mdseries\upshape} % (See the fntguide.pdf for font help)
+% (This matches ConTeXt defaults)
+\usepackage[thinc]{esdiff}
+\usepackage{bbold}
+\usepackage{MnSymbol,wasysym}
+%%% ToC (table of contents) APPEARANCE
+\usepackage[nottoc,notlof,notlot]{tocbibind} % Put the bibliography in the ToC
+\usepackage[titles,subfigure]{tocloft} % Alter the style of the Table of Contents
+\renewcommand{\cftsecfont}{\rmfamily\mdseries\upshape}
+\renewcommand{\cftsecpagefont}{\rmfamily\mdseries\upshape} % No bold!
+
+%%% END Article customizations
+
+%%% The "real" document content comes below...
+
+\title{Homework 1}
+\author{Wei Ye\footnote{ 1st year PhD student in Economics Department at Fordham University. Email: wye22@fordham.edu}
+    \\ ECON 7920- Econometrics II}
+\date{Due on Feb 3, 2022}
+\begin{document}
+\maketitle
+
+\section{Question 12.1}
+\textbf{Solution:}
+
+\begin{enumerate}[a.]
+	\item From equation (12.2), we know: $y=m(x,\theta_0)+u$, $E(u|x)=0$. Plug this into (12.4) and take conditional expectation w.r.t x:
+	\begin{align*}
+		E[[y-m(x,\theta)^2]|x]&=E[[y-m(x,\theta_0)]^2|x]+2E[m(x,\theta_0)-m(x,\theta)|x]E[u|x]+E[[m(x,\theta_0)-m(x,\theta)^2]|x]\\
+							  &=E(u^2|x)+2E[m(x,\theta_0)-m(x,\theta)|x]\cdot 0+E[[m(x,\theta_0)-m(x,\theta)^2]|x]\\
+							  &=E(u^2|x)+E[[m(x,\theta_0)-m(x,\theta)^2]|x]\\
+							  &=^{LIE}E(u^2|x)+E[m(x,\theta_0)-m(x,\theta)^2]
+	\end{align*}
+	Since the first term is just error term, which is not relevant to the parameter $\theta$, therefore, the only left to consider is the second term.
+	When $\theta=\theta_0$, the second term is 0 obviously. When $\theta$ is picked any value in the space excluding $\theta_0$, the second term is alway $>0$.
+	\item Because from the conditional expectation, we can derive and get the unconditional expectation. In other way, if we derive and estimate the parameter value $\theta$ given x, we can narrow down the scope of searching, if not, there may be multiple values available and waste of computation power.
+\end{enumerate}
+
+
+
+\section{Question 12.2 }
+\textbf{Solution:}
+
+\begin{enumerate}[a.]
+	\item \begin{align*}
+		E(u^2|x)&=E[(y-E(y|x))^2|x]\\
+				&=E[y^2-2yE(y|x)+(E(y|x))^2|x]\\
+				&=E(y^2|x)-2E(y|x)E(y|x)+E(y|x)^2\\
+				&=var(y|x)+E(y|x)^2-E(y|x)^2\\
+				&=var(y|x)\\
+				&=\exp(\alpha_0+x\gamma_0)
+	\end{align*}
+	\item As $\hat{u}$ is NLS error, our goal is to make the estimation of $\alpha_0$ and $\gamma_0$ consistent. First,
+		Set up the objection function $\min_{\alpha,\gamma}\sum_{i=1}^N\{(u_i^2-\exp( \alpha+x_i\gamma))^2\}$. Substitute $u=y-E(y|x)$ into this objective function, we can obtain:
+		\begin{equation*}
+			\min_{\alpha,\gamma}\sum_{i=1}^N\{((y_i-m(x,\hat{\theta}))^2-\exp(\alpha+x_i\gamma))^2\}
+		\end{equation*}
+	From M-estimator method, we can estimate $\hat{\theta}$ to $\theta_0$, and thus, $\hat{u}\rightarrow u$, and then the two parameters $\alpha_0$ and $\gamma_0$ can be estimated consistently. 
+	\item Since we know from the last question, we can estimate $\alpha$ and $\gamma$, thus, the form is $\min_{i}^N \frac{\{(y-E(y|x))\}}{\exp(\hat{\alpha}+x_i\hat{\gamma})}$ for WLNS
+	\item Take square of both sides of v, we can obtain: $v^2=\exp(-(\alpha_0+x+\gamma_0))u^2$. Then, take log on both sides: $\log(v^2)=\log(u^2)-(\alpha+x\gamma_0)$. From this question, we know v is independent with x.
+		Thus, Take expectation: $E(\log(u^2)|x)=E(\log(v^2)|x)+\alpha+x\gamma_0$, the first term is constant, thus, $\gamma_0$ can be estimated by the regression of $1, x_i$. We can use M-estimator to replace $\hat{u}$ and by doing WNLS to obtain the consistency. 
+	\item I'll make some robust check to test the variance we are suspicious.
+\end{enumerate}
+
+
+
+
+\section{Question 12.3}
+\textbf{Solution:}
+
+\begin{enumerate}[a.]
+	\item We assume the elasticity of $\hat{E(\cdot)}$ to $z_1$ is $\epsilon_1$
+		\begin{align*}
+			\epsilon_1&= \frac{\partial \hat{E}(y|z)}{\partial z_1}\cdot \frac{z_1}{\hat{E(y|z)}}\\
+					&= \exp(\cdot )\frac{\hat{\theta_2}}{z_1}\frac{z_1}{\exp(\cdot)}\\
+					&= \hat{\theta_2}
+		\end{align*}
+	\item Since we want to know what percentage of $E(y|z)$ would be. We take log on both sides first.
+	\begin{equation}\tag*{(12.3.1)}\label{12.3.1:equ}
+		\log(\hat{E}(y|z))=\hat{\theta_1}+\hat{\theta_2}\log(z_1)+\hat{\theta_3}z_2
+	\end{equation}
+	From \ref{12.3.1:equ}, we take the partial differential equation w.r.t. $z_2$
+	\begin{equation*}
+		\frac{\partial \hat{E}(\cdot)}{\partial z_2}=\hat{\theta_3}
+	\end{equation*}
+	Thus, when $\Delta z_2=1$, it will cause $\hat{E}(y|z)$ to change $\theta_3\%$
+	\item Take the first order differentiation w.r.t. $z_2$:
+		\begin{equation*}
+			\exp(\cdot)(\hat{\theta_3}+2\hat{\theta_4}z_2)
+		\end{equation*}
+		We can estimate $z_2=\frac{-\hat{\theta_3}}{2\hat{\theta_4}}$, by the consistency of the parameters estimation, we can conclude:  $z_2=-\frac{\theta_3}{2\theta_4}$.
+	\item From the question, we know $\exp(x\theta)=\exp(x_1\theta_1+x_2\theta_2)$, so we set $m(x,\theta)=\exp(x\theta)$. Thus, $\Delta_{\theta_i} m_i(x,\theta)=\exp(x_i\theta_i)x_i$.
+	First, we make regression with $m(x,\theta)$ with its estimation to get the value of residuals $\hat{u}$, then make regressions on $\hat{u}$ with the gradidents of m function to gain LM value. Finally, we compare this value with our threshold to test. 
+\end{enumerate}
+
+
+
+
+
+\section{Question 12.17}
+\textbf{Solution:}
+
+\begin{enumerate}[a.]
+	\item For this we can get a similar equation below the equation (12.15) in textbook. 
+	\begin{equation}\tag*{12.17.1}\label{12.17.1::eqn}
+		N^{-\frac{1}{2}}\sum_{i=1}^Ng(w_i,\theta)=N^{-\frac{1}{2}}\sum_{i=1}^Ng(w_i,\theta_0)+N^{-1}\sum_{i=1}^N G_i \sqrt{N}(\hat{\theta}-\theta_0)
+	\end{equation}
+	Where G is Jacobian w.r.t $\theta$. Then follow the steps in textbook form  (12.15) to (12.17), we can obtain $\sqrt{N}(\hat{\theta}-\theta_0)=o_p(1)$. By LLN, we assume $N^{-1}\sum_{i=1}^N G_i =G_0$. 
+	Thus:
+	\begin{equation}\tag*{12.17.2}\label{12.17.2::eqn}
+		\sqrt{N}\hat{\delta}=N^{-\frac{1}{2}}\sum_{i=1}^N(g(w_i,\theta_0)-G_0A_0^{-1}s_i(\theta_0))+o_p(1)
+	\end{equation}
+	Rewrite \ref{12.17.2::eqn}, 
+	\begin{equation}\tag*{12.17.3}
+		\sqrt(\hat{\delta-\delta_0})=N^{-\frac{1}{2}}\sum_{i=1}^N(g(w_i,\theta_0)-\delta_0-G_0A_o^{-1}s_i(\theta_0))+o_p(1)
+	\end{equation}
+	Where the expectation of $g(w_i,\theta_0)-\delta_0-G_0A_o^{-1}s_i(\theta_0)$ is equal to 0. 
+	Thus, we can obtain:
+	\begin{equation}\tag*{12.17.4}\label{12.7.4::eqn}
+		\sqrt{N}(\hat{\delta}-\delta_0) ~^a \mathcal{N}(0,(g_i-\delta_0-G_0A_0^{-1}s_i)'(g_i-\delta_0-G_0A_0^{-1}s_i))
+	\end{equation}
+	\item If we want to estimate the parameters consistently, we need to keep $\hat{A}\rightarrow A_0$ and $G_i \rightarrow G_0$. Then we can replace $G_0$ and $A_0$ with $\hat{G}$ and $\hat{A}$ in \ref{12.7.4::eqn}.
+	\item As given in the question $E(s(w,\theta_0)|x)=0$, and we assume $g(w,\theta)$, $w=(x,y)$, so $cov(g,s)=0$. Thus, $cov(g_i-s_0,G_0A_0^{-1}s_i)=0$, Therefore:
+	$var(g_i-\delta_0-G_0A_0^{-1}S_I)=var(g_i)+G_0(Avar\sqrt{N}(\hat{\theta}-\theta_0))G_0'$
+\end{enumerate}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}

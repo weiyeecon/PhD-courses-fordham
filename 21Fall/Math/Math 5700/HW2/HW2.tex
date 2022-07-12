@@ -1,0 +1,240 @@
+% !TEX TS-program = pdflatex
+% !TEX encoding = UTF-8 Unicode
+
+% This is a simple template for a LaTeX document using the "article" class.
+% See "book", "report", "letter" for other types of document.
+
+\documentclass[11pt]{article} % use larger type; default would be 10pt
+
+\usepackage[utf8]{inputenc} % set input encoding (not needed with XeLaTeX)
+
+%%% Examples of Article customizations
+% These packages are optional, depending whether you want the features they provide.
+% See the LaTeX Companion or other references for full information.
+\usepackage{amsmath}
+%%% PAGE DIMENSIONS
+\usepackage{geometry} % to change the page dimensions
+\geometry{a4paper} % or letterpaper (US) or a5paper or....
+% \geometry{margin=2in} % for example, change the margins to 2 inches all round
+% \geometry{landscape} % set up the page for landscape
+%   read geometry.pdf for detailed page layout information
+
+\usepackage{graphicx} % support the \includegraphics command and options
+% \usepackage[parfill]{parskip} % Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{amssymb}
+%%% PACKAGES
+\usepackage{booktabs} % for much better looking tables
+\usepackage{array} % for better arrays (eg matrices) in maths
+\usepackage{paralist} % very flexible & customisable lists (eg. enumerate/itemize, etc.)
+\usepackage{verbatim} % adds environment for commenting out blocks of text & for better verbatim
+\usepackage{subfig} % make it possible to include more than one captioned figure/table in a single float
+% These packages are all incorporated in the memoir class to one degree or another...
+\usepackage{pgfplots}
+%%% HEADERS & FOOTERS
+\usepackage{fancyhdr} % This should be set AFTER setting up the page geometry
+\pagestyle{fancy} % options: empty , plain , fancy
+\renewcommand{\headrulewidth}{0pt} % customise the layout...
+\lhead{}\chead{}\rhead{}
+\lfoot{}\cfoot{\thepage}\rfoot{}
+
+%%% SECTION TITLE APPEARANCE
+\usepackage{sectsty}
+\allsectionsfont{\sffamily\mdseries\upshape} % (See the fntguide.pdf for font help)
+% (This matches ConTeXt defaults)
+\usepackage[thinc]{esdiff}
+%%% ToC (table of contents) APPEARANCE
+\usepackage[nottoc,notlof,notlot]{tocbibind} % Put the bibliography in the ToC
+\usepackage[titles,subfigure]{tocloft} % Alter the style of the Table of Contents
+\renewcommand{\cftsecfont}{\rmfamily\mdseries\upshape}
+\renewcommand{\cftsecpagefont}{\rmfamily\mdseries\upshape} % No bold!
+
+%%% END Article customizations
+
+%%% The "real" document content comes below...
+
+\title{HW2}
+\author{Wei Ye\footnote{I worked on my assignment sololy.Email: wye22@fordham.edu}  	\\
+	ECON 5700}
+\date{Due on August 13, 2020.}
+
+
+\begin{document}
+	\maketitle
+	\section{Question 1}
+	\textbf{Solution:}
+	
+	\begin{enumerate}
+		\item $z=3y^2-2x^2+x, (2,-1,3)$
+		
+		Let $f(x,y)=3y^2-2x^2+x$, then $f_x=-4x+1$ and $f_y=6y$, thus, the targent place would be:
+		$$z=(-4\cdot 2+1)(x-2)+6\cdot(-1)\cdot(y+1)+3=-7x-6y+11$$
+		
+	
+		\item $z=\sqrt{xy}, (1,1,1)$
+		
+		Let $f(x,y)=\sqrt{xy}$, then $f_x=\frac{1}{2}x^{-\frac{1}{2}}y^{\frac{1}{2}}$, and $f_y=\frac{1}{2}x^{\frac{1}{2}}y^{-\frac{1}{2}} $.
+		$$z=\frac{1}{2}(x-1)+\frac{1}{2}(y-1)+1=\frac{1}{2}(x+y)$$
+		
+		
+		
+		
+		\item $z=x\sin(x+y), (-1,1,0)$
+		
+		Let $f(x,y)=x\sin(x+y)$, then $f_x=\sin(x+y)+x\cos(x+y)$, and $f_y=x\cos(x+y)$
+		
+		$$z=-1\cdot(x+1)+(-1)\cdot(y-1)+0=-\left(x+y\right)$$ 
+		
+		
+	\end{enumerate}
+	\section{Question 2}
+	$f(x,y)=1+x\ln(xy-5)$ at point $(2,3)$ Why exisitence and find the linearization at that point.
+	
+\textbf{Solution:}
+
+$f(2,3)=1+2\ln(6-5)=1$, and $f_x=\ln(xy-5)+\frac{xy}{xy-5}$, $f_y=\frac{x^2}{xy-5}$. At the point$(2,3)$, $f_x=6,\ f_y=4$ whereas the existence of both $f_x$ and $f_y$, thus, the differentiation of this function exists. And the linearization funciton is as below:
+$$f(x,y)=f_x(x-2)+f_y(y-3)+f(2,3)=6x+4y-23$$
+
+	
+\section{Question 3-Differential}
+$$z=e^{-2x}\cos 2\pi t$$
+$$m=p^5q^3$$
+$$R=\alpha\beta^2\cos\gamma$$
+
+\textbf{Solution:}
+	
+\begin{enumerate}
+	\item Let $f(x,t)=z$, then 
+	$$\mathrm{d}z=f_x(x,t)\mathrm{d}x+f_t(x,t)\mathrm{d}t=-2e^{-2x}\cos\pi t \ \mathrm{d}x+2\pi e^{-2x}\sin 2\pi t  \  \mathrm{d}t$$
+	\item Let $f(p,q)=m$, then: 
+	$$dm=f_p\cdot \mathrm{d}p+f_q \cdot \mathrm{d}q=5p^4q^3\ \mathrm{d}p+3p^5q^2\ \mathrm{d}q$$
+	\item let $f(\alpha, \beta, \gamma)=R$, then: 
+	$$\mathrm{d}R=f_\alpha \ \mathrm{d}\alpha+f_\beta \ \mathrm{d}\beta+f_\gamma \ \mathrm{d}\gamma=\beta^2\cos \gamma \ \mathrm{d}\alpha+2\alpha\beta\cos \gamma \ \mathrm{d}\beta+\alpha\beta^2\sin \gamma \ \mathrm{d}\gamma$$
+	
+\end{enumerate}
+
+\section{Question 4}
+
+\textbf{Solution: }
+
+$$t\frac{\partial g}{\partial s}+s\frac{\partial g}{\partial t}=t\left[f_s\cdot 2s+f_t\cdot (-2s)\right]+s\left[f_s(-2t)+f_t(2t)\right]=2stf_s-2stf_t-2stf_s+2stf_t=0$$
+
+\section{Question 5}
+\textbf{Solution: }
+
+\begin{enumerate}
+	\item $f(x,y)=\sin(2x+3y)$ at $P(-6,4)$, $u=\frac{1}{2}(\sqrt{3}i-j)$
+	\begin{enumerate}
+		\item $f_x=2\cos(2x+3y)$, and $f_y=3\cos(2x+3y)$. Thus, the gradient is :
+		$$\triangledown f(x,y)=(2\cos(2x+3y),3\cos(2x+3y))$$
+		\item At point P, the gradient would be:
+		$$\triangledown f(2,3)=(2\cos(0),3\cos 0)=(2,3)$$
+		\item at the vector u, the gradient relative to point p is:
+		$$\triangledown f(2,3)=2\cdot \frac{1}{2}(\sqrt{3}i-j)+3\cdot \frac{1}{2}(\sqrt{3}i-j)=\frac{5}{2}\sqrt{3}i-\frac{5}{2}j$$
+	\end{enumerate}
+\item $f(x,y,z)=x^2yz-xyz^3$ at $P(2,-1,1)$, $u=<0,\frac{4}{5},-\frac{3}{5}>$
+\begin{enumerate}
+	\item $f_x=2xyz-yz^3$, $f_y=x^2z-xz^3$, and $f_z=x^2y-3xyz^2$. Thus, the gradient is:
+	$$\triangledown f(x,y,z)=(2xyz-yz^3, x^2z-xz^3, x^2y-3xyz^2)$$
+	\item At point P, the gradient would be:
+	$$\triangledown f(2,-1,-1)=(3,-2,2)$$
+	\item At the vector u, the gradient relative to the point p is:
+	$$\triangledown f(2,-1,-1)=3\cdot 0+-2\cdot \frac{4}{5}+2\cdot  -\frac{3}{5}=-\frac{14}{5}$$
+\end{enumerate}
+\end{enumerate}
+
+\section{Question 6}
+\textbf{Solution: }
+
+$f_x=\frac{1}{2}x^{-\frac{1}{2}}y^{\frac{1}{2}}$,$f_y=\frac{1}{2}x^{\frac{1}{2}}y^{-\frac{1}{2}}$. At the point $(2,8)$, $f_x=4$, $f_y=1$, thus, the final result w.r.t the vector would be:
+$$4\cdot 5+1\cdot 4=24$$
+\section{Question 7}
+\textbf{Solution:}
+
+$f_x=y\cos(xy)$, and $f_y=x\cos(xy)$. At the point $(1,0)$, $f_x=0$, $f_y=1$.Thus, the maximum change of rate is $\sqrt{0+1^2}=1$ And occur at the direction of change $(0,1)$.
+
+\section{Question 8}
+\textbf{Solution:}
+$f_x=20xy-10x-4x^3=0$, and $f_y=10x^2-8y-8y^3=0$, thus, one critical point would be $(0,0)$.
+
+$f_{xx}=20y-10-12x^2$, and $f_{yy}=8-24y^2$, $f_{xy}=20x$. Thus, $D=-80<0$, which is a saddle point.
+\textcolor{blue}{Must be kidding me}
+\textcolor{blue}{Can't solve even I use the online solver.Check later.}
+
+\section{Question 9}
+\textbf{Solution:}
+\begin{enumerate}
+	\item $f_x=2x+y$, $f_{xx}=2$, $f_y=x+2y+1$, $f_{yy}=2$. $f_{xy}=1$
+	$$D=f_{xx}f_{yy}-(f_{xy})^2=2\cdot 2-1=3>0$$
+	In the meanwhile, $f_{xy}>0$. Thus, it's min value.
+	\item $f_x=1-2xy+y^2$, $f_{xx}=-2y$, $f_{xy}=-2x+2y$, $f_y=-x^2-1+2xy$, $f_{yy}=2x$. Let $f_x=f_y=0 \rightarrow x^2=y^2$. Thus, 4 senarios exist. 
+	$$D=f_{xx}f_{yy}-[f_{xy}]^2=-4(x-y)^2+4xy$$
+	
+	At $(0,0)$ where D=0, the point is uncertain. If $D>0$, $xy>(x-y)^2$, then it makes no sense. This question is questionable. 
+	
+	\textcolor{red}{Make no sense. NEED TO check FURTHER!}
+	\item $f_x=6xy-12x$, $f_y=3y^2+3x^2-12y$, $f_{xx}=6y-12$, $f_{yy}=6y-12$. Let $f_x=0$ and $f_y=0$. 
+	\begin{enumerate}
+		\item When $x=0, y=4$, $D=144>0$, and $f_{xx}=12>0$, it's min value point.
+		\item When $x=0,y=0$, $D=144>0$, and $f_{xx}=-12<0$, it's max value point.
+		\item When $x=2,y=2$, $D= -144<0$, it's a saddle point.
+		\item When $x=-2,y=2$, $D=-144<0$, it's a saddle point.
+	\end{enumerate}
+\item $f_x=3x^2-12y$, $f_{xx}=6x$, $f_y=-12x+24y^2$, $f_{yy}=48y$, and $f_{xy}=-12$. Let $f_x=f_y=0$. Two scenarios exist:
+\begin{enumerate}
+	\item When $x=0, y=0$, $D=-144<0$, it's a saddle point.
+	\item When $x=2,y=1$, $D=432>0$, and $f_{xx}=12>0$, it's min value point.
+\end{enumerate}
+
+\section{Question 10}
+\textbf{Solution:}
+
+\begin{enumerate}
+	\item $\frac{\partial y}{\partial x_1}=6x_1^2-22x_1x_2$, $\frac{\partial y}{\partial x_2}=11x_1^2+6x_2$.
+	\item $\frac{\partial y}{\partial x_1}=7+6x_2^2$, $\frac{\partial y}{\partial x_2}=12x_1x_2-27x_2^2$.
+	\item $\frac{\partial y}{\partial x_1}=2x_2-4$, $\frac{\partial y}{\partial x_2}=2x_1+3$
+	\item $\frac{\partial y}{\partial x_1}=\frac{5}{x_2-2}$, $\frac{\partial y}{\partial x_2}=\frac{5x_1+3}{(x-2)^2}$
+\end{enumerate}
+\section{Question 11}
+
+\textbf{Solution:}
+
+\begin{enumerate}
+	\item 
+	
+	$$
+	|\mathbb{J}|=
+	\begin{vmatrix}
+		6x_1 & 1 \\
+		36x_1^3+12x_1x_2+48x_1 &	6x_1^2+2x_2+8 \\
+	\end{vmatrix}=0
+$$
+
+Thus, it's functionally dependent.
+
+\item 
+$$
+|\mathbb{J}|=
+\begin{vmatrix}
+	6x_1&4x_2\\
+	5&0\\
+\end{vmatrix}=-20x_2
+$$
+
+Thus, if $x_2=0$, it's functionally dependent, otherwise it's not.
+
+
+\end{enumerate}
+
+
+
+
+
+\end{enumerate}
+
+
+
+
+
+
+
+\end{document}

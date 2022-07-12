@@ -1,0 +1,181 @@
+%EX TS-program = pdflatex
+% !TEX encoding = UTF-8 Unicode
+
+% This is a simple template for a LaTeX document using the "article" class.
+% See "book", "report", "letter" for other types of document.
+
+\documentclass[11pt]{article} % use larger type; default would be 10pt
+\usepackage[utf8]{inputenc} % set input encoding (not needed with XeLaTeX)
+
+%%% Examples of Article customizations
+% These packages are optional, depending whether you want the features they provide.
+% See the LaTeX Companion or other references for full information.
+\usepackage{amsmath}
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+	\hskip -\arraycolsep
+	\let\@ifnextchar\new@ifnextchar
+	\array{#1}}
+\makeatother
+
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+%%% PAGE DIMENSIONS
+\usepackage{geometry} % to change the page dimensions
+\usepackage{listings}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{marvosym}
+\geometry{a4paper} % or letterpaper (US) or a5paper or....
+% \geometry{margin=2in} % for example, change the margins to 2 inches all round
+% \geometry{landscape} % set up the page for landscape
+%   read geometry.pdf for detailed page layout information
+
+\usepackage{graphicx} % support the \includegraphics command and options
+% \usepackage[parfill]{parskip} % Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{amssymb}
+\usepackage{mathrsfs}
+%%% PACKAGES
+\usepackage{booktabs} % for much better looking tables
+\usepackage{array} % for better arrays (eg matrices) in maths
+\usepackage{paralist} % very flexible & customisable lists (eg. enumerate/itemize, etc.)
+\usepackage{verbatim} % adds environment for commenting out blocks of text & for better verbatim
+\usepackage{subfig} % make it possible to include more than one captioned figure/table in a single float
+% These packages are all incorporated in the memoir class to one degree or another...
+\usepackage{pgfplots}
+%%% HEADERS & FOOTERS
+\usepackage{fancyhdr} % This should be set AFTER setting up the page geometry
+\pagestyle{fancy} % options: empty , plain , fancy
+\renewcommand{\headrulewidth}{0pt} % customise the layout...
+\lhead{}\chead{}\rhead{}
+\lfoot{}\cfoot{\thepage}\rfoot{}
+
+%%% SECTION TITLE APPEARANCE
+\usepackage{sectsty}
+\allsectionsfont{\sffamily\mdseries\upshape} % (See the fntguide.pdf for font help)
+% (This matches ConTeXt defaults)
+\usepackage[thinc]{esdiff}
+\usepackage{bbold}
+\usepackage{MnSymbol,wasysym}
+%%% ToC (table of contents) APPEARANCE
+\usepackage[nottoc,notlof,notlot]{tocbibind} % Put the bibliography in the ToC
+\usepackage[titles,subfigure]{tocloft} % Alter the style of the Table of Contents
+\renewcommand{\cftsecfont}{\rmfamily\mdseries\upshape}
+\renewcommand{\cftsecpagefont}{\rmfamily\mdseries\upshape} % No bold!
+
+%%% END Article customizations
+
+%%% The "real" document content comes below...
+
+\title{Homework 1}
+\author{Wei Ye\footnote{ 1st year PhD student in Economics Department at Fordham University. Email: wye22@fordham.edu}
+    \\ ECON 7010- Microeconomics II}
+\date{Due on Jan 26, 2022}
+\begin{document}
+\maketitle
+
+\section{Question 1 -- 1.C.1}
+\textbf{Solution:}
+
+Since $(\mathscr{B},C(\cdot))$ satisfies WARP, and $C(\{x,y\})=\{x\}$, which means $x\succ y$. In the meanwhile,
+$\{x,y\}\cap\{x,y,z\}=\{x,y\}$.
+We discuss by four scenarios:
+\begin{enumerate}[1)]
+    \item If $C(\{x,y,z\})=\{z\}$, this means $z\succ x$ and $z\succ y$ It doesn't violate WARP of $(\mathscr{B},C(\cdot))$.
+    \item If $C(\{x,y,z\})=\{x\}$, this means $x\succ y$ and $x\succ z$. By WARP, $\{x\}$ should be chosen in $C(\{x,y\})$,it is! 
+    \item If $C(\{x,y,z\})=\{y\}$, this means $y\succ x$ and $y\succ z$, by WARP, $\{y\}$ should be chosen in $C(\{x,y\})$, but it's not. So it's a contradiction.
+    \item If $C(\{x,y,z\})=\{x,z\}$, this means $\{x,z\}\succ y$, by WARP, x should be in $C(\{x,y\})$, it is!
+\end{enumerate} 
+For other two scenarios, they are related to y, but y should not be chosen as it contradicts to the statement that our choice structure is WARP.So we eliminate other  two scenarios.
+Therefore, the only possible situations are $C(\{x,y,z\})=\{x\},=\{z\}, or =\{x,z\}$ when the choice structure satisfies WARP.\smiley
+
+
+\section{Question 2-- 1.C.2}
+\textbf{Proof:}
+\begin{enumerate}[1):]
+    \item Prove $\Rightarrow$:
+    
+        Since WARP is satisfied, and from the condition, $B\cap B'=\{x,y\}$, $x\in C(B)$, by WARP, $x\in C(B')$. As $y\in C(B')$ in condition, by WARP, $y\in C(B)$. Thus, we can make a conclusion $\{x,y\}\subset C(B)$ and $\{x,y\}\subset C(B')$.
+    \item Prove $\Leftarrow$:
+
+    When given listed conditions, as $\{x,y\}\cap\{x,y,z\}=\{x,y\}$, and $\{x,y\}\subset C(B)$ and $\{x,y\}\subset C(B')$, we can go back and get when $x\in C(B)$ and  $x\in C(B')$ as we defined in Definition 1.C.1 in textbook. Thus, WARP is statisfied for the choice structure.
+\end{enumerate}
+Combining there two direction proof, we can conclude WARP is equivalent to the property listed in the quesiton.\smiley
+
+
+\section{Question 3-1.C.3}
+\textbf{Solution:}
+
+\begin{enumerate}[a).]
+    \item The answer is yes. If there are less than two elements in the choice sets, like the example in the question, it has transitive property. Because $x\in C(B)$ and $y\in C(B)$, it means $x\succ^*y$.
+    \item Proof:
+
+            Suppose $\{x,y,z\} \subset  C(B)$, then $C(B)\neq \emptyset$. If $x\in C(\{x,z\})$, then $x\succ^*z$, if  $y\in C(\{z,y\})$, then $y\succ^*z$,  by the rationality, only x is chosen when the choice set is $\{x,y,z\}$, thus, $x\succ^*y\succ^*z$, and transitivity $x\succ^* y$  holds  in this case.\smiley
+\end{enumerate}
+
+\section{Question 4-- 1.D.3}
+\textbf{Proof:}
+
+As in the question, $X=\{x,y,z\}\subset (\mathscr{B},C(\cdot))$. We make our proof by contradiction, if $x\in C(X)$, since $\{x,z\}\subset X$, $x\in C(\{x,z\})$, but from the information we get,
+$C(\{x,z\})=\{z\}\neq\{x\}$, it's a contradiction. Thus, the choice structure $(\mathscr{B},C(\cdot))$ violates  weak  axiom. \smiley
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,89 @@
+{
+  "main": {
+    "id": "728d0932f198f380",
+    "type": "split",
+    "children": [
+      {
+        "id": "30d74584218bd39c",
+        "type": "leaf",
+        "state": {
+          "type": "empty",
+          "state": {}
+        }
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "c510c65aa396c49f",
+    "type": "split",
+    "children": [
+      {
+        "id": "0e0c87fa9d4a39c9",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "26c8888789bf20e8",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {}
+            }
+          },
+          {
+            "id": "0642f3e9b9f1ca91",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "linkedin",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "9b4088e50280c4f5",
+    "type": "split",
+    "children": [
+      {
+        "id": "42d30143369b974a",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "62504566fa3f8c9d",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "active": "30d74584218bd39c",
+  "lastOpenFiles": [
+    "Untitled.md",
+    "Econometrics-video-notes.md"
+  ]
+}

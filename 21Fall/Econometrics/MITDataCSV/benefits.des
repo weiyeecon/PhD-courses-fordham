@@ -1,0 +1,48 @@
+-------------------------------------------------------------------------------------------------------------------------
+       log:  C:\mitbook1_2e\textfiles\benefits.log
+  log type:  text
+ opened on:   8 Feb 2011, 16:42:26
+
+. ds
+distid      lunch       staff       avgsal      math4       bs          lenroll     bsbar       lenrollbar
+schid       enroll      exppp       avgben      story4      lavgsal     lstaff      lunchbar    lstaffbar
+
+. des
+
+Contains data from benefits.dta
+  obs:         1,848                          
+ vars:            18                          8 Feb 2011 16:42
+ size:       155,232 (99.9% of memory free)
+-------------------------------------------------------------------------------
+              storage  display     value
+variable name   type   format      label      variable label
+-------------------------------------------------------------------------------
+distid          float  %9.0g                  district identifier
+schid           int    %9.0g                  school identifier
+lunch           float  %9.0g                  percent eligible, free lunch
+enroll          int    %9.0g                  school enrollment
+staff           float  %9.0g                  staff per 1000 students
+exppp           int    %9.0g                  expenditures per pupil
+avgsal          float  %9.0g                  average teacher salary, $
+avgben          int    %9.0g                  average teacher non-salary
+                                                benefits, $
+math4           float  %9.0g                  percent passing 4th grade math
+                                                test
+story4          float  %9.0g                  percent passing 4th grade
+                                                reading test
+bs              float  %9.0g                  avgben/avgsal
+lavgsal         float  %9.0g                  log(avgsal)
+lenroll         float  %9.0g                  log(enroll)
+lstaff          float  %9.0g                  log(staff)
+bsbar           double %10.0g                 within-district avg of bs
+lunchbar        double %10.0g                 within-district avg of lunch
+lenrollbar      double %10.0g                 within-district avg of lenroll
+lstaffbar       double %10.0g                 within-district avg of lstaff
+-------------------------------------------------------------------------------
+Sorted by:  distid  schid
+
+. log close
+       log:  C:\mitbook1_2e\textfiles\benefits.log
+  log type:  text
+ closed on:   8 Feb 2011, 16:42:31
+-------------------------------------------------------------------------------------------------------------------------

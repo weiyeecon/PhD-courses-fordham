@@ -1,0 +1,46 @@
+-------------------------------------------------------------------------------
+       log:  C:\mitbook\textfiles\recid.des
+  log type:  text
+ opened on:  22 Apr 2002, 11:18:09
+
+. ds
+black     alcohol   drugs     super     married   felon     workprg   property 
+person    priors    educ      rules     age       tserved   follow    durat    
+cens      ldurat    
+
+. des
+
+Contains data from recid.dta
+  obs:         1,445                          
+ vars:            18                          28 Sep 1998 13:28
+ size:        39,015 (95.9% of memory free)
+-------------------------------------------------------------------------------
+              storage  display     value
+variable name   type   format      label      variable label
+-------------------------------------------------------------------------------
+black           byte   %9.0g                  =1 if black
+alcohol         byte   %9.0g                  =1 if alcohol problems
+drugs           byte   %9.0g                  =1 if drug history
+super           byte   %9.0g                  =1 if release supervised
+married         byte   %9.0g                  =1 if married when incarc.
+felon           byte   %9.0g                  =1 if felony sentence
+workprg         byte   %9.0g                  =1 if in N.C. pris. work prg.
+property        byte   %9.0g                  =1 if property crime
+person          byte   %9.0g                  =1 if crime against person
+priors          byte   %9.0g                  # prior convictions
+educ            byte   %9.0g                  years of schooling
+rules           byte   %9.0g                  # rules violations in prison
+age             int    %9.0g                  in months
+tserved         int    %9.0g                  time served, rounded to months
+follow          byte   %9.0g                  length follow period, months
+durat           byte   %9.0g                  max(time until return, follow)
+cens            byte   %9.0g                  =1 if duration right censored
+ldurat          float  %9.0g                  log(durat)
+-------------------------------------------------------------------------------
+Sorted by:  
+
+. log close
+       log:  C:\mitbook\textfiles\recid.des
+  log type:  text
+ closed on:  22 Apr 2002, 11:26:20
+-------------------------------------------------------------------------------

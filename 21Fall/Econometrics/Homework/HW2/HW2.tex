@@ -1,0 +1,207 @@
+%EX TS-program = pdflatex
+% !TEX encoding = UTF-8 Unicode
+
+% This is a simple template for a LaTeX document using the "article" class.
+% See "book", "report", "letter" for other types of document.
+
+\documentclass[11pt]{article} % use larger type; default would be 10pt
+
+\usepackage[utf8]{inputenc} % set input encoding (not needed with XeLaTeX)
+
+%%% Examples of Article customizations
+% These packages are optional, depending whether you want the features they provide.
+% See the LaTeX Companion or other references for full information.
+\usepackage{amsmath}
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+	\hskip -\arraycolsep
+	\let\@ifnextchar\new@ifnextchar
+	\array{#1}}
+\makeatother
+
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+%%% PAGE DIMENSIONS
+\usepackage{geometry} % to change the page dimensions
+\usepackage{marvosym}
+\geometry{a4paper} % or letterpaper (US) or a5paper or....
+% \geometry{margin=2in} % for example, change the margins to 2 inches all round
+% \geometry{landscape} % set up the page for landscape
+%   read geometry.pdf for detailed page layout information
+
+\usepackage{graphicx} % support the \includegraphics command and options
+% \usepackage[parfill]{parskip} % Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{amssymb}
+%%% PACKAGES
+\usepackage{booktabs} % for much better looking tables
+\usepackage{array} % for better arrays (eg matrices) in maths
+\usepackage{paralist} % very flexible & customisable lists (eg. enumerate/itemize, etc.)
+\usepackage{verbatim} % adds environment for commenting out blocks of text & for better verbatim
+\usepackage{subfig} % make it possible to include more than one captioned figure/table in a single float
+% These packages are all incorporated in the memoir class to one degree or another...
+\usepackage{pgfplots}
+%%% HEADERS & FOOTERS
+\usepackage{fancyhdr} % This should be set AFTER setting up the page geometry
+\pagestyle{fancy} % options: empty , plain , fancy
+\renewcommand{\headrulewidth}{0pt} % customise the layout...
+\lhead{}\chead{}\rhead{}
+\lfoot{}\cfoot{\thepage}\rfoot{}
+
+%%% SECTION TITLE APPEARANCE
+\usepackage{sectsty}
+\allsectionsfont{\sffamily\mdseries\upshape} % (See the fntguide.pdf for font help)
+% (This matches ConTeXt defaults)
+\usepackage[thinc]{esdiff}
+\usepackage{bbold}
+\usepackage{MnSymbol,wasysym}
+%%% ToC (table of contents) APPEARANCE
+\usepackage[nottoc,notlof,notlot]{tocbibind} % Put the bibliography in the ToC
+\usepackage[titles,subfigure]{tocloft} % Alter the style of the Table of Contents
+\renewcommand{\cftsecfont}{\rmfamily\mdseries\upshape}
+\renewcommand{\cftsecpagefont}{\rmfamily\mdseries\upshape} % No bold!
+
+%%% END Article customizations
+
+%%% The "real" document content comes below...
+
+\title{HW2}
+\author{Wei Ye\footnote{ 1st year PhD student in Economics Department at Fordham University. Email: wye22@fordham.edu}
+    \\ ECON 7910 Econometrics}
+\date{Due on Sep 30, 2021}
+
+\begin{document}
+	\maketitle
+
+\section{Question -- 3.1}
+Prove Lemma 3.1
+
+\textbf{Solution:}
+
+Since $N^0x_N=x_N$, meanwhile, from the question, we know $x_N \xrightarrow{P} a$, where a is a constant. Thus $N^0x_N$ is bounded. 
+From these, we can get the conclusion: $x_N=O_p(1)$.
+
+\section{Question -- 3.3}
+Prove under the assumption of lemma 3.4, we have $g(x_N)=O_p(1)$.
+
+\textbf{Solution:}
+
+Since from the contents of lemma, $x_N \xrightarrow{P} c$ and $g(x_N)\xrightarrow{P} g(c)$. Since
+$g(c)$ is bounded, which means $g(x_N)$ is bounded as well. $N^0 g(x_N)$ is bounded $\longrightarrow$ $g(x_N)=O_p(1)$.
+
+\section{Question -- 3.5}
+\textbf{Solution:}
+
+\begin{enumerate}
+    \item The sample averge is: $\frac{\sigma^2}{N}$. Since $\sqrt{N}(\bar{y}_N-\mu) ~ \mathcal{N}(0,\sigma^2)$. Thus, 
+    $Var(\sqrt{N}(\bar{y}_N-\mu))=\sigma^2$. 
+    \item The asymptotic variance is $\sigma^2$.
+    \item $AVar(\bar{y}_N)=\frac{\sigma^2}{N}$. $Var(\bar{y})=\frac{\sigma^2}{N}$ from question (a). They are equal in this case.
+    \item The standard variance of $\bar{y}_N$ is $\frac{\sigma}{\sqrt{N}}$.
+    \item First, get the asymptotic variance of $\bar{y}_N$, then make square root of this variance to get 
+    asymptotic standard error.
+\end{enumerate}
+
+
+\section{Question -- 3.7}
+\textbf{Solution:}
+
+\begin{enumerate}
+    \item From Slusky Theorem, $plim(\log(\hat{\theta}))=\log(plim(
+        \hat{\theta}))$. Thus, $\hat{\gamma}$ is a consistent estimator of $\gamma$.
+    \item First, assume the asymptotic variance of $\sqrt{N}(\hat{\theta}-\theta)$ as 
+        $AVar(\sqrt{N}(\hat{\theta}-\theta))$. And, $\hat{\gamma}=
+        \log(\hat{\theta})$ Thus, $AVar(\sqrt{N}(\hat{\gamma}-\gamma))=
+        AVar(\sqrt{N}(\log(\hat{\theta})-\log(\theta)))$. By Delta Method:
+        \begin{equation*}
+            Avar(\sqrt{N}(\hat{\gamma}-\gamma))=\frac{1}{\theta}Avar(\sqrt{N}(\hat{\theta}-\theta))\frac{1}{\theta}=(\frac{1}{\theta})^2 Avar(\sqrt{N}(\hat{\theta}-\theta))
+        \end{equation*}
+    \item  $\hat{\theta}=4$ and $se(\hat{\theta})=2$. The trick is assuming $Avar(\sqrt{N}(\hat{\theta}-\theta))=\sigma^2$,
+        Then, $se(\hat{\theta})=(\frac{\sigma^2}{N})^{\frac{1}{2}} \longrightarrow \frac{\sigma^2}{N}=4$. Thus, $\sigma^2=4N$. 
+        Go on our calculation $se(\hat{\gamma})=(\frac{4N\frac{1}{\theta^2}}{N\theta^2})=\frac{2}{\theta}$.
+        Finally, plug $\theta=4$ into $se(\hat{\gamma})=\frac{2}{4}=\frac{1}{2}$.
+    \item For null hypothesis $H_0:\theta=1$, if we have been given some information from part(c), then $|t|=|\frac{1-4}{2}|=|\frac{-3}{2}|$. We need to compare the t value from computation with t-criterion table to determine in which confidence interval we reject our null hypothesis.
+    \item This question is a transformation one from one variable to another linear or non-linear variable, aka, Wald statistic. $H_0: \gamma=0$. $t=\frac{\log(4)-log(1)}{se(\hat{\gamma})}=\frac{\log(4)}{\frac{1}{2}}=2\log(4)$. In the final step, we need to repeat the step we did in the last question, to compare t value with the value in the t-table given some confidence interval. 
+\end{enumerate}
+
+
+
+
+\section{Question -- 3.8}
+\textbf{Solution:}
+
+\begin{enumerate}
+    \item Since $\hat{\theta}$ is the asymptotic normal estimation of $\theta$, and $\hat{\gamma}=\frac{\hat{\theta_1}}{\hat{\theta_2}}$ is the estimation of 
+    $\gamma=\frac{\theta_1}{\theta_2}$. By the continuous function of $\theta$. 
+    \begin{equation*}
+        plim \hat{\gamma}=plim \frac{\hat{\theta_1}}{\hat{\theta_2}}=\frac{\theta_1}{\theta_2}=\gamma
+    \end{equation*}
+    \item By delta method, 
+    \begin{equation*}
+        AVar(\hat{\gamma})=(\frac{1}{\theta_2},-\frac{\theta_1}{\theta_2^2})Avar(\hat{\theta})(\frac{1}{\theta_2},-\frac{\theta_1}{\theta_2^2})'
+    \end{equation*}
+    \item Using the result of (b), we can derive:
+    \begin{equation*}
+        se(\hat{\gamma})=(\frac{Avar(\hat{\gamma})}{N})^{\frac{1}{2}}=\sqrt{71.2}\approx 8.438
+    \end{equation*}
+    Note: 1 sample size means $N=1$.
+\end{enumerate}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}

@@ -1,0 +1,211 @@
+%EX TS-program = pdflatex
+% !TEX encoding = UTF-8 Unicode
+
+% This is a simple template for a LaTeX document using the "article" class.
+% See "book", "report", "letter" for other types of document.
+
+\documentclass[11pt]{article} % use larger type; default would be 10pt
+\usepackage[utf8]{inputenc} % set input encoding (not needed with XeLaTeX)
+
+%%% Examples of Article customizations
+% These packages are optional, depending whether you want the features they provide.
+% See the LaTeX Companion or other references for full information.
+\usepackage{amsmath}
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+	\hskip -\arraycolsep
+	\let\@ifnextchar\new@ifnextchar
+	\array{#1}}
+\makeatother
+
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+%%% PAGE DIMENSIONS
+\usepackage{geometry} % to change the page dimensions
+\usepackage{listings}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{marvosym}
+\geometry{a4paper} % or letterpaper (US) or a5paper or....
+% \geometry{margin=2in} % for example, change the margins to 2 inches all round
+% \geometry{landscape} % set up the page for landscape
+%   read geometry.pdf for detailed page layout information
+
+\usepackage{graphicx} % support the \includegraphics command and options
+% \usepackage[parfill]{parskip} % Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{amssymb}
+\usepackage{hyperref}
+\usepackage{mathrsfs}
+%%% PACKAGES
+\usepackage{booktabs} % for much better looking tables
+\usepackage{array} % for better arrays (eg matrices) in maths
+\usepackage{paralist} % very flexible & customisable lists (eg. enumerate/itemize, etc.)
+\usepackage{verbatim} % adds environment for commenting out blocks of text & for better verbatim
+\usepackage{subfig} % make it possible to include more than one captioned figure/table in a single float
+% These packages are all incorporated in the memoir class to one degree or another...
+\usepackage{pgfplots}
+%%% HEADERS & FOOTERS
+\usepackage{fancyhdr} % This should be set AFTER setting up the page geometry
+\pagestyle{fancy} % options: empty , plain , fancy
+\renewcommand{\headrulewidth}{0pt} % customise the layout...
+\lhead{}\chead{}\rhead{}
+\lfoot{}\cfoot{\thepage}\rfoot{}
+
+%%% SECTION TITLE APPEARANCE
+\usepackage{sectsty}
+\allsectionsfont{\sffamily\mdseries\upshape} % (See the fntguide.pdf for font help)
+% (This matches ConTeXt defaults)
+\usepackage[thinc]{esdiff}
+\usepackage{bbold}
+\usepackage{MnSymbol,wasysym}
+%%% ToC (table of contents) APPEARANCE
+\usepackage[nottoc,notlof,notlot]{tocbibind} % Put the bibliography in the ToC
+\usepackage[titles,subfigure]{tocloft} % Alter the style of the Table of Contents
+\renewcommand{\cftsecfont}{\rmfamily\mdseries\upshape}
+\renewcommand{\cftsecpagefont}{\rmfamily\mdseries\upshape} % No bold!
+
+%%% END Article customizations
+
+%%% The "real" document content comes below...
+
+\title{Homework 3}
+\author{Wei Ye\footnote{ 1st year PhD student in Economics Department at Fordham University. Email: wye22@fordham.edu}
+    \\ ECON 7010- Microeconomics II}
+\date{Due on Feb 9, 2022}
+\begin{document}
+\maketitle
+
+\section{Qeustion 1 -- 3.B.1}
+\textbf{Solution:}
+
+If we want to gain convex preference with locally nonsatiated but is not monotone, we need to make this two points one in lower preference point but higher combination of two goods if in $\mathcal{R}^2$\footnote{See \url{https://felixmunozgarcia.files.wordpress.com/2017/08/recitation_1.pdf} In his graph, $y\succ x$ but for each direction x is better than y, which means it's not monotone. }
+\textcolor{Maroon}{Question: What's the specific function form for this graph?}
+
+
+
+
+\section{Question 2 -- 3.C.2}
+\textbf{Solution:}
+This question I mainly refer to Definition 3.C.1. I also assume for any sequence of pairs $\{(x^n,y_n)_{n=1}^\infty\}$ with $x^n \succsim y^n$, and $\lim_{n\rightarrow\infty} x^n=x$, $\lim_{n\rightarrow\infty} y^n=y$. 
+From the question, we know $u(\cdot)$ is a countinuous utility function with the relation $\succsim$, which means when $n\rightarrow \infty$, $u(x)>u(y)$, hence, $x\succsim y$, and $\succsim$ is continuous.
+
+
+\section{Question 3 -- 3.C.6}
+\textbf{Solution:}
+\begin{enumerate}[(a)]
+	\item When $\rho=1$, the utility would be $u(x)=\alpha_1x_1+\alpha_2x_2$, which is obviously a linear function.
+	\item As $\rho \rightarrow 0$, we transfer $u(x)$ into $\ln u(x)$. $\ln u(x)=\frac{\ln (\alpha_1x_1^\rho+\alpha_2x_2^\rho)}{\rho}$
+		Use L' Hopital Rule:
+		\begin{align*}
+			\lim_{\rho\rightarrow 0} \ln u(x)&=\frac{\ln (\alpha_1x_1^\rho+\alpha_2x_2^\rho)}{\rho}\\
+											&= \frac{\alpha_1x_1^\rho\ln x_1+\alpha_2x_2^\rho\ln x_2}{\alpha_1x_1^\rho+\alpha_2x_2^\rho}\\
+											&=\frac{\alpha_1  \ln x_1+\alpha_2 \ln x_2}{\alpha_1+\alpha_2}
+		\end{align*}
+		Multiply both sides by $\alpha_1+\alpha_2$, we can obtain:
+		\begin{equation*}
+			(\alpha_1+\alpha_2)\ln u(x)=\ln (x_1^{\alpha_1}x_2^{\alpha_2})
+		\end{equation*}
+		Make operator of $\exp$ on both sides:
+		\begin{equation*}
+			u(x)^{\alpha_1+\alpha_2}=x_1^{\alpha_1}x_2^{\alpha_2}==\text{Cobb-Douglas utility function}
+		\end{equation*}
+	\item This question is tricky, I mainly use online solution\footnote{See \url{https://fdocuments.in/document/mwg-solutions.html?page=4}}, I write it in my way as below:
+		Assume $x_1<x_2$ in this case, so our problem becomes to prove $lim_{n\rightarrow \infty}u(x)=x_1$.
+		When $x_1\geq 0$ and $x_2\geq 0$: as parameters $\alpha_1$ and $\alpha_2$ are both larger than 0. $\alpha_1x_1^\rho\leq \alpha_1x_1^\rho+ \alpha_2x_2^\rho$,thus:
+		\begin{equation}\tag*{3.C.6(1)}\label{num1}
+			\alpha_1^{\frac{1}{\rho}}x_1\geq (\alpha_1x_1^\rho+\alpha_2x_2^\rho)^{\frac{1}{\rho}}
+		\end{equation}
+		As $x_1\leq x_2$:
+		\begin{equation*}
+			\alpha_1x_1^\rho+\alpha_2x_2^\rho\leq \alpha_1x_1^\rho+\alpha_2x_1^\rho=(\alpha_1+\alpha_2)^\rho
+		\end{equation*}
+		Thus:
+		\begin{equation}\tag*{3.C.6(2)}\label{num2}
+			(\alpha_1x_1^\rho+\alpha_2x_2^\rho)^{\frac{1}{\rho}}\geq (x_1+x_2)^{\frac{1}{\rho}}x_1
+		\end{equation}
+		Combine (\ref{num1}) and (\ref{num2}),  we can gain the relationship:
+		\begin{equation*}
+			\alpha_1^{\frac{1}{\rho}}x_1\geq (\alpha_1x_1^\rho+\alpha_2x_2^\rho)^{\frac{1}{\rho}} \geq (\alpha_1+\alpha_2)^{\frac{1}{\rho}}x_1
+		\end{equation*}
+		By Squeeze Theorem, when $\rho \rightarrow -\infty$, this utility limits to $x_1=\min\{x_1,x_2\}==\text{Leontief Utility Function}$
+\end{enumerate}
+
+
+
+\section{Question 4 -- 3.D.5}
+\textbf{Solution:}
+
+	When $\alpha_1=\alpha_2=1$:
+\begin{enumerate}[(a)]
+	\item $u(x)=(x_1^\rho+x_2^\rho)^{\frac{1}{\rho}}$ Make some monotone transformation of this utility function: $\hat{u(x)}=\rho u(x)^\rho=\rho(x_1^\rho+x_2^\rho)$
+		 Take first order differential equaion: we can get the walrasian demand function: $x(p,w)=(\frac{w}{p_1^\delta+p_2^\delta})(p_1^{\delta-1},p_2^{\delta-1})$, $\delta=\frac{\rho}{\rho-1}$.
+		 Thus, the indirect utility is $v(p,w)=\frac{w}{(p_1^\delta+p_2^\delta)^{\frac{1}{\delta}}}$ 
+	\item first check homogeneity of degree zero:
+		\begin{align*}
+			x(\alpha p, \alpha w)&=(\frac{\alpha w}{(\alpha p_1)^\delta+(\alpha p_2)^\delta})((\alpha p_1)^{\delta-1},(\alpha p_2)^{\delta-1})\\
+								&=\frac{w}{p_1^\delta+p_2^\delta}(p_1^{\delta-1},p_2^{\delta-1})
+		\end{align*}
+		Second: check Walras's law:
+		$px(p,w)=(\frac{w}{p_1^delta+p_2^\delta})(p_1 p_1^{\delta-1},p_2p_2^{\delta-1})=w$
+
+		For indirect utility function, $v(\alpha p, \alpha w)=(\frac{\alpha w}{(\alpha p_1)^\delta+(\alpha p_2)^\delta}) $
+		For monotonity: $\frac{\partial v(p,w)}{\partial w}>0$, and $\frac{\partial v(p,w)}{\partial p_l}<0$
+	\item For Leontief utility function:If $p_1<p_2$, $x(p,w)=(\frac{w}{p},0)$, when $P_1>p_2$, it's $(0,\frac{w}{p_2})$. Otherwise: $(\frac{w}{p_1})(\lambda,1-\lambda)$. Indirect utility function is: $v(p,w)=\max(\frac{w}{p_1},\frac{w}{p_2})$.
+	\item $\frac{x(p,w)}{x_2(p,w)}=(\frac{p_1}{p_2})^{\delta-1}$, and $\frac{(\frac{x_1(p,w)}{x_2(p,w)})}{\frac{p_1}{p_2}}=(\frac{p_1}{p_2})^{\delta-2}$. For $\frac{d(\frac{x_1(p,w)}{x_2(p,w)})}{d(\frac{p_1}{p_2})}=(\delta-1)(\frac{p_1}{p_2})^{\delta-2}$ Thus, $\epsilon_{1,1}(p,w)=-(\delta-1)=\frac{1}{1-\rho}$ 
+			When it's linear function, $\epsilon_{1,2}(p,w)=\infty$; when it's leontif function, $\epsilon_{1,2}(p,w)=0$. When it's for cobb-douglas function, it's 1.
+\end{enumerate}
+
+
+
+\section{Question 5 -- 3.D.6}
+\textbf{Solution:}
+\begin{enumerate}[(a)]
+	\item Transform the utility function into a new one as it's monotone continuous. $\hat{u(x)}=u(x)^{\frac{1}{\alpha+\beta+\gamma}}$, thus the sum of of the expotential terms are 1, therefore, we can use $\alpha+\beta+\gamma=1$ WLOG.
+	\item \textcolor{Maroon}{Check this later, how to derive it?} $x(p,w)=(b_1,b_2,b_3)+(w-p\cdot b)(\frac{\alpha}{p_1},\frac{\beta}{p_2},\frac{\gamma}{p_3})$, and indirect utility function is: $v(p,w)=(w-p\cdot b)(\frac{\alpha}{p_1})^\alpha(\frac{\beta}{p_2})^\beta(\frac{\gamma}{p_3})^\gamma$
+\end{enumerate}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}

@@ -1,0 +1,40 @@
+-------------------------------------------------------------------------------
+       log:  C:\mitbook\textfiles\murder.des
+  log type:  text
+ opened on:  22 Apr 2002, 11:01:47
+
+. ds
+id        state     year      mrdrte    exec      unem      d90       d93      
+cmrdrte   cexec     cunem     cexec_1   cunem_1   
+
+. des
+
+Contains data from murder.dta
+  obs:           153                          
+ vars:            13                          1 Jan 1998 16:11
+ size:         5,049 (99.3% of memory free)
+-------------------------------------------------------------------------------
+              storage  display     value
+variable name   type   format      label      variable label
+-------------------------------------------------------------------------------
+id              byte   %8.0g                  state identifier
+state           str2   %9s                    postal code
+year            byte   %8.0g                  87, 90, or 93
+mrdrte          float  %9.0g                  murder rate
+exec            byte   %8.0g                  total executions, past 3 years
+unem            float  %9.0g                  annual unem. rate
+d90             byte   %9.0g                  =1 if year == 90
+d93             byte   %9.0g                  =1 if year == 93
+cmrdrte         float  %9.0g                  mrdrte - mrdrte[_n-1]
+cexec           byte   %9.0g                  exec - exec[_n-1]
+cunem           float  %9.0g                  unem - unem[_n-1]
+cexec_1         byte   %9.0g                  cexec[_n-1]
+cunem_1         float  %9.0g                  cunem[_n-1]
+-------------------------------------------------------------------------------
+Sorted by:  id  
+
+. log close
+       log:  C:\mitbook\textfiles\murder.des
+  log type:  text
+ closed on:  22 Apr 2002, 11:01:54
+-------------------------------------------------------------------------------

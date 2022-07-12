@@ -1,0 +1,38 @@
+-------------------------------------------------------------------------------
+       log:  C:\mitbook\textfiles\401ksubs.des
+  log type:  text
+ opened on:  22 Apr 2002, 10:18:15
+
+. ds
+e401k     inc       marr      male      age       fsize     nettfa    p401k    
+pira      incsq     agesq     
+
+. des
+
+Contains data from 401ksubs.dta
+  obs:         9,275                          
+ vars:            11                          4 Sep 2001 13:50
+ size:       231,875 (77.2% of memory free)
+-------------------------------------------------------------------------------
+              storage  display     value
+variable name   type   format      label      variable label
+-------------------------------------------------------------------------------
+e401k           byte   %9.0g                  =1 if eligble for 401(k)
+inc             float  %9.0g                  inc^2
+marr            byte   %9.0g                  =1 if married
+male            byte   %9.0g                  =1 if male respondent
+age             byte   %9.0g                  age^2
+fsize           byte   %9.0g                  family size
+nettfa          float  %9.0g                  net total fin. assets, $1000
+p401k           byte   %9.0g                  =1 if participate in 401(k)
+pira            byte   %9.0g                  =1 if have IRA
+incsq           float  %9.0g                  inc^2
+agesq           int    %9.0g                  age^2
+-------------------------------------------------------------------------------
+Sorted by:  
+
+. log off
+       log:  C:\mitbook\textfiles\401ksubs.des
+  log type:  text
+ paused on:  22 Apr 2002, 10:18:25
+-------------------------------------------------------------------------------

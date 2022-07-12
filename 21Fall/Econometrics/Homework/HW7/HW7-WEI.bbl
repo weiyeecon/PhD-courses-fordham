@@ -1,0 +1,23 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  This bbl file is created by econ.bst ver.2.5
+%  The latest econ.bst is available at
+%  <https://github.com/ShiroTakeda/econ-bst>
+
+%%% Definition of \bysame
+\ifx\undefined\bysame
+\newcommand{\bysame}{\hskip.3em \leavevmode\rule[.5ex]{3em}{.3pt}\hskip0.5em}
+\fi
+
+\begin{thebibliography}{xxx}
+
+\harvarditem[Lewbel]{Lewbel}{2012}{lewbel2012using}
+Lewbel, Arthur (2012) ``Using heteroscedasticity to identify and estimate
+  mismeasured and endogenous regressor models,'' \textit{Journal of Business \&
+  Economic Statistics}, Vol. 30, No. 1, pp. 67--80.
+
+\harvarditem[Staiger and Stock]{Staiger and
+  Stock}{1994}{staiger1994instrumental}
+Staiger, Douglas~O and James~H Stock (1994) ``Instrumental variables regression
+  with weak instruments.''
+
+\end{thebibliography}

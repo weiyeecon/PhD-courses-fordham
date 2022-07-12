@@ -1,0 +1,37 @@
+-------------------------------------------------------------------------------
+       log:  C:\mitbook\textfiles\smoke.des
+  log type:  text
+ opened on:  22 Apr 2002, 11:26:53
+
+. ds
+educ      cigpric   white     age       income    cigs      restaurn  lincome  
+agesq     lcigpric  
+
+. des
+
+Contains data from smoke.dta
+  obs:           807                          
+ vars:            10                          5 Feb 1996 21:43
+ size:        24,210 (97.4% of memory free)
+-------------------------------------------------------------------------------
+              storage  display     value
+variable name   type   format      label      variable label
+-------------------------------------------------------------------------------
+educ            float  %9.0g                  years of schooling
+cigpric         float  %9.0g                  state cig. price, cents/pack
+white           byte   %8.0g                  =1 if white
+age             byte   %8.0g                  in years
+income          int    %8.0g                  annual income, $
+cigs            byte   %8.0g                  cigs. smoked per day
+restaurn        byte   %8.0g                  =1 if rest. smk. restrictions
+lincome         float  %9.0g                  log(income)
+agesq           float  %9.0g                  age^2
+lcigpric        float  %9.0g                  log(cigprice)
+-------------------------------------------------------------------------------
+Sorted by:  
+
+. log close
+       log:  C:\mitbook\textfiles\smoke.des
+  log type:  text
+ closed on:  22 Apr 2002, 11:26:58
+-------------------------------------------------------------------------------

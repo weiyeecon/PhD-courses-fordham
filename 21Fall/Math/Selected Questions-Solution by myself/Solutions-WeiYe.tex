@@ -1,0 +1,159 @@
+%EX TS-program = pdflatex
+% !TEX encoding = UTF-8 Unicode
+
+% This is a simple template for a LaTeX document using the "article" class.
+% See "book", "report", "letter" for other types of document.
+
+\documentclass[11pt]{article} % use larger type; default would be 10pt
+
+\usepackage[utf8]{inputenc} % set input encoding (not needed with XeLaTeX)
+
+%%% Examples of Article customizations
+% These packages are optional, depending whether you want the features they provide.
+% See the LaTeX Companion or other references for full information.
+\usepackage{amsmath}
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+	\hskip -\arraycolsep
+	\let\@ifnextchar\new@ifnextchar
+	\array{#1}}
+\makeatother
+
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+%%% PAGE DIMENSIONS
+\usepackage{geometry} % to change the page dimensions
+\usepackage{marvosym}
+\geometry{a4paper} % or letterpaper (US) or a5paper or....
+% \geometry{margin=2in} % for example, change the margins to 2 inches all round
+% \geometry{landscape} % set up the page for landscape
+%   read geometry.pdf for detailed page layout information
+\usepackage{hyperref}
+\usepackage{graphicx} % support the \includegraphics command and options
+% \usepackage[parfill]{parskip} % Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{amssymb}
+%%% PACKAGES
+\usepackage{booktabs} % for much better looking tables
+\usepackage{array} % for better arrays (eg matrices) in maths
+\usepackage{paralist} % very flexible & customisable lists (eg. enumerate/itemize, etc.)
+\usepackage{verbatim} % adds environment for commenting out blocks of text & for better verbatim
+\usepackage{subfig} % make it possible to include more than one captioned figure/table in a single float
+% These packages are all incorporated in the memoir class to one degree or another...
+\usepackage{pgfplots}
+%%% HEADERS & FOOTERS
+\usepackage{fancyhdr} % This should be set AFTER setting up the page geometry
+\pagestyle{fancy} % options: empty , plain , fancy
+\renewcommand{\headrulewidth}{0pt} % customise the layout...
+\lhead{}\chead{}\rhead{}
+\lfoot{}\cfoot{\thepage}\rfoot{}
+
+%%% SECTION TITLE APPEARANCE
+\usepackage{sectsty}
+\allsectionsfont{\sffamily\mdseries\upshape} % (See the fntguide.pdf for font help)
+% (This matches ConTeXt defaults)
+\usepackage[thinc]{esdiff}
+\usepackage{bbold}
+\usepackage{MnSymbol,wasysym}
+%%% ToC (table of contents) APPEARANCE
+\usepackage[nottoc,notlof,notlot]{tocbibind} % Put the bibliography in the ToC
+\usepackage[titles,subfigure]{tocloft} % Alter the style of the Table of Contents
+\renewcommand{\cftsecfont}{\rmfamily\mdseries\upshape}
+\renewcommand{\cftsecpagefont}{\rmfamily\mdseries\upshape} % No bold!
+
+%%% END Article customizations
+
+%%% The "real" document content comes below...
+
+\title{Homework Solution-Selected Questions}
+\author{Wei Ye\footnote{ 1st year PhD student in Economics Department at Fordham University. Email: wye22@fordham.edu}
+    \\ ECON 6700-Math 2}
+\date{2021 Fall, no due date}
+
+\begin{document}
+\maketitle
+
+\section{1.A Eigenvalues and Eigenvectors}
+No need to do any computation, so easy.
+\section{1.B Deterministic Difference Equations}
+For the following difference equations,(i) find the statinary state value of $y_t$, which you should denote by $y_s$, (ii) rewrite the difference equation in terms of $z_t=(y_t-y_s)$, (iii) give the general solution and, using the given initial condition, the definite solution to the FODE, (iv) evaluate whether the DE converges or diverges and whether it's oscillatory or non-oscillatory. 
+\begin{enumerate}
+    \item For $y_{t+1}+3y_t=4$, $y_0=4$
+        \begin{enumerate}
+            \item For stationary state value of $y_t$: $y_s+3y_s=4 \longrightarrow y_s=1$
+            \item $y_{t+1}=-3y_t+3+1$, which means $y_{t+1}=-3(y_t-1)+1$. Thus, $y_{t+1}-1=-3(y_t-1)$.
+            It's easy to get $z_{t+1}=y_{t+1}-1$, $z_t=y_t-1$ and $z_{t+1}=-3z_t$.
+            \item Since $z_{t+1}=-3z_t$, thus the general solution would be$z_t=(-3)^tz_0$, because $z_0=y_0-1=4-1=3$. The 
+             definite solutioni is $z_t=(-3)^t\cdot3$
+             \item To determine Whether DE converges or diverges, we need to justify the coefficient befor $z_0$. In this case, $|-3|>1$ and  $-3<0$, thus, it diverges and osillates as well.
+        \end{enumerate}
+    
+    \item $y_{t+1}=0.2y_t+4$, $y_0=4$
+        \begin{enumerate}
+            \item $y_s=0.2y_s+4 \longrightarrow y_s=5$
+            \item $y_{t+1}=0.2(y_t-m)+0.2m+4$. If $z_t=y_t-y_s$ exists, $0.2m+4=m \longrightarrow m=5$ Thus,
+               $y_{t+1}-5=0.2(y_t-5) \longrightarrow z_{t+1}=0.2z_t \longrightarrow z_t=0.2^t z_0$, and $z_0=y_0-5=4-5=-1$
+            \item The general solution is $z_{t+1}=0.2^tz_t$, and definite solution is $z_t=-0.2^t$
+            \item Since $0.2<1$ it will diverges and is non-oscillatory.
+        \end{enumerate}
+    
+\end{enumerate}
+For each of difference equations below (i) find the stationary-state value of $y_t$, which you should denote by $y_s$, (ii) rewrite the difference equation in terms of $z_t=
+    \begin{bmatrix} 
+        y_t-y_s\\y_{t-1}-y_s
+    \end{bmatrix}$, (iii) give the general solution and, using the given initial conditions, the definite solution to SODE.
+\begin{enumerate}
+    \item $y_{t+1}+3y_t-\frac{7}{4}y_{t-1}=9$. $y_0=3, y_{-1}=1$
+    \begin{enumerate}
+        \item $y_s+3y_s-\frac{7}{4}y_s=9 \longrightarrow y_s=4$
+        \item 
+    \end{enumerate}
+\end{enumerate}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}

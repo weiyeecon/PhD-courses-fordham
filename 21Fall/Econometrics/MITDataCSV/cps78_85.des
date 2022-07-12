@@ -1,0 +1,42 @@
+-------------------------------------------------------------------------------
+       log:  C:\mitbook\statafiles\cps78_85.log
+  log type:  text
+ opened on:   2 Apr 2002, 16:59:50
+
+. ds
+educ      south     nonwhite  female    married   exper     expersq   union    
+lwage     age       year      y85       y85fem    y85educ   y85union  
+
+. des
+
+Contains data from cps78_85.dta
+  obs:         1,084                          
+ vars:            15                          19 May 1997 14:16
+ size:        24,932 (97.3% of memory free)
+-------------------------------------------------------------------------------
+              storage  display     value
+variable name   type   format      label      variable label
+-------------------------------------------------------------------------------
+educ            byte   %9.0g                  years of schooling
+south           byte   %9.0g                  =1 if live in south
+nonwhite        byte   %9.0g                  =1 if nonwhite
+female          byte   %9.0g                  =1 if female
+married         byte   %9.0g                  =1 if married
+exper           byte   %9.0g                  age - educ - 6
+expersq         int    %9.0g                  exper^2
+union           byte   %9.0g                  =1 if belong to union
+lwage           float  %9.0g                  log hourly wage
+age             byte   %9.0g                  in years
+year            byte   %9.0g                  78 or 85
+y85             byte   %9.0g                  =1 if year == 85
+y85fem          byte   %9.0g                  y85*female
+y85educ         byte   %9.0g                  y85*educ
+y85union        byte   %9.0g                  y85*union
+-------------------------------------------------------------------------------
+Sorted by:  
+
+. log close
+       log:  C:\mitbook\statafiles\cps78_85.log
+  log type:  text
+ closed on:   2 Apr 2002, 17:00:25
+-------------------------------------------------------------------------------

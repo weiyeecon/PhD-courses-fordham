@@ -1,0 +1,55 @@
+-------------------------------------------------------------------------------
+       log:  C:\mitbook\textfiles\vote.des
+  log type:  text
+ opened on:  22 Apr 2002, 11:28:13
+
+. ds
+state     district  democ     vote90    vote88    inexp90   chexp90   inexp88  
+chexp88   prtystr   rptchall  tenure    lawyer    linexp90  lchexp90  linexp88 
+lchexp88  incshr90  incshr88  cvote     clinexp   clchexp   cincshr   win88    
+win90     cwin      
+
+. des
+
+Contains data from vote.dta
+  obs:           186                          
+ vars:            26                          17 Aug 1999 23:04
+ size:        13,020 (98.4% of memory free)
+-------------------------------------------------------------------------------
+              storage  display     value
+variable name   type   format      label      variable label
+-------------------------------------------------------------------------------
+state           str2   %9s                    state postal code
+district        byte   %8.0g                  U.S. Congressional district
+democ           byte   %8.0g                  =1 if incumbent democrat
+vote90          byte   %8.0g                  inc. share two-party vote, 1990
+vote88          byte   %8.0g                  inc. share two-party vote, 1988
+inexp90         float  %9.0g                  inc. camp. expends., 1990
+chexp90         float  %9.0g                  chl. camp. expends., 1990
+inexp88         float  %9.0g                  inc. camp. expends., 1988
+chexp88         float  %9.0g                  chl. camp. expends., 1988
+prtystr         byte   %8.0g                  % vote pres., same party, 1988
+rptchall        byte   %8.0g                  =1 if a repeat challenger
+tenure          byte   %8.0g                  years in H.R.
+lawyer          byte   %8.0g                  =1 if law degree
+linexp90        float  %9.0g                  log(inexp90)
+lchexp90        float  %9.0g                  log(chexp90)
+linexp88        float  %9.0g                  log(inexp88)
+lchexp88        float  %9.0g                  log(chexp88)
+incshr90        float  %9.0g                  100*(inexp90/(inexp90+chexp90))
+incshr88        float  %9.0g                  100*(inexp88/(inexp88+chexp88))
+cvote           byte   %9.0g                  vote90 - vote88
+clinexp         float  %9.0g                  linexp90 - linexp88
+clchexp         float  %9.0g                  lchexp90 - lchexp88
+cincshr         float  %9.0g                  incshr90 - incshr88
+win88           byte   %9.0g                  =1 by definition
+win90           byte   %9.0g                  =1 if inc. wins, 1990
+cwin            byte   %9.0g                  win90 - win88
+-------------------------------------------------------------------------------
+Sorted by:  
+
+. log close
+       log:  C:\mitbook\textfiles\vote.des
+  log type:  text
+ closed on:  22 Apr 2002, 11:28:22
+-------------------------------------------------------------------------------

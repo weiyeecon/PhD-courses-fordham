@@ -1,0 +1,235 @@
+%EX TS-program = pdflatex
+% !TEX encoding = UTF-8 Unicode
+
+% This is a simple template for a LaTeX document using the "article" class.
+% See "book", "report", "letter" for other types of document.
+
+\documentclass[11pt]{article} % use larger type; default would be 10pt
+
+\usepackage[utf8]{inputenc} % set input encoding (not needed with XeLaTeX)
+
+%%% Examples of Article customizations
+% These packages are optional, depending whether you want the features they provide.
+% See the LaTeX Companion or other references for full information.
+\usepackage{amsmath}
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+	\hskip -\arraycolsep
+	\let\@ifnextchar\new@ifnextchar
+	\array{#1}}
+\makeatother
+%%% PAGE DIMENSIONS
+\usepackage{geometry} % to change the page dimensions
+\usepackage{marvosym}
+\geometry{a4paper} % or letterpaper (US) or a5paper or....
+% \geometry{margin=2in} % for example, change the margins to 2 inches all round
+% \geometry{landscape} % set up the page for landscape
+%   read geometry.pdf for detailed page layout information
+
+\usepackage{graphicx} % support the \includegraphics command and options
+% \usepackage[parfill]{parskip} % Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{amssymb}
+%%% PACKAGES
+\usepackage{booktabs} % for much better looking tables
+\usepackage{array} % for better arrays (eg matrices) in maths
+\usepackage{paralist} % very flexible & customisable lists (eg. enumerate/itemize, etc.)
+\usepackage{verbatim} % adds environment for commenting out blocks of text & for better verbatim
+\usepackage{subfig} % make it possible to include more than one captioned figure/table in a single float
+% These packages are all incorporated in the memoir class to one degree or another...
+\usepackage{pgfplots}
+%%% HEADERS & FOOTERS
+\usepackage{fancyhdr} % This should be set AFTER setting up the page geometry
+\pagestyle{fancy} % options: empty , plain , fancy
+\renewcommand{\headrulewidth}{0pt} % customise the layout...
+\lhead{}\chead{}\rhead{}
+\lfoot{}\cfoot{\thepage}\rfoot{}
+
+%%% SECTION TITLE APPEARANCE
+\usepackage{sectsty}
+\allsectionsfont{\sffamily\mdseries\upshape} % (See the fntguide.pdf for font help)
+% (This matches ConTeXt defaults)
+\usepackage[thinc]{esdiff}
+\usepackage{bbold}
+\usepackage{MnSymbol,wasysym}
+%%% ToC (table of contents) APPEARANCE
+\usepackage[nottoc,notlof,notlot]{tocbibind} % Put the bibliography in the ToC
+\usepackage[titles,subfigure]{tocloft} % Alter the style of the Table of Contents
+\renewcommand{\cftsecfont}{\rmfamily\mdseries\upshape}
+\renewcommand{\cftsecpagefont}{\rmfamily\mdseries\upshape} % No bold!
+
+%%% END Article customizations
+
+%%% The "real" document content comes below...
+
+\title{HW6}
+\author{Wei Ye\footnote{I worked on my assignment sololy. Email: wye22@fordham.edu}  	\\
+	ECON 5700}
+\date{Due on August 20, 2020.}
+
+
+\begin{document}
+	\maketitle
+	\section{Question 1}
+	\textbf{Solution:}
+
+Let $P=
+\begin{pmatrix}
+	0&-1\\
+	1&0
+\end{pmatrix}$. By deduction, we can get:
+
+$$P^2=\begin{pmatrix}
+	-1&0\\
+	0&-1
+\end{pmatrix}$$
+$$P^3=\begin{pmatrix}
+	0&1\\
+	-1&0
+\end{pmatrix}$$
+$$P^4=\begin{pmatrix}
+	1&0\\
+	0&1
+\end{pmatrix}$$
+$$P^5=\begin{pmatrix}
+	0&-1\\
+	1&0
+\end{pmatrix}$$
+	Thus, if the remainder of  k divide 4 is 0, then the format of the matrix is like $P^4$, if the remainder is 1, the matrix is like $P^1$. If the remainder is 2, the format is $P^2$. And if the remainder is 3, like $P^3$.$\smiley$
+
+
+\section{Question 2}
+\textbf{Solution:}
+
+Since $(A+B)^2=(A+B)(A+B)=A(A+B)+B(A+B)=A^2+AB+BA+B^2$, if and only if $AB+BA=2AB \longrightarrow  BA=AB$, then the equation holds. Otherwise, we can't say the equation holds.
+
+\section{Question 3}
+\textbf{Solution:}
+
+It's dependent. 
+let the coeffieient of the first matrix is a and the coefficient of the second matrix is b. We need to prove that:
+$$a\begin{bmatrix}
+	1&2\\
+	4&3
+\end{bmatrix}	+b\begin{bmatrix}
+2&1\\
+-1&0
+\end{bmatrix}=\begin{bmatrix}
+-1&-1\\
+-1&-1
+\end{bmatrix}$$
+Solve this, we can get $a=-\frac{1}{3}\neq 0, b=-\frac{1}{3}\neq0$. Thus, these matrices are dependent. 
+
+\section{Question 4}
+\textbf{Solution:}
+
+\begin{enumerate}
+	\item 
+	$$\begin{bmatrix}[ccc|ccc]
+		2&3&0&1&0&0\\
+		1&-2&-1&0&1&0\\
+		2&0&-1&0&0&1
+	\end{bmatrix}=
+\begin{bmatrix}[ccc|ccc]
+	1&0&0&2&3&-3\\
+	0&1&0&-1&-2&2\\
+	0&0&1&4&6&7
+\end{bmatrix}$$
+\item 
+For this matrix the determinant is 0, thus, the inverse matrix doesn't exist. 
+
+\end{enumerate}
+	
+\section{Question 5}
+\textbf{Solution:}
+\begin{enumerate}
+	
+\item 
+$$ \frac{1}{8-7}
+\begin{bmatrix}
+	2&-7\\
+	-1&4
+\end{bmatrix}=\begin{bmatrix}
+\frac{1}{4}&-\frac{7}{8}\\
+-\frac{1}{8}&\frac{1}{2}
+\end{bmatrix}$$
+\item 
+The inverse matrix is:
+
+$$\begin{bmatrix}
+	0&\frac{1}{2}\\
+	-\frac{1}{2}&1
+\end{bmatrix}$$
+
+\item Since this matrix $3\cdot 4-4\cdot 6=0$, this matrix doesn't have inverse matrix. 
+
+\item The inverse matrix is:
+$$\begin{bmatrix}
+	0 &-1\\
+	1&0
+\end{bmatrix}$$
+
+
+\end{enumerate}
+
+\section{Question 6}
+
+\textbf{Solution:}
+
+Af ter matrix elimination, the matrix A would be:
+$$\begin{bmatrix}
+	1&1&0&1\\
+	0&1&-1&1\\
+	0&0&0&1
+\end{bmatrix}$$
+Thus, the $row(A)=span\{[1 \ 1 \ 0 \ 1],[0 \ 1\  -1 \ 1],[0 \ 0 \ 0 \ 1] \}$,  
+To find the col(a), we need to transpose A first and make elimination, get:
+
+$$\begin{bmatrix}
+	1&0&0\\
+	0&1&1\\
+	0&0&-2\\
+	0&0&0
+\end{bmatrix}$$
+We get the $row(A^T)=span\{[1\ 0\ 0],[0\ 1\ 1],[0\ 0\ -2]\}$. Transpose this to get $col(A)=\{
+[1\ 0\ 0]^T,[0\ 1\ 1]^T,[0\ 0\ -2]^T\}$
+
+To get null(A), we need to begin with RE(A):
+thus, $x_1=-x_2=-x_3, x_4=0$, let $x_3=x_2=t, x_1=-t$.
+$$\vec{x}=\begin{bmatrix}
+	-t\\
+	t\\
+	t
+\end{bmatrix}=t\cdot \begin{bmatrix}
+-1\\
+1\\
+1
+\end{bmatrix}$$
+Thus, the null(A)=$ t \cdot \begin{bmatrix}
+	-1\\
+	1\\
+	1
+\end{bmatrix}$, for $t\in \mathcal{R}$.
+
+\section{Question 7}
+\textbf{Solution:}
+
+$$RE(A)=\begin{bmatrix}
+	1&0&-1\\0&1&2
+\end{bmatrix}$$
+$row(A)=span\{[1\ 0\ -1],[0\ 1\ 2]\}$
+Assume the coefficient of the first matrix is a, b for the second, c for w. Solving this euqation for the matrix independence, $a=b=0=c$. Thus, it can't be expressed. 
+
+Follwing the method in Question 7, we can get the col(A)=$span\{[1\ 1]^T,[0 \ 1]^T\}$
+
+$$3\cdot \begin{bmatrix}
+	1\\
+	1
+\end{bmatrix}+(-1)\cdot \begin{bmatrix}
+0\\1
+\end{bmatrix}=\begin{bmatrix}
+3\\2
+\end{bmatrix}$$
+Thus, b in col(A).
+
+
+\end{document}

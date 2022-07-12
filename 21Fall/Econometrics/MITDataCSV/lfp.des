@@ -1,0 +1,43 @@
+-------------------------------------------------------------------------------------------------------------------------
+      name:  <unnamed>
+       log:  C:\mitbook1_2e\textfiles\lfp.des
+  log type:  text
+ opened on:   8 Feb 2011, 17:53:08
+
+. ds
+id      period  lfp     black   educ    age     agesq   kids    hinc    per1    per2    per3    per4    per5    lhinc
+
+. des
+
+Contains data from C:\mitbook1_2e\statafiles\lfp.dta
+  obs:        28,315                          
+ vars:            15                          7 Mar 2007 15:07
+ size:       877,765 (99.9% of memory free)
+-------------------------------------------------------------------------------------------------------------------------
+              storage  display     value
+variable name   type   format      label      variable label
+-------------------------------------------------------------------------------------------------------------------------
+id              int    %9.0g                  identifier, 1 through 5,663
+period          byte   %9.0g                  1 through 5, each 4 months long
+lfp             byte   %9.0g                  =1 if in labor force
+black           byte   %9.0g                  =1 if black
+educ            byte   %9.0g                  years of schooling, period 1
+age             byte   %9.0g                  in years, period 1
+agesq           int    %9.0g                  age^2
+kids            byte   %9.0g                  number children < 18
+hinc            float  %9.0g                  husband's monthly income, $
+per1            byte   %9.0g                  =1 if period == 1
+per2            byte   %9.0g                  =1 if period == 2
+per3            byte   %9.0g                  =1 if period == 3
+per4            byte   %9.0g                  =1 if period == 4
+per5            byte   %9.0g                  =1 if period == 5
+lhinc           float  %9.0g                  log(hinc)
+-------------------------------------------------------------------------------------------------------------------------
+Sorted by:  id  period
+
+. log close
+      name:  <unnamed>
+       log:  C:\mitbook1_2e\textfiles\lfp.des
+  log type:  text
+ closed on:   8 Feb 2011, 17:53:13
+-------------------------------------------------------------------------------------------------------------------------

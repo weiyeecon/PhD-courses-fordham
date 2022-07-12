@@ -1,0 +1,66 @@
+-------------------------------------------------------------------------------
+       log:  C:\mitbook\textfiles\lowbirth.des
+  log type:  text
+ opened on:  22 Apr 2002, 10:58:54
+
+. ds
+year      lowbrth   infmort   afdcprt   popul     pcinc     physic    afdcprc  
+d90       lpcinc    cafdcprc  clpcinc   lphysic   clphysic  clowbrth  cinfmort 
+afdcpay   afdcinc   lafdcpay  clafdcpy  cafdcinc  stateabb  state     beds     
+bedspc    lbedspc   clbedspc  povrate   cpovrate  afdcpsq   cafdcpsq  physicpc 
+lphypc    clphypc   lpopul    clpopul   
+
+. des
+
+Contains data from lowbirth.dta
+  obs:           100                          
+ vars:            36                          30 Jun 1997 11:50
+ size:        13,900 (98.2% of memory free)
+-------------------------------------------------------------------------------
+              storage  display     value
+variable name   type   format      label      variable label
+-------------------------------------------------------------------------------
+year            int    %9.0g                  1987 or 1990
+lowbrth         float  %9.0g                  perc births low weight
+infmort         float  %9.0g                  infant mortality rate
+afdcprt         int    %9.0g                  # participants in AFDC, 1000s
+popul           int    %9.0g                  population, 1000s
+pcinc           int    %9.0g                  per capita income
+physic          int    %9.0g                  # physicians, 1000s
+afdcprc         float  %9.0g                  percent of pop in AFDC
+d90             byte   %9.0g                  =1 if year == 1990
+lpcinc          float  %9.0g                  log of pcinc
+cafdcprc        float  %9.0g                  change in afdcprc
+clpcinc         float  %9.0g                  change in lpcinc
+lphysic         float  %9.0g                  log of physic
+clphysic        float  %9.0g                  change in lphysic
+clowbrth        float  %9.0g                  change in lowbrth
+cinfmort        float  %9.0g                  change in infmort
+afdcpay         int    %9.0g                  avg monthly AFDC payment
+afdcinc         float  %9.0g                  afdcpay as % pcinc
+lafdcpay        float  %9.0g                  log of afdcpay
+clafdcpy        float  %9.0g                  change in lafdcpay
+cafdcinc        float  %9.0g                  change in afdcinc
+stateabb        str2   %9s                    state postal code
+state           str12  %12s                   name of state
+beds            float  %9.0g                  # hospital beds, 1000s
+bedspc          float  %9.0g                  beds per capita
+lbedspc         float  %9.0g                  log(bedspc)
+clbedspc        float  %9.0g                  change in lbedspc
+povrate         float  %9.0g                  % people below poverty line
+cpovrate        float  %9.0g                  change in povrate
+afdcpsq         float  %9.0g                  afdcper^2
+cafdcpsq        float  %9.0g                  change in afdcpsq
+physicpc        float  %9.0g                  physicians per capita
+lphypc          float  %9.0g                  log(physicpc)
+clphypc         float  %9.0g                  change in lphypc
+lpopul          float  %9.0g                  log(popul)
+clpopul         float  %9.0g                  change in lpopul
+-------------------------------------------------------------------------------
+Sorted by:  state  year  
+
+. log close
+       log:  C:\mitbook\textfiles\lowbirth.des
+  log type:  text
+ closed on:  22 Apr 2002, 10:59:07
+-------------------------------------------------------------------------------

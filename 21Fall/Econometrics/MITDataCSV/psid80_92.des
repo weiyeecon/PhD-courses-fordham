@@ -1,0 +1,69 @@
+-------------------------------------------------------------------------------------------------------------------------
+      name:  <unnamed>
+       log:  C:\mitbook1_2e\textfiles\psid80_92.des
+  log type:  text
+ opened on:   8 Feb 2011, 21:31:01
+
+. ds
+id         educ       hours      ch0_2      inlf       y80        y84        y88        y92        ch6_17b
+year       marr       wage       ch3_5      nwifeinc   y81        y85        y89        nwifeincb  marrb
+head80     exper      hushrs     ch6_17     rwage      y82        y86        y90        ch0_2b
+age        expersq    faminc     children   lrwage     y83        y87        y91        ch3_5b
+
+. des
+
+Contains data from ..\statafiles\psid80_92.dta
+  obs:        11,674                          
+ vars:            38                          7 Aug 2008 15:28
+ size:       992,290 (99.8% of memory free)
+-------------------------------------------------------------------------------------------------------------------------
+              storage  display     value
+variable name   type   format      label      variable label
+-------------------------------------------------------------------------------------------------------------------------
+id              int    %9.0g                  individual identifier
+year            byte   %9.0g                  80 to 92
+head80          byte   %9.0g                  =1 if head of household, 1980
+age             byte   %9.0g                  age in years
+educ            byte   %9.0g                  years of schooling
+marr            byte   %9.0g                  =1 if legally married
+exper           float  %9.0g                  years of workforce experience
+expersq         float  %9.0g                  exper^2
+hours           int    %9.0g                  annual work hours
+wage            float  %9.0g                  hourly wage
+hushrs          int    %9.0g                  annual work hours, spouse/partner
+faminc          float  %9.0g                  total family income,
+ch0_2           byte   %9.0g                  number of children in FU, 0-2
+ch3_5           byte   %9.0g                  number of children in FU, 3-5
+ch6_17          byte   %9.0g                  number of children in FU, 6-17
+children        byte   %9.0g                  children in FE, 0-17
+inlf            byte   %9.0g                  =1 if hours > 0
+nwifeinc        float  %9.0g                  (faminc - wife's labor income)/1000
+rwage           float  %9.0g                  wage, 1983 dollars
+lrwage          float  %9.0g                  log(rwage)
+y80             byte   %9.0g                  
+y81             byte   %9.0g                  
+y82             byte   %9.0g                  
+y83             byte   %9.0g                  
+y84             byte   %9.0g                  
+y85             byte   %9.0g                  
+y86             byte   %9.0g                  
+y87             byte   %9.0g                  
+y88             byte   %9.0g                  
+y89             byte   %9.0g                  
+y90             byte   %9.0g                  
+y91             byte   %9.0g                  
+y92             byte   %9.0g                  
+nwifeincb       float  %9.0g                  time average of nwifeinc
+ch0_2b          float  %9.0g                  time average of ch0_2
+ch3_5b          float  %9.0g                  time average of ch3_5
+ch6_17b         float  %9.0g                  time average of ch6_17
+marrb           float  %9.0g                  time average of marr
+-------------------------------------------------------------------------------------------------------------------------
+Sorted by:  id  year
+
+. log close
+      name:  <unnamed>
+       log:  C:\mitbook1_2e\textfiles\psid80_92.des
+  log type:  text
+ closed on:   8 Feb 2011, 21:31:06
+-------------------------------------------------------------------------------------------------------------------------

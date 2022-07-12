@@ -1,0 +1,41 @@
+-------------------------------------------------------------------------------
+       log:  C:\mitbook\statafiles\bwght.des
+  log type:  text
+ opened on:   2 Apr 2002, 16:57:46
+
+. ds
+faminc    cigtax    cigprice  bwght     fatheduc  motheduc  parity    male     
+white     cigs      lbwght    bwghtlbs  packs     lfaminc   
+
+. des
+
+Contains data from bwght.dta
+  obs:         1,388                          
+ vars:            14                          31 Dec 2001 11:49
+ size:        55,520 (94.3% of memory free)
+-------------------------------------------------------------------------------
+              storage  display     value
+variable name   type   format      label      variable label
+-------------------------------------------------------------------------------
+faminc          float  %9.0g                  1988 family income, $1000s
+cigtax          float  %9.0g                  cig. tax in home state, 1988
+cigprice        float  %9.0g                  cig. price in home state, 1988
+bwght           int    %8.0g                  birth weight, ounces
+fatheduc        byte   %8.0g                  father's yrs of educ
+motheduc        byte   %8.0g                  mother's yrs of educ
+parity          byte   %8.0g                  birth order of child
+male            byte   %8.0g                  =1 if male child
+white           byte   %8.0g                  =1 if white
+cigs            byte   %8.0g                  cigs smked per day while preg
+lbwght          float  %9.0g                  log of bwght
+bwghtlbs        float  %9.0g                  birth weight, pounds
+packs           float  %9.0g                  packs smked per day while preg
+lfaminc         float  %9.0g                  log(faminc)
+-------------------------------------------------------------------------------
+Sorted by:  
+
+. log close
+       log:  C:\mitbook\statafiles\bwght.des
+  log type:  text
+ closed on:   2 Apr 2002, 16:57:53
+-------------------------------------------------------------------------------

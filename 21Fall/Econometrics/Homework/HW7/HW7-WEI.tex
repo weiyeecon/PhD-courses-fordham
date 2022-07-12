@@ -1,0 +1,262 @@
+%EX TS-program = pdflatex
+% !TEX encoding = UTF-8 Unicode
+
+% This is a simple template for a LaTeX document using the "article" class.
+% See "book", "report", "letter" for other types of document.
+
+\documentclass[11pt]{article} % use larger type; default would be 10pt
+
+\usepackage[utf8]{inputenc} % set input encoding (not needed with XeLaTeX)
+
+%%% Examples of Article customizations
+% These packages are optional, depending whether you want the features they provide.
+% See the LaTeX Companion or other references for full information.
+\usepackage{amsmath}
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+	\hskip -\arraycolsep
+	\let\@ifnextchar\new@ifnextchar
+	\array{#1}}
+\makeatother
+
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+%%% PAGE DIMENSIONS
+\usepackage{geometry} % to change the page dimensions
+\usepackage{listings}
+\usepackage{natbib}
+\usepackage{hyperref}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{marvosym}
+\geometry{a4paper} % or letterpaper (US) or a5paper or....
+% \geometry{margin=2in} % for example, change the margins to 2 inches all round
+% \geometry{landscape} % set up the page for landscape
+%   read geometry.pdf for detailed page layout information
+
+\usepackage{graphicx} % support the \includegraphics command and options
+% \usepackage[parfill]{parskip} % Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{amssymb}
+%%% PACKAGES
+\usepackage{booktabs} % for much better looking tables
+\usepackage{array} % for better arrays (eg matrices) in maths
+\usepackage{paralist} % very flexible & customisable lists (eg. enumerate/itemize, etc.)
+\usepackage{verbatim} % adds environment for commenting out blocks of text & for better verbatim
+\usepackage{subfig} % make it possible to include more than one captioned figure/table in a single float
+% These packages are all incorporated in the memoir class to one degree or another...
+\usepackage{pgfplots}
+%%% HEADERS & FOOTERS
+\usepackage{fancyhdr} % This should be set AFTER setting up the page geometry
+\pagestyle{fancy} % options: empty , plain , fancy
+\renewcommand{\headrulewidth}{0pt} % customise the layout...
+\lhead{}\chead{}\rhead{}
+\lfoot{}\cfoot{\thepage}\rfoot{}
+
+%%% SECTION TITLE APPEARANCE
+\usepackage{sectsty}
+\allsectionsfont{\sffamily\mdseries\upshape} % (See the fntguide.pdf for font help)
+% (This matches ConTeXt defaults)
+\usepackage[thinc]{esdiff}
+\usepackage{bbold}
+\usepackage{cite}
+\usepackage{MnSymbol,wasysym}
+%%% ToC (table of contents) APPEARANCE
+\usepackage[nottoc,notlof,notlot]{tocbibind} % Put the bibliography in the ToC
+\usepackage[titles,subfigure]{tocloft} % Alter the style of the Table of Contents
+\renewcommand{\cftsecfont}{\rmfamily\mdseries\upshape}
+\renewcommand{\cftsecpagefont}{\rmfamily\mdseries\upshape} % No bold!
+
+%%% END Article customizations
+
+%%% The "real" document content comes below...
+
+\title{Homework 7}
+\author{Wei Ye\footnote{ 1st year PhD student in Economics Department at Fordham University. Email: wye22@fordham.edu}
+    \\ ECON 7910- Econometrics I}
+\date{Due on Dec 2, 2021}
+\begin{document}
+\maketitle
+
+\section{Question 1}
+\textbf{Solution:}
+\begin{enumerate}[a. ]
+    \item The conditions we need are IVs, and the num of IVs should be at least larger than 3, i.e., the num of IVs is larger than the num of endougenous vars. 
+          First, we make first stage regressions via IVs to estimate endougenous vars, repectively. Then by the second stage regression to estimate parameters. 
+    \item From table (\ref{part-b}), we assume the var GDPPCInit as z. In the regression table, corjud can affect economic growth, because its coefficient is significantly different from 0. 
+        However, we can't reject the coefficient of cored is 0 under 95\% confidence level.
+    \item In my opinion, edext is a vaid IV.
+            \begin{enumerate}
+                \item edext is correlated with cored. Because the more percentages of HH believe corruption is an extreme problem in education, the more likely they will pay for a bribe for childen's education, 
+                        because people don't want to let other kids surpass their own kids on education.
+                \item edext is an index that is subjective. It's more uncorrelated with other \textbf{omited variables}(OV), so $E(edex\cdot u_{i1})=0$.
+            \end{enumerate}
+    \item Yes, edext is a strong IV. Because by \citet{staiger1994instrumental}, if an IV is good IV, we need to check its F-value on the first stage equation. From our first stage equation, we get t-value is 4.517, and $F-value = t^2=4.517^2=20.40329>10$.
+            Thus, edext is a strong IV. 
+    \item This subquestion is ambiguous. If we consider our traditional OLS method, the marginal effect of cored on growth is -0.03\%. If we consider 2sls estimation as in d, the marginal effect is -0.027\%. And they are both not statistically different from zeron under 95\% confidence level.
+    \item We can use the result of WU-Hausman test to justify the endogenity. From WU-Hausman test\footnote{\url{https://www.statisticshowto.com/hausman-test/}}, the p-value is 0.0309, which is less than 0.05, so there still may be some endogenity in the equation.
+    \item If the proposed IV is not a good IV, we may need to use Wu-Hausman test, and check the p-value. If the p-value is less than 0.05, then it's exogenous, otherwise, endogenous.
+    \item From \citet{lewbel2012using}, if our traditional IV method is invalid, we can hold on, and construct an artificial IV $(z-\bar{z})\hat{\epsilon_2}$, we call it generated IV. 
+            In this question, I use $(GDPPCInit-mean(GDPPCInit))u_{i_2}$
+            as my generated IV, and use \citet{staiger1994instrumental} to test first stage OLS's F-value, I found the F-value is  $55.83107>10$, which means our generated IV is pretty strong.   
+\end{enumerate}
+The R codes associated with this question is as below:
+\begin{lstlisting}[language=R]
+    #This file is for my Homework 7
+###############
+## Wei Ye  ####
+##Nov,27,2021##
+###############
+source("ivregh.R")
+library(tidyverse)
+library(stargazer)
+library(ivreg)
+corrupt <- read_csv('corrupt.csv')
+
+
+### For question b.
+head(corrupt,n=5)
+growth_1_ols <- lm(AvgGrowth~cored+corjud+GDPPCInit,data=corrupt)#z=GDPPCInit
+summary(growth_1_ols)
+stargazer(growth_1_ols)
+
+## For question d.
+growth_2_iv <- ivreg(AvgGrowth~cored+GDPPCInit|edext+GDPPCInit,data=corrupt)
+summary(growth_2_iv)
+cored_1st_stage <- lm(cored~edext+GDPPCInit,data=corrupt)
+summary(cored_1st_stage)
+4.517^2
+
+## For question f.
+summary(growth_2_iv,diagonistics=TRUE)
+
+## For question h.
+#we use (GDPPCInit-E(GDPPCInit))*u_{i2} as our generated IV
+attach(corrupt)
+gdp_iv_before <- GDPPCInit-mean(GDPPCInit)
+corred_ols <- lm(cored~AvgGrowth+corjud+CPI2010)
+u2=residuals(corred_ols)
+gdp_iv_after <- gdp_iv_before*u2
+corred_ols_first <- lm(cored~corjud+gdp_iv_after+CPI2010)
+summary(corred_ols_first)
+gdp_new_iv_t_value <- summary(corred_ols_first)$coefficients[3,3]
+F_value <- gdp_new_iv_t_value^2
+F_value
+\end{lstlisting}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\appendix
+\setcounter{secnumdepth}{0}
+\section{Appendix}
+
+\begin{table}[!htbp] \centering 
+    \caption{Question b OLS Results} 
+    \label{part-b} 
+  \begin{tabular}{@{\extracolsep{5pt}}lc} 
+  \\[-1.8ex]\hline 
+  \hline \\[-1.8ex] 
+   & \multicolumn{1}{c}{\textit{Dependent variable:}} \\ 
+  \cline{2-2} 
+  \\[-1.8ex] & AvgGrowth \\ 
+  \hline \\[-1.8ex] 
+   cored & $-$0.0003$^{*}$ \\ 
+    & (0.0002) \\ 
+    & \\ 
+   corjud & 0.0004$^{***}$ \\ 
+    & (0.0001) \\ 
+    & \\ 
+   GDPPCInit & $-$0.001$^{***}$ \\ 
+    & (0.0003) \\ 
+    & \\ 
+   Constant & 0.016$^{***}$ \\ 
+    & (0.003) \\ 
+    & \\ 
+  \hline \\[-1.8ex] 
+  Observations & 60 \\ 
+  R$^{2}$ & 0.376 \\ 
+  Adjusted R$^{2}$ & 0.343 \\ 
+  Residual Std. Error & 0.009 (df = 56) \\ 
+  F Statistic & 11.256$^{***}$ (df = 3; 56) \\ 
+  \hline 
+  \hline \\[-1.8ex] 
+  \textit{Note:}  & \multicolumn{1}{r}{$^{*}$p$<$0.1; $^{**}$p$<$0.05; $^{***}$p$<$0.01} \\ 
+  \end{tabular} 
+  \end{table} 
+
+
+
+
+
+\bibliography{ref}
+\bibliographystyle{econ}
+
+
+\end{document}

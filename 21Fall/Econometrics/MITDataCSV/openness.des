@@ -1,0 +1,39 @@
+-------------------------------------------------------------------------------
+       log:  C:\mitbook\textfiles\openness.des
+  log type:  text
+ opened on:  22 Apr 2002, 11:07:49
+
+. ds
+open      inf       pcinc     land      oil       good      lpcinc    lland    
+lopen     linf      opendec   linfdec   
+
+. des
+
+Contains data from openness.dta
+  obs:           114                          
+ vars:            12                          16 Oct 1997 08:52
+ size:         5,016 (99.3% of memory free)
+-------------------------------------------------------------------------------
+              storage  display     value
+variable name   type   format      label      variable label
+-------------------------------------------------------------------------------
+open            float  %9.0g                  imports as % GDP, '73-
+inf             float  %9.0g                  avg. annual inflation, '73-
+pcinc           int    %9.0g                  1980 per capita inc., U.S. $
+land            float  %9.0g                  land area, square miles
+oil             byte   %9.0g                  =1 if major oil producer
+good            byte   %9.0g                  =1 if 'good' data
+lpcinc          float  %9.0g                  log(pcinc)
+lland           float  %9.0g                  log(land)
+lopen           float  %9.0g                  log(open)
+linf            float  %9.0g                  log(inf)
+opendec         float  %9.0g                  open/100
+linfdec         float  %9.0g                  log(inf/100)
+-------------------------------------------------------------------------------
+Sorted by:  
+
+. log close
+       log:  C:\mitbook\textfiles\openness.des
+  log type:  text
+ closed on:  22 Apr 2002, 11:07:56
+-------------------------------------------------------------------------------

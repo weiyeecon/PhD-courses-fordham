@@ -1,0 +1,48 @@
+-------------------------------------------------------------------------------
+       log:  C:\mitbook\textfiles\nls81_87.des
+  log type:  text
+ opened on:  22 Apr 2002, 11:05:49
+
+. ds
+id        year      wage      educ      exper     manuf     black     lwage    
+y81       y82       y83       y84       y85       y86       y87       inlf     
+expersq   lwage_1   inlf_1    inlfp1    
+
+. des
+
+Contains data from nls81_87.dta
+  obs:         3,710                          
+ vars:            20                          7 Nov 2001 15:37
+ size:       126,140 (87.4% of memory free)
+-------------------------------------------------------------------------------
+              storage  display     value
+variable name   type   format      label      variable label
+-------------------------------------------------------------------------------
+id              int    %9.0g                  identifier
+year            byte   %9.0g                  81 to 87
+wage            float  %9.0g                  annual wage, 1987 $
+educ            byte   %9.0g                  years of schooling
+exper           byte   %9.0g                  years work experience
+manuf           byte   %9.0g                  =1 if in manufacturing
+black           byte   %9.0g                  =1 if black
+lwage           float  %9.0g                  log(wage)
+y81             byte   %9.0g                  =1 if year == 81
+y82             byte   %9.0g                  
+y83             byte   %9.0g                  
+y84             byte   %9.0g                  
+y85             byte   %9.0g                  
+y86             byte   %9.0g                  
+y87             byte   %9.0g                  
+inlf            byte   %9.0g                  =1 if in labor force
+expersq         byte   %9.0g                  exper^2
+lwage_1         float  %9.0g                  lwage[_n-1] if year > 81
+inlf_1          byte   %9.0g                  inlf[_n-1] if year > 81
+inlfp1          byte   %9.0g                  inlf[_n+1] if year < 87
+-------------------------------------------------------------------------------
+Sorted by:  id  year  
+
+. log close
+       log:  C:\mitbook\textfiles\nls81_87.des
+  log type:  text
+ closed on:  22 Apr 2002, 11:06:35
+-------------------------------------------------------------------------------

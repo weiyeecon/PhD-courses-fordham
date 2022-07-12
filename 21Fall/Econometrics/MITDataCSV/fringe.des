@@ -1,0 +1,69 @@
+-------------------------------------------------------------------------------
+       log:  C:\mitbook\textfiles\fringe.des
+  log type:  text
+ opened on:  22 Apr 2002, 10:37:33
+
+. ds
+annearn   hrearn    exper     age       depends   married   tenure    educ     
+nrtheast  nrthcen   south     male      white     union     office    annhrs   
+ind1      ind2      ind3      ind4      ind5      ind6      ind7      ind8     
+ind9      vacdays   sicklve   insur     pension   annbens   hrbens    annhrssq 
+beratio   lannhrs   tenuresq  expersq   lannearn  peratio   vserat    
+
+. des
+
+Contains data from fringe.dta
+  obs:           616                          
+ vars:            39                          17 Aug 1999 16:05
+ size:        58,520 (93.9% of memory free)
+-------------------------------------------------------------------------------
+              storage  display     value
+variable name   type   format      label      variable label
+-------------------------------------------------------------------------------
+annearn         float  %9.0g                  annual earnings, $
+hrearn          float  %9.0g                  hourly earnings, $
+exper           byte   %9.0g                  years work experience
+age             byte   %9.0g                  age in years
+depends         byte   %9.0g                  number of dependents
+married         byte   %9.0g                  =1 if married
+tenure          float  %9.0g                  years with current employer
+educ            byte   %9.0g                  years schooling
+nrtheast        byte   %9.0g                  =1 if live in northeast
+nrthcen         byte   %9.0g                  =1 if live in north central
+south           byte   %9.0g                  =1 if live in south
+male            byte   %9.0g                  =1 if male
+white           byte   %9.0g                  =1 if white
+union           byte   %9.0g                  =1 if union member
+office          byte   %9.0g                  =1 if office worker
+annhrs          float  %9.0g                  annual hours worked
+ind1            byte   %9.0g                  =1 if industry == 1
+ind2            byte   %9.0g                  =1 if industry == 2
+ind3            byte   %9.0g                  
+ind4            byte   %9.0g                  
+ind5            byte   %9.0g                  
+ind6            byte   %9.0g                  
+ind7            byte   %9.0g                  
+ind8            byte   %9.0g                  
+ind9            byte   %9.0g                  
+vacdays         float  %9.0g                  $ value of vac. days
+sicklve         float  %9.0g                  $ value of sick leave
+insur           float  %9.0g                  $ value of employee insur
+pension         float  %9.0g                  $ value of employee pension
+annbens         float  %9.0g                  vacdays+sicklve+insur+pension
+hrbens          float  %9.0g                  hourly benefits, $
+annhrssq        float  %9.0g                  annhrs^2
+beratio         float  %9.0g                  annbens/annearn
+lannhrs         float  %9.0g                  log(annhrs)
+tenuresq        float  %9.0g                  tenure^2
+expersq         int    %9.0g                  exper^2
+lannearn        float  %9.0g                  log(annearn)
+peratio         float  %9.0g                  pension/annearn
+vserat          float  %9.0g                  (vacdays+sicklve)/annearn
+-------------------------------------------------------------------------------
+Sorted by:  
+
+. log close
+       log:  C:\mitbook\textfiles\fringe.des
+  log type:  text
+ closed on:  22 Apr 2002, 10:38:09
+-------------------------------------------------------------------------------

@@ -1,0 +1,351 @@
+%EX TS-program = pdflatex
+% !TEX encoding = UTF-8 Unicode
+
+% This is a simple template for a LaTeX document using the "article" class.
+% See "book", "report", "letter" for other types of document.
+
+\documentclass[11pt]{article} % use larger type; default would be 10pt
+
+\usepackage[utf8]{inputenc} % set input encoding (not needed with XeLaTeX)
+
+%%% Examples of Article customizations
+% These packages are optional, depending whether you want the features they provide.
+% See the LaTeX Companion or other references for full information.
+\usepackage{amsmath}
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+	\hskip -\arraycolsep
+	\let\@ifnextchar\new@ifnextchar
+	\array{#1}}
+\makeatother
+
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+%%% PAGE DIMENSIONS
+\usepackage{geometry} % to change the page dimensions
+\usepackage{listings}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{marvosym}
+\geometry{a4paper} % or letterpaper (US) or a5paper or....
+% \geometry{margin=2in} % for example, change the margins to 2 inches all round
+% \geometry{landscape} % set up the page for landscape
+%   read geometry.pdf for detailed page layout information
+
+\usepackage{graphicx} % support the \includegraphics command and options
+% \usepackage[parfill]{parskip} % Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{amssymb}
+%%% PACKAGES
+\usepackage{booktabs} % for much better looking tables
+\usepackage{array} % for better arrays (eg matrices) in maths
+\usepackage{paralist} % very flexible & customisable lists (eg. enumerate/itemize, etc.)
+\usepackage{verbatim} % adds environment for commenting out blocks of text & for better verbatim
+\usepackage{subfig} % make it possible to include more than one captioned figure/table in a single float
+% These packages are all incorporated in the memoir class to one degree or another...
+\usepackage{pgfplots}
+%%% HEADERS & FOOTERS
+\usepackage{fancyhdr} % This should be set AFTER setting up the page geometry
+\pagestyle{fancy} % options: empty , plain , fancy
+\renewcommand{\headrulewidth}{0pt} % customise the layout...
+\lhead{}\chead{}\rhead{}
+\lfoot{}\cfoot{\thepage}\rfoot{}
+
+%%% SECTION TITLE APPEARANCE
+\usepackage{sectsty}
+\allsectionsfont{\sffamily\mdseries\upshape} % (See the fntguide.pdf for font help)
+% (This matches ConTeXt defaults)
+\usepackage[thinc]{esdiff}
+\usepackage{bbold}
+\usepackage{MnSymbol,wasysym}
+%%% ToC (table of contents) APPEARANCE
+\usepackage[nottoc,notlof,notlot]{tocbibind} % Put the bibliography in the ToC
+\usepackage[titles,subfigure]{tocloft} % Alter the style of the Table of Contents
+\renewcommand{\cftsecfont}{\rmfamily\mdseries\upshape}
+\renewcommand{\cftsecpagefont}{\rmfamily\mdseries\upshape} % No bold!
+
+%%% END Article customizations
+
+%%% The "real" document content comes below...
+
+\title{Homework 5}
+\author{Wei Ye\footnote{ 1st year PhD student in Economics Department at Fordham University. Email: wye22@fordham.edu}
+    \\ ECON 7910- Econometrics I}
+\date{Due on Oct 21, 2021}
+\begin{document}
+\maketitle
+
+
+
+\section{Question -- 5.1}
+\textbf{Solution:}
+
+Like in the hint, we first make regression of $y_2,\pi_2$ on $v_2$, then save the residuals, we say $\ddot{x}$. Put the residuals into the equation of $y_1$, then still make linear regression to get the efficients of $\delta$ and $y_2$. 
+The thought behind this is $v_2$ is uncorrected with $y_2$ and $\pi_2$. 
+
+Therefore, the OLS and 2SLS can have the same coefficient estimation values.
+
+
+
+\section{Question -- 5.3}
+\textbf{Solution:}
+\begin{enumerate}[a)]
+	\item Becasue other variables can also affect women's health level during pregancy, like exercise frequency, drugs etc. 
+	\item \begin{enumerate}[i)]
+		\item Cigarette price is uncorrelated with the errors in (5.54), because we guess there may be other variables that correlated with packs, but it seems that ciga price doesn't affect exercise 
+		   frequence and drugs.
+		\item Cigarete price is obviously correlated with packs, in general, higher the prices of the cigareets are, less packs needed. 
+	\end{enumerate}
+	\item From Regression table (\ref{5.3::partc}), after adding an IV, the effect of packs doesn't only become from negavity to positivity, but also from significance to insignificance. Other variables also become insignificant, which means cigprice may not be a good IV.
+	\item From the table (\ref{5.3::partd}), we can't reject the coefficient of cigprice is equal to 0, so still cigprice is not a good IV for packs as the same with part (c).
+\end{enumerate}
+
+\begin{lstlisting}[language=R]
+	######################
+###These are the codes for HW-5
+### All the codes are written by Wei Ye
+## Date: Oct 20, 2021
+install.packages("ivreg")
+library(tidyverse)
+library(stargazer)
+library(ivreg)
+
+#For Question 5.3
+bwght<-read_csv('bwght.csv')
+head(bwght,n=5)
+bwght_ols<- lm(bwghtlbs~male+parity+lfaminc+packs,data=bwght)
+summary(bwght_ols)
+bwght_2sls<- ivreg(bwghtlbs~male+parity+lfaminc+packs | male+parity+lfaminc+cigprice,data=bwght)
+summary(bwght_2sls)
+stargazer(bwght_ols,bwght_2sls)
+### 5.3 part(d) Reduced form
+pack_ols <- lm(packs~male+parity+lfaminc+cigprice,data=bwght)
+summary(pack_ols)
+stargazer(pack_ols)
+	
+\end{lstlisting}
+
+
+\section{Question -- 5.7}
+\textbf{Solution:}
+\begin{enumerate}[a)]
+   \item We first assume $\xi=\frac{1}{\delta_1}$ From the information of this question, we can rewrite the equation to 
+   \begin{equation*}
+      y=\beta_0+\beta_1x_1+\beta_2x_2+ ... +\xi q_1-\xi a+v
+   \end{equation*}
+   We need to ask $q_1$ is uncorrelated with $a_1$, $x_1,...,x_k,z_1,...,z_M$ and $v$, and $\xi \neq 0$.
+   \item First, given IQ information, $z_1,...,z_M$ can be overlooked, because, IQ can make other family background information redundant. Second, IQ should be correlated with family background in some sense, because although family
+         background can't affect log wage direcly, it can affect $q_1$, like more educated parents tend to have more intelligent and well-educated children, and these children may perform well in tests.
+   \item It seems that IV is pretty good. Because educ is still strongly significant and other variables behave well on the at 95\% significance level. 
+   
+\end{enumerate}
+
+\begin{lstlisting}[language=R]
+   ####################
+###Question 5.7#####
+####################
+nls80 <- read_csv('nls80.csv')
+head(nls80,head=5)
+nls2sls1 <- ivreg(lwage~exper+tenure+educ+married+south+urban+black | exper+
+                    tenure+married+south+urban+black+iq+meduc+feduc+sibs,
+                  data=nls80)
+summary(nls2sls1)
+stargazer(nls2sls1)
+   
+\end{lstlisting}
+
+
+\section{Question -- 5.9}
+\textbf{Solution:}
+
+Rewrite $H_0$ to $\beta_4-\beta_3=0$, and $H_1: \beta_4-\beta_3>0$. We can denote $\delta=\beta_4-\beta_3$ for our convenience. $H_0: \delta=0$, and $H_1: \delta>0$.
+Then rewrite the wage equation:
+\begin{align}
+   \log(wage)&=\beta_0+\beta_1 exper+\beta_2 exper^2 + \beta_3 twoyr+\beta_4 fouryr+u \notag\\
+            &= \beta_0+\beta_1 exper+\beta_2 exper^2+ (\beta_4-\beta_3)fouryr+\beta_3 twoyr+\beta_3fouryr+u\notag \\
+            &= \beta_0+\beta_1 exper+\beta_2 exper^2+\delta foury+\beta_3(twoyr+fouryr)+u
+\end{align}
+Since two-year college and four-year college in general exclusively, we can form a new column in the data called $totalyr=twoyr+fouryr)$, then make a regression on the above equation,
+to estimate the coefficient $\delta$, if $\delta =0$ is significant, we may say $H_0$ is correct, if $\delta >0$ in 95\% confidence level, we say, $H_1$ is accepted. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\appendix
+\setcounter{secnumdepth}{0}
+\section{Appendix}
+
+% Table created by stargazer v.5.2.2 by Marek Hlavac, Harvard University. E-mail: hlavac at fas.harvard.edu
+% Date and time: Mon, Oct 18, 2021 - 14:37:24
+\begin{table}[!htbp] \centering 
+	\caption{5.3 IV and 2SLS Regression Results} 
+	\label{5.3::partc} 
+  \begin{tabular}{@{\extracolsep{5pt}}lcc} 
+  \\[-1.8ex]\hline 
+  \hline \\[-1.8ex] 
+   & \multicolumn{2}{c}{\textit{Dependent variable:}} \\ 
+  \cline{2-3} 
+  \\[-1.8ex] & \multicolumn{2}{c}{bwghtlbs} \\ 
+  \\[-1.8ex] & \textit{OLS} & \textit{instrumental} \\ 
+   & \textit{} & \textit{variable} \\ 
+  \\[-1.8ex] & (1) & (2)\\ 
+  \hline \\[-1.8ex] 
+   male & 0.197$^{***}$ & 0.223$^{*}$ \\ 
+	& (0.067) & (0.125) \\ 
+	& & \\ 
+   parity & 0.104$^{***}$ & $-$0.011 \\ 
+	& (0.038) & (0.154) \\ 
+	& & \\ 
+   lfaminc & 0.129$^{***}$ & 0.458 \\ 
+	& (0.037) & (0.401) \\ 
+	& & \\ 
+   packs & $-$0.599$^{***}$ & 5.764 \\ 
+	& (0.114) & (7.640) \\ 
+	& & \\ 
+   Constant & 6.813$^{***}$ & 5.313$^{***}$ \\ 
+	& (0.146) & (1.820) \\ 
+	& & \\ 
+  \hline \\[-1.8ex] 
+  Observations & 1,388 & 1,388 \\ 
+  R$^{2}$ & 0.041 & $-$2.124 \\ 
+  Adjusted R$^{2}$ & 0.038 & $-$2.133 \\ 
+  Residual Std. Error (df = 1383) & 1.248 & 2.252 \\ 
+  F Statistic & 14.631$^{***}$ (df = 4; 1383) &  \\ 
+  \hline 
+  \hline \\[-1.8ex] 
+  \textit{Note:}  & \multicolumn{2}{r}{$^{*}$p$<$0.1; $^{**}$p$<$0.05; $^{***}$p$<$0.01} \\ 
+  \end{tabular} 
+  \end{table} 
+
+
+
+  % Table created by stargazer v.5.2.2 by Marek Hlavac, Harvard University. E-mail: hlavac at fas.harvard.edu
+% Date and time: Mon, Oct 18, 2021 - 14:55:03
+\begin{table}[!htbp] \centering 
+	\caption{5.3 Reduced Form Regression} 
+	\label{5.3::partd} 
+  \begin{tabular}{@{\extracolsep{5pt}}lc} 
+  \\[-1.8ex]\hline 
+  \hline \\[-1.8ex] 
+   & \multicolumn{1}{c}{\textit{Dependent variable:}} \\ 
+  \cline{2-2} 
+  \\[-1.8ex] & packs \\ 
+  \hline \\[-1.8ex] 
+   male & $-$0.005 \\ 
+	& (0.016) \\ 
+	& \\ 
+   parity & 0.018$^{**}$ \\ 
+	& (0.009) \\ 
+	& \\ 
+   lfaminc & $-$0.053$^{***}$ \\ 
+	& (0.009) \\ 
+	& \\ 
+   cigprice & 0.001 \\ 
+	& (0.001) \\ 
+	& \\ 
+   Constant & 0.137 \\ 
+	& (0.104) \\ 
+	& \\ 
+  \hline \\[-1.8ex] 
+  Observations & 1,388 \\ 
+  R$^{2}$ & 0.030 \\ 
+  Adjusted R$^{2}$ & 0.028 \\ 
+  Residual Std. Error & 0.294 (df = 1383) \\ 
+  F Statistic & 10.860$^{***}$ (df = 4; 1383) \\ 
+  \hline 
+  \hline \\[-1.8ex] 
+  \textit{Note:}  & \multicolumn{1}{r}{$^{*}$p$<$0.1; $^{**}$p$<$0.05; $^{***}$p$<$0.01} \\ 
+  \end{tabular} 
+  \end{table} 
+
+
+
+
+
+
+% Table created by stargazer v.5.2.2 by Marek Hlavac, Harvard University. E-mail: hlavac at fas.harvard.edu
+% Date and time: Wed, Oct 20, 2021 - 15:07:27
+\begin{table}[!htbp] \centering 
+   \caption{5.7 Part c Regression Results} 
+   \label{table:5.7:partd} 
+ \begin{tabular}{@{\extracolsep{5pt}}lc} 
+ \\[-1.8ex]\hline 
+ \hline \\[-1.8ex] 
+  & \multicolumn{1}{c}{\textit{Dependent variable:}} \\ 
+ \cline{2-2} 
+ \\[-1.8ex] & lwage \\ 
+ \hline \\[-1.8ex] 
+  exper & 0.027$^{***}$ \\ 
+   & (0.005) \\ 
+   & \\ 
+  tenure & 0.007$^{**}$ \\ 
+   & (0.003) \\ 
+   & \\ 
+  educ & 0.112$^{***}$ \\ 
+   & (0.013) \\ 
+   & \\ 
+  married & 0.204$^{***}$ \\ 
+   & (0.045) \\ 
+   & \\ 
+  south & $-$0.074$^{**}$ \\ 
+   & (0.031) \\ 
+   & \\ 
+  urban & 0.173$^{***}$ \\ 
+   & (0.032) \\ 
+   & \\ 
+  black & $-$0.119$^{**}$ \\ 
+   & (0.052) \\ 
+   & \\ 
+  Constant & 4.646$^{***}$ \\ 
+   & (0.222) \\ 
+   & \\ 
+ \hline \\[-1.8ex] 
+ Observations & 722 \\ 
+ R$^{2}$ & 0.195 \\ 
+ Adjusted R$^{2}$ & 0.187 \\ 
+ Residual Std. Error & 0.378 (df = 714) \\ 
+ \hline 
+ \hline \\[-1.8ex] 
+ \textit{Note:}  & \multicolumn{1}{r}{$^{*}$p$<$0.1; $^{**}$p$<$0.05; $^{***}$p$<$0.01} \\ 
+ \end{tabular} 
+ \end{table} 
+
+\end{document}

@@ -1,0 +1,52 @@
+-------------------------------------------------------------------------------
+       log:  C:\mitbook\statafiles\cps91.log
+  log type:  text
+ opened on:   2 Apr 2002, 17:01:04
+
+. ds
+husage    husunion  husearns  huseduc   husblck   hushisp   hushrs    kidge6   
+earns     age       black     educ      hispanic  union     faminc    husexp   
+exper     kidlt6    hours     expersq   nwifeinc  inlf      hrwage    lwage    
+
+. des
+
+Contains data from cps91.dta
+  obs:         5,634                          
+ vars:            24                          15 May 1997 14:32
+ size:       253,530 (74.9% of memory free)
+-------------------------------------------------------------------------------
+              storage  display     value
+variable name   type   format      label      variable label
+-------------------------------------------------------------------------------
+husage          byte   %8.0g                  husband's age
+husunion        byte   %8.0g                  =1 if hus. in union
+husearns        int    %8.0g                  hus. weekly earns
+huseduc         byte   %8.0g                  husband's yrs schooling
+husblck         byte   %8.0g                  =1 if hus. black
+hushisp         byte   %8.0g                  =1 if hus. hispanic
+hushrs          byte   %8.0g                  hus. weekly hours
+kidge6          byte   %8.0g                  =1 if child >= 6
+earns           float  %8.0g                  wife's weekly earnings
+age             byte   %8.0g                  wife's age
+black           byte   %8.0g                  =1 if wife black
+educ            byte   %8.0g                  wife's yrs schooling
+hispanic        byte   %8.0g                  =1 if wife hispanic
+union           byte   %8.0g                  =1 if wife in union
+faminc          float  %9.0g                  annual family income
+husexp          byte   %8.0g                  huseduc - husage - 6
+exper           byte   %8.0g                  wifage - wifeduc - 6
+kidlt6          byte   %8.0g                  =1 if child < 6
+hours           byte   %9.0g                  wife's weekly hours
+expersq         int    %8.0g                  exper^2
+nwifeinc        float  %9.0g                  non-wife inc, $1000s
+inlf            byte   %8.0g                  =1 if wife in labor force
+hrwage          float  %9.0g                  earns/hours
+lwage           float  %9.0g                  log(hrwage)
+-------------------------------------------------------------------------------
+Sorted by:  
+
+. log close
+       log:  C:\mitbook\statafiles\cps91.log
+  log type:  text
+ closed on:   2 Apr 2002, 17:01:09
+-------------------------------------------------------------------------------

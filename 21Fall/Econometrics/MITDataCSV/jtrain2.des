@@ -1,0 +1,47 @@
+-------------------------------------------------------------------------------
+       log:  C:\mitbook\textfiles\jtrain2.des
+  log type:  text
+ opened on:  22 Apr 2002, 10:50:10
+
+. ds
+train     age       educ      black     hisp      married   nodegree  mosinex  
+re74      re75      re78      unem74    unem75    unem78    lre74     lre75    
+lre78     agesq     mostrn    
+
+. des
+
+Contains data from jtrain2.dta
+  obs:           445                          
+ vars:            19                          17 Jan 2000 17:20
+ size:        18,690 (97.9% of memory free)
+-------------------------------------------------------------------------------
+              storage  display     value
+variable name   type   format      label      variable label
+-------------------------------------------------------------------------------
+train           byte   %9.0g                  =1 if assigned to job training
+age             byte   %9.0g                  age in 1977
+educ            byte   %9.0g                  years of education
+black           byte   %9.0g                  =1 if black
+hisp            byte   %9.0g                  =1 if Hispanic
+married         byte   %9.0g                  =1 if married
+nodegree        byte   %9.0g                  =1 if no high school degree
+mosinex         byte   %9.0g                  # mnths prior to 1/78 in expmnt
+re74            float  %9.0g                  real earns., 1974, $1000s
+re75            float  %9.0g                  real earns., 1975, $1000s
+re78            float  %9.0g                  real earns., 1978, $1000s
+unem74          byte   %9.0g                  =1 if unem. all of 1974
+unem75          byte   %9.0g                  =1 if unem. all of 1975
+unem78          byte   %9.0g                  =1 if unem. all of 1978
+lre74           float  %9.0g                  log(re74); zero if re74 == 0
+lre75           float  %9.0g                  log(re75); zero if re75 == 0
+lre78           float  %9.0g                  log(re78); zero if re78 == 0
+agesq           int    %9.0g                  age^2
+mostrn          byte   %9.0g                  months in training
+-------------------------------------------------------------------------------
+Sorted by:  
+
+. log close
+       log:  C:\mitbook\textfiles\jtrain2.des
+  log type:  text
+ closed on:  22 Apr 2002, 10:51:15
+-------------------------------------------------------------------------------

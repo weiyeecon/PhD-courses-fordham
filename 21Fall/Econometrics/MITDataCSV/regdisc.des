@@ -1,0 +1,35 @@
+-------------------------------------------------------------------------------------------------------------------------
+      name:  <unnamed>
+       log:  C:\mitbook1_2e\textfiles\regdisc.des
+  log type:  text
+ opened on:   8 Feb 2011, 21:33:00
+
+. ds
+x     z     w     y     x_5   zx_5  wx_5
+
+. des
+
+Contains data from C:\mitbook1_2e\statafiles\regdisc.dta
+  obs:         2,000                          
+ vars:             7                          27 Apr 2009 13:26
+ size:        60,000 (99.9% of memory free)
+-------------------------------------------------------------------------------------------------------------------------
+              storage  display     value
+variable name   type   format      label      variable label
+-------------------------------------------------------------------------------------------------------------------------
+x               float  %9.0g                  forcing variable
+z               byte   %9.0g                  =1 if x >= 5
+w               byte   %9.0g                  =1 if treated
+y               float  %9.0g                  response variable
+x_5             float  %9.0g                  x - 5
+zx_5            float  %9.0g                  z*x_5
+wx_5            float  %9.0g                  w*x_5
+-------------------------------------------------------------------------------------------------------------------------
+Sorted by:  
+
+. log close
+      name:  <unnamed>
+       log:  C:\mitbook1_2e\textfiles\regdisc.des
+  log type:  text
+ closed on:   8 Feb 2011, 21:33:16
+-------------------------------------------------------------------------------------------------------------------------

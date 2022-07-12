@@ -1,0 +1,98 @@
+---
+title: "HW6-Econometrics"
+author: "Wei Ye"
+date: "5/3/2022"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(gmm)
+library(tidyverse)
+mauro <- read_csv("mauro1995.csv")
+head(mauro)
+attach(mauro)
+```
+
+## 1. State assumptions to ensure that the structural model is identified.
+
+* $E(u)=0$, 
+* $E(ux_i)=0$
+* It's full rank.
+
+## b and c. Estimations and find the moment conditions.
+
+Source function in the files of gfunction.R, and qderivfungmm.R.
+```{r}
+source('~/Dropbox/My Mac (Wei’s MacBook Air)/Downloads/PhD-Coursework/22Spring/Econometrics/My_solution_to _hw/HW6/gfunction.R', encoding = 'UTF-8')
+source('~/Dropbox/My Mac (Wei’s MacBook Air)/Downloads/PhD-Coursework/22Spring/Econometrics/My_solution_to _hw/HW6/qderivfungmm.R', encoding = 'UTF-8')
+
+```
+
+```{r}
+#Below is the codes for question b and c, i met some bugs while compiling these
+#code. especially in optim function. In the example code from prof. Shaw, he 
+#used fn=qfunctiongmm, but we don't have this function file, and i don't know
+#what's it meaning, so i changed it to fn=gfunction. However, the error is 
+#Error in x%*% theta: non-conformable arguments..In order to compile this
+#r-markdown file successfully, i have to comment this r block.
+# N=length(gr6085)
+# u=rnorm(N)
+# X1=cbind(gdp60,gpop6085,sec60,corruption)
+# Z1=X1
+# ksi=solve((1/N)*t(Z1)%*%Z1)
+# #thetah=cbind(0,0,-0.5,0.01,0)
+# #Fix below later
+# o = optim(cbind(0,0,0,-0.5,0),fn=gfunction,x=X1,y=corruption,z1=Z1,method="BFGS")
+# b=o$par
+# out1=qderivfungmm(y,x,z1,t(b),ksi)
+# ksi=solve(out1$Lambda)
+# o = optim(cbind(0,0,0),fn=gfunction,x=X1,y=y,z1=Z1,ksi=ksi,method="BFGS")
+# b=o$par
+# out1=qderivfungmm(y,x,z1,t(b),ksi)
+# Avarhat=out1$Avar
+# se=diag(Avarhat)^(1/2)
+# t=b/se# For question c to test the null hypothesis
+
+```
+
+
+
+## d: Now use ptrade as an IV.
+
+The moment condition for gmm of ptrade as an iv is that $E(ptrade_iz)=0$.
+
+If ptrade is valide, the first state of F-stat should be larger than 10. And ptrade is not relevant to residual in the second stage.
+
+## e: Compute the F-stat and test is it strong.
+
+```{r}
+ols_first_stage <- lm(corruption~gdp60+gpop6085+sec60+ptrade)
+summary(ols_first_stage)
+```
+The $F-stat=2.455^2=6.03<10$, so the F-stat is not strong. And ptrade is not a good iv.
+
+```{r}
+library(ivreg)
+two_stage_1 <- ivreg(gr6085~gdp60+gpop6085+sec60+corruption|gdp60+gpop6085+sec60+corruption)
+summary(two_stage_1)
+
+```
+
+## f Use ptrade and elf as our new ivs.
+
+```{r}
+first_stage_2 <- lm(corruption~gdp60+gpop6085+sec60+elf+ptrade)
+summary(first_stage_2)
+```
+```{r}
+two_stage_2 <- ivreg(gr6085~gdp60+gpop6085+sec60+corruption|gdp60+gpop6085+sec60+ptrade+elf)
+summary(two_stage_2)
+```
+Now, we can see based on these two methods, first on the first stage of 2sls, F-stat are still less than 10. On the other hand, the coefficient of 2sls is not statistically significant. Based on these reasons, the IVs are not strong.
+
+
+

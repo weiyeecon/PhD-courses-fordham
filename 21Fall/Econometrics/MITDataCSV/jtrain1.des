@@ -1,0 +1,59 @@
+-------------------------------------------------------------------------------
+       log:  C:\mitbook\textfiles\jtrain1.des
+  log type:  text
+ opened on:  22 Apr 2002, 10:49:38
+
+. ds
+year      fcode     employ    sales     avgsal    scrap     rework    tothrs   
+union     grant     d89       d88       totrain   hrsemp    lscrap    lemploy  
+lsales    lrework   lhrsemp   lscrap_1  grant_1   clscrap   cgrant    clemploy 
+clsales   lavgsal   clavgsal  cgrant_1  chrsemp   clhrsemp  
+
+. des
+
+Contains data from jtrain1.dta
+  obs:           471                          
+ vars:            30                          17 Aug 1999 16:48
+ size:        44,745 (95.3% of memory free)
+-------------------------------------------------------------------------------
+              storage  display     value
+variable name   type   format      label      variable label
+-------------------------------------------------------------------------------
+year            int    %9.0g                  1987, 1988, or 1989
+fcode           float  %9.0g                  firm code number
+employ          int    %9.0g                  # employees at plant
+sales           float  %9.0g                  annual sales, $
+avgsal          float  %9.0g                  average employee salary
+scrap           float  %9.0g                  scrap rate (per 100 items)
+rework          float  %9.0g                  rework rate (per 100 items)
+tothrs          int    %9.0g                  total hours training
+union           byte   %9.0g                  =1 if unionized
+grant           byte   %9.0g                  = 1 if received grant
+d89             byte   %9.0g                  = 1 if year = 1989
+d88             byte   %9.0g                  = 1 if year = 1988
+totrain         int    %9.0g                  total employees trained
+hrsemp          float  %9.0g                  tothrs/totrain
+lscrap          float  %9.0g                  log(scrap)
+lemploy         float  %9.0g                  log(employ)
+lsales          float  %9.0g                  log(sales)
+lrework         float  %9.0g                  log(rework)
+lhrsemp         float  %9.0g                  log(1 + hrsemp)
+lscrap_1        float  %9.0g                  lagged lscrap; missing 1987
+grant_1         byte   %9.0g                  lagged grant; assumed 0 in 1987
+clscrap         float  %9.0g                  lscrap - lscrap_1; year > 1987
+cgrant          byte   %9.0g                  grant - grant_1
+clemploy        float  %9.0g                  lemploy - lemploy[_n-1]
+clsales         float  %9.0g                  lavgsal - lavgsal[_n-1]
+lavgsal         float  %9.0g                  log(avgsal)
+clavgsal        float  %9.0g                  lavgsal - lavgsal[_n-1]
+cgrant_1        byte   %9.0g                  cgrant[_n-1]
+chrsemp         float  %9.0g                  hrsemp - hrsemp[_n-1]
+clhrsemp        float  %9.0g                  lhrsemp - lhrsemp[_n-1]
+-------------------------------------------------------------------------------
+Sorted by:  fcode  year  
+
+. log close
+       log:  C:\mitbook\textfiles\jtrain1.des
+  log type:  text
+ closed on:  22 Apr 2002, 10:49:47
+-------------------------------------------------------------------------------

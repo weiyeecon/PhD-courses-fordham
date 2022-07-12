@@ -1,0 +1,51 @@
+-------------------------------------------------------------------------------------------------------------------------
+      name:  <unnamed>
+       log:  C:\mitbook1_2e\textfiles\catheter.log
+  log type:  text
+ opened on:   8 Feb 2011, 17:45:43
+
+. ds
+death      sex        income     cat2       age        white      inc0       inc2       ninsclas1  ninsclas3  ninsclas5
+rhc        race       cat1       ninsclas   black      other      inc1       inc3       ninsclas2  ninsclas4  ninsclas6
+
+. des
+
+Contains data from catheter.dta
+  obs:         5,735                          Written by R.              
+ vars:            22                          8 Feb 2011 17:45
+ size:       212,195 (99.9% of memory free)
+-------------------------------------------------------------------------------------------------------------------------
+              storage  display     value
+variable name   type   format      label      variable label
+-------------------------------------------------------------------------------------------------------------------------
+death           byte   %9.0g                  =1 if patient died within 180 days
+rhc             byte   %9.0g                  =1 if received right heart catheterization
+sex             byte   %9.0g                  =1 if female
+race            byte   %9.0g                  black = 0, white = 1, other = 2
+income          byte   %9.0g                  4 income categories
+cat1            byte   %9.0g                  9 primary disease categories
+cat2            byte   %9.0g                  7 secondary disease categories
+ninsclas        byte   %9.0g                  6 insurance classes
+age             double %9.0g                  measured to two decimal places
+black           byte   %9.0g                  =1 if black
+white           byte   %9.0g                  =1 if white
+other           byte   %9.0g                  =1 if 'other' race
+inc0            byte   %9.0g                  
+inc1            byte   %9.0g                  
+inc2            byte   %9.0g                  
+inc3            byte   %9.0g                  
+ninsclas1       byte   %9.0g                  
+ninsclas2       byte   %9.0g                  
+ninsclas3       byte   %9.0g                  
+ninsclas4       byte   %9.0g                  
+ninsclas5       byte   %9.0g                  
+ninsclas6       byte   %9.0g                  
+-------------------------------------------------------------------------------------------------------------------------
+Sorted by:  
+
+. log close
+      name:  <unnamed>
+       log:  C:\mitbook1_2e\textfiles\catheter.log
+  log type:  text
+ closed on:   8 Feb 2011, 17:45:52
+-------------------------------------------------------------------------------------------------------------------------

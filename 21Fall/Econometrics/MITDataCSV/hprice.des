@@ -1,0 +1,47 @@
+-------------------------------------------------------------------------------
+       log:  C:\mitbook\textfiles\hprice.des
+  log type:  text
+ opened on:  22 Apr 2002, 10:43:01
+
+. ds
+year      age       agesq     nbh       cbd       intst     lintst    price    
+rooms     area      land      baths     dist      ldist     lprice    y81      
+larea     lland     lintstsq  
+
+. des
+
+Contains data from hprice.dta
+  obs:           321                          
+ vars:            19                          2 Sep 1996 16:05
+ size:        19,902 (97.8% of memory free)
+-------------------------------------------------------------------------------
+              storage  display     value
+variable name   type   format      label      variable label
+-------------------------------------------------------------------------------
+year            int    %9.0g                  1978, 1981
+age             int    %9.0g                  age of house
+agesq           float  %9.0g                  age^2
+nbh             byte   %9.0g                  neighborhood, 1-6
+cbd             float  %9.0g                  dist. to cent. bus. dstrct, ft.
+intst           float  %9.0g                  dist. to interstate, ft.
+lintst          float  %9.0g                  log(intst)
+price           float  %9.0g                  selling price
+rooms           byte   %9.0g                  # rooms in house
+area            int    %9.0g                  square footage of house
+land            float  %9.0g                  square footage lot
+baths           byte   %9.0g                  # bathrooms
+dist            float  %9.0g                  dist. from house to incin., ft.
+ldist           float  %9.0g                  log(dist)
+lprice          float  %9.0g                  log(price)
+y81             byte   %9.0g                  
+larea           float  %9.0g                  log(area)
+lland           float  %9.0g                  log(land)
+lintstsq        float  %9.0g                  lintst^2
+-------------------------------------------------------------------------------
+Sorted by:  
+
+. log close
+       log:  C:\mitbook\textfiles\hprice.des
+  log type:  text
+ closed on:  22 Apr 2002, 10:43:06
+-------------------------------------------------------------------------------

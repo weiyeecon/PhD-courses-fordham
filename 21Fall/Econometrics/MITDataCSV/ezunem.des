@@ -1,0 +1,72 @@
+-------------------------------------------------------------------------------
+       log:  C:\mitbook\textfiles\ezunem.des
+  log type:  text
+ opened on:  22 Apr 2002, 10:32:12
+
+. ds
+year      uclms     ez        d81       d82       d83       d84       d85      
+d86       d87       d88       c1        c2        c3        c4        c5       
+c6        c7        c8        c9        c10       c11       c12       c13      
+c14       c15       c16       c17       c18       c19       c20       c21      
+c22       luclms    guclms    cez       guclms_1  guclms_2  t         ezt      
+city      
+
+. des
+
+Contains data from ezunem.dta
+  obs:           198                          
+ vars:            41                          22 Apr 2002 10:23
+ size:        12,078 (98.6% of memory free)
+-------------------------------------------------------------------------------
+              storage  display     value
+variable name   type   format      label      variable label
+-------------------------------------------------------------------------------
+year            int    %9.0g                  1980 to 1988
+uclms           float  %9.0g                  unemployment claims
+ez              byte   %9.0g                  =1 if have enterprise zone
+d81             byte   %9.0g                  =1 if year == 1981
+d82             byte   %9.0g                  
+d83             byte   %9.0g                  
+d84             byte   %9.0g                  
+d85             byte   %9.0g                  
+d86             byte   %9.0g                  
+d87             byte   %9.0g                  
+d88             byte   %9.0g                  
+c1              byte   %9.0g                  =1 if city == 1
+c2              byte   %9.0g                  
+c3              byte   %9.0g                  
+c4              byte   %9.0g                  
+c5              byte   %9.0g                  
+c6              byte   %9.0g                  
+c7              byte   %9.0g                  
+c8              byte   %9.0g                  
+c9              byte   %9.0g                  
+c10             byte   %9.0g                  
+c11             byte   %9.0g                  
+c12             byte   %9.0g                  
+c13             byte   %9.0g                  
+c14             byte   %9.0g                  
+c15             byte   %9.0g                  
+c16             byte   %9.0g                  
+c17             byte   %9.0g                  
+c18             byte   %9.0g                  
+c19             byte   %9.0g                  
+c20             byte   %9.0g                  
+c21             byte   %9.0g                  
+c22             byte   %9.0g                  
+luclms          float  %9.0g                  log(uclms)
+guclms          float  %9.0g                  luclms - luclms[_n-1]
+cez             byte   %9.0g                  ez - ez[_n-1]
+guclms_1        float  %9.0g                  guclms[_n-1]
+guclms_2        float  %9.0g                  guclms[_n-2]
+t               byte   %9.0g                  linear time trend, t = 1,...,9
+ezt             byte   %9.0g                  ez*t
+city            byte   %9.0g                  city number
+-------------------------------------------------------------------------------
+Sorted by:  city  year  
+
+. log close
+       log:  C:\mitbook\textfiles\ezunem.des
+  log type:  text
+ closed on:  22 Apr 2002, 10:32:20
+-------------------------------------------------------------------------------

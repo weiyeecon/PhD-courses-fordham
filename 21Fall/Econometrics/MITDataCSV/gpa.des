@@ -1,0 +1,55 @@
+-------------------------------------------------------------------------------
+       log:  C:\mitbook\textfiles\gpa.des
+  log type:  text
+ opened on:  22 Apr 2002, 10:40:45
+
+. ds
+term      sat       tothrs    cumgpa    major     season    frstsem   crsgpa   
+crspop    verbmath  trmgpa    hssize    race      hsrank    sport     id       
+spring    female    black     white     ctrmgpa   ctothrs   ccrsgpa   ccrspop  
+cseason   hsperc    
+
+. des
+
+Contains data from gpa.dta
+  obs:           732                          
+ vars:            26                          2 Sep 1996 22:18
+ size:        53,436 (94.5% of memory free)
+-------------------------------------------------------------------------------
+              storage  display     value
+variable name   type   format      label      variable label
+-------------------------------------------------------------------------------
+term            int    %4.0f                  F88 or S89
+sat             int    %4.0f                  SAT score
+tothrs          int    %10.0g                 total hours prior to term
+cumgpa          float  %9.0g                  cumulative GPA
+major           int    %10.0g                 major code
+season          byte   %8.0g                  =1 if in season
+frstsem         byte   %8.0g                  =1 if student's 1st semester
+crsgpa          float  %9.0g                  weighted course GPA
+crspop          float  %9.0g                  course popularity
+verbmath        float  %9.0g                  verbal SAT to math SAT ratio
+trmgpa          float  %9.0g                  term GPA
+hssize          int    %4.0f                  high school size
+race            byte   %10.0g                 race code
+hsrank          int    %4.0f                  rank in h.s. class
+sport           str8   %9s                    kind of sport
+id              float  %9.0g                  student code
+spring          byte   %9.0g                  =1 if spring term
+female          byte   %9.0g                  =1 if female
+black           byte   %9.0g                  =1 if black
+white           byte   %9.0g                  =1 if white
+ctrmgpa         float  %9.0g                  change in trmgpa
+ctothrs         byte   %9.0g                  change in total hours
+ccrsgpa         float  %9.0g                  change in crsgpa
+ccrspop         float  %9.0g                  change in crspop
+cseason         byte   %9.0g                  change in season
+hsperc          float  %9.0g                  percentile in h.s.
+-------------------------------------------------------------------------------
+Sorted by:  id  term  
+
+. log close
+       log:  C:\mitbook\textfiles\gpa.des
+  log type:  text
+ closed on:  22 Apr 2002, 10:41:12
+-------------------------------------------------------------------------------

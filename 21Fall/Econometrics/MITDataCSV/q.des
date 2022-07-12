@@ -1,0 +1,57 @@
+-------------------------------------------------------------------------------
+       log:  C:\mitbook\textfiles\q.des
+  log type:  text
+ opened on:  22 Apr 2002, 11:16:13
+
+. ds
+cusip     year      ikb       ikn       qb        qn        d75       d76      
+d77       d78       d79       d80       d81       d82       d83       d84      
+d85       ikb_1     ikn_1     qb_1      qn_1      cikb      cikn      cqb      
+cqn       cikb_1    cqb_1     cikb_2    
+
+. des
+
+Contains data from q.dta
+  obs:         2,068                          
+ vars:            28                          8 Jul 1997 14:53
+ size:       165,440 (83.6% of memory free)
+-------------------------------------------------------------------------------
+              storage  display     value
+variable name   type   format      label      variable label
+-------------------------------------------------------------------------------
+cusip           float  %9.0g                  firm identifier
+year            byte   %9.0g                  75 to 85
+ikb             float  %9.0g                  I/K ratio, broad measure
+ikn             float  %9.0g                  I/K ratio, narrow measure
+qb              float  %9.0g                  Q, broad measure
+qn              float  %9.0g                  Q, narrow measure
+d75             byte   %9.0g                  =1 if year == 75
+d76             byte   %9.0g                  
+d77             byte   %9.0g                  
+d78             byte   %9.0g                  
+d79             byte   %9.0g                  
+d80             byte   %9.0g                  
+d81             byte   %9.0g                  
+d82             byte   %9.0g                  
+d83             byte   %9.0g                  
+d84             byte   %9.0g                  
+d85             byte   %9.0g                  
+ikb_1           float  %9.0g                  ikb lagged one year
+ikn_1           float  %9.0g                  ikn lagged one year
+qb_1            float  %9.0g                  qb lagged one year
+qn_1            float  %9.0g                  qn lagged one year
+cikb            float  %9.0g                  
+cikn            float  %9.0g                  
+cqb             float  %9.0g                  
+cqn             float  %9.0g                  
+cikb_1          float  %9.0g                  
+cqb_1           float  %9.0g                  
+cikb_2          float  %9.0g                  
+-------------------------------------------------------------------------------
+Sorted by:  cusip  
+
+. log off
+       log:  C:\mitbook\textfiles\q.des
+  log type:  text
+ paused on:  22 Apr 2002, 11:17:28
+-------------------------------------------------------------------------------

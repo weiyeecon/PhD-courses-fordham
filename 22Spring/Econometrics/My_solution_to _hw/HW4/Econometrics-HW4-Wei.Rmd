@@ -1,0 +1,127 @@
+---
+title: "Econometrics-4-Wei"
+author: "Wei Ye^[First year Phd Student in Economics at Fordham University]"
+date: "March 14,2022"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+
+## a.
+
+The code associated with a is in below:
+```{r}
+set.seed(1)
+N=100
+x=rnorm(N)
+b0=1
+b1=0
+u=rnorm(N)
+m=exp(b0+b1*x)
+y=m+u
+```
+
+## b.
+```{r}
+theta_int=cbind(0.5,0)
+source('~/Dropbox/My Mac (Wei’s MacBook Air)/Downloads/PhD-Coursework/22Spring/Econometrics/My_solution_to _hw/HW4/qfunction.R', encoding = 'UTF-8')
+source('~/Dropbox/My Mac (Wei’s MacBook Air)/Downloads/PhD-Coursework/22Spring/Econometrics/My_solution_to _hw/HW4/qderivfun.R', encoding = 'UTF-8')
+source('~/Dropbox/My Mac (Wei’s MacBook Air)/Downloads/PhD-Coursework/22Spring/Econometrics/My_solution_to _hw/HW4/qderivfun2.R', encoding = 'UTF-8')
+out1=qderivfun(y,x,t(theta_int))
+ssum=out1$ssum
+out2=qderivfun2(y,x,t(theta_int))
+hsum=out2$H
+QgPlusOne=t(theta_int)-solve(hsum)%*%ssum
+QgPlusOne
+
+```
+
+## c.
+```{r}
+library(tidyverse)
+thetastore=matrix(0,nrow=2,ncol=11)
+thetastore[,1]=c(0.5,0)
+d=matrix(0,nrow=2,ncol=10)
+for (i in 1:10){
+  out1=qderivfun(y,x,thetastore[,i])
+  ssum=out1$ssum
+  out2=qderivfun2(y,x,thetastore[,i])
+  hsum=out2$H
+  thetastore[,i+1]=thetastore[,i]-solve(hsum)%*% ssum
+  d[,i]=abs(thetastore[,i+1]-thetastore[,i])
+}
+
+print(thetastore)
+print("\n")
+print(d)
+print("\n")
+print(max(d))
+```
+From the d value matrix you can  see above, the last couple of colums' power is -12, it's extreme number, so it will converge.
+
+Plot as below:
+
+```{r}
+plot(1:11,d[1:11])
+  
+```
+
+
+## d:Use NLS method to estimate the model:
+
+```{r}
+nlsout=nls(y~exp(b0+b1*x),start = list(b0=1,b1=0))
+summary(nlsout)
+#Here the result is homoskedasticity, we dig into more to make some robust test.
+```
+
+```{r}
+X1=cbind(rep(1,100),x)
+o=optim(cbind(1,0),fn=qfunction,x=X1,y=y,method="BFGS")
+o
+```
+From the result above, we can get $o\$par[,1]=2.680591$ and $o\$par[,2]=-0.001060647$, which is the same in roud 5 digits with the result we get from QgPlusOne in b.
+
+
+## e. Build R script and test $\theta^{g}$ in our R script.
+```{r}
+##This chunk is codes for 'nrmethod.R', in this case i don't need to attach my R file anymore.
+##Created by Wei Ye
+##Date: March 14, 2022
+#Note: I don't treat $\theta$ as vectors, but as matrix for my own convenience.
+#source('~/Dropbox/My Mac (Wei’s MacBook Air)/Downloads/PhD-Coursework/22Spring/Econometrics/My_solution_to _hw/HW4/nrmethod.R', encoding = 'UTF-8')
+```
+
+
+Test for $\theta^{\{g\}}=[.5,0]'$
+
+Note: I suffered from an error below in comment. I will check this tomorrow or 
+in a few days, and to test it later. I have attached my nrmethod.R file in the email.
+
+```{r}
+#I comment this chunk because after implementing nrmethod to this chunk,
+#there are erros: 'Only first element is used', and it follows 10 times.
+#I didn't find a method to solve this at the moment. My initial suspect is due to 
+#my while loop bug in "nrmethod.R".
+
+#thetatest1=matrix(0,nrow=2,ncol=100)
+#thetatest1[,1]=c(0.5,0)
+#nrmethod(y,x,thetatest1)
+
+```
+
+
+
+```{r}
+##thetatest2=matrix(0,nrow=2,ncol=100)
+#thetatest2[,1]=c(-2,0)
+#nrmethod(y,x,thetatest2)
+```
+
+
+
+

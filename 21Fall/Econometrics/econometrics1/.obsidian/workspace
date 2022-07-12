@@ -1,0 +1,89 @@
+{
+  "main": {
+    "id": "89f9f6b17bfc4aba",
+    "type": "split",
+    "children": [
+      {
+        "id": "b581d25fa4f490be",
+        "type": "leaf",
+        "state": {
+          "type": "empty",
+          "state": {}
+        }
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "a70d8f2412c66ae9",
+    "type": "split",
+    "children": [
+      {
+        "id": "d2fa66e46edf8f90",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "b0ce958d4d9bbb8c",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {}
+            }
+          },
+          {
+            "id": "f96c294273e3e3e2",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "f3fb8038ca7cac07",
+    "type": "split",
+    "children": [
+      {
+        "id": "26c60b54a366b473",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "3218144c17220bd6",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "active": "b581d25fa4f490be",
+  "lastOpenFiles": [
+    "Notes for Econometrics1.md"
+  ]
+}

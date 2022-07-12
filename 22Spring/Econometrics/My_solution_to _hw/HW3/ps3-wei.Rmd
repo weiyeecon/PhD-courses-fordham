@@ -1,0 +1,141 @@
+---
+title: "Econoemtrics-ps3"
+author: "Wei Ye"
+date: "2/28/2022"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## a:
+The qfunction we modify as below:
+```{r}
+qfunction <- function(y,x,theta){
+  N=length(y) #Find sample size
+  #note that x should be N*K and theta should N*1
+  m=x %*% theta#Define the function m(), %*% matrix mulplication, transpose of theta
+  Q=(1/N)*sum((y-m)^2)# This is our objective function
+  out=Q
+}
+```
+
+## b:
+Since this question requires us to derive Hessian matrix: it's just the qderivfun we coded in class, and the analytic form as below:
+
+First,set up the q:
+$$q=\frac{(y-m(x,\theta_0))^2}{2}=\frac{(y-\theta_{01}-\theta_{02}priGPA-\theta_{03}ACT)^2}{2}$$
+Thus, $\frac{\partial q}{\partial \theta_{01}}=(y-m(x,\theta_0))\cdot(-1)$, $\frac{\partial q}{\partial \theta_{02}}=(\cdot)(-priGPA)$, and $\frac{\partial q}{\partial \theta_{03}}=(\cdot)(-ACT)$.
+Therefore, we can derive the Hessian Matrix as:
+$$H_i=\begin{bmatrix}
+1&priGPA_i&ACT_i\\
+priGPA_i&priGPA_i^2&priGPA_i\cdot ACT_i\\
+ACT_i&ACT\cdot priGPA_i& ACT_i^2
+\end{bmatrix}$$
+
+
+```{r}
+qderivfun<-function(y,x,thetahat){
+N=length(y) #sample size
+k1=dim(as.matrix(x)) #find number of x-variables
+k=k1[2]+1 #add to x column to adjust for vector of ones
+derivstore=matrix(0,N,k)
+h=.Machine$double.eps^(1/3) #set approximation error
+x=as.matrix(x) #declare as matrix
+for (j in 1:k){
+z=rep(0,k)
+z[j]=h
+for (i in 1:N){
+Qph=qfunction(y[i],cbind(1,t(x[i,])),thetahat+z)
+Qmh=qfunction(y[i],cbind(1,t(x[i,])),thetahat-z)
+qderiv=(Qph-Qmh)/(2*h)
+derivstore[i,j]=qderiv
+}
+
+}
+B0hat=(1/N)*(t(derivstore)%*%derivstore) #B0hat from AVAR
+ssum=colSums(derivstore)
+return(list(derivstore=derivstore,ssum=ssum,B0hat=B0hat))
+}
+```
+##c:
+For computing sum of hessian:it's the file of \textbf{qderivfun2.R}, and the analytical part as below:
+$$\sum_{i=1}^NH_i=\begin{bmatrix}
+N&\sum_{i=1}^NpriGPA_i&\sum_{i=1}^NACT_i\\
+\sum_{i=1}^NpriGPA_i&\sum_{i=1}^NpriGPA_i^2&\sum_{i=1}^NpriGPA_i\cdot ACT_i\\
+\sum_{i=1}^NACT_i&\sum_{i=1}^NACT_i\cdot priGPA_i&\sum_{i=1}^N ACT_i^2
+\end{bmatrix}$$
+```{r}
+qderivfun2 <- function(y,x,thetahat){
+  k=dim(as.matrix(x))#dimension of x-variable
+  p=k[2]+1 #set dimension of theta space
+  N=length(y)
+  derivs=vector(,N)#pre-allocate space
+  H=matrix(0,p,p)#Pre-allocate space of hessian matrix
+  h=.Machine$double.eps^(1/3)
+  for(i in 1:p){
+    for (j in 1:p) {
+      z=rep(0,p)#create scalar to approximate derivative at each p
+      z[j]=h
+      theta1=thetahat+z
+      theta2=thetahat-z
+      qout1=qderivfun(y,x,theta1)
+      q1=qout1$derivstor[,i]
+      qout2=qderivfun(y,x,theta2)
+      q2=qout2$derivstor[,i]
+      d=(q1-q2)/(2*h)# Central difference
+      H[i,j]=sum(d)#store the hessian matrix
+    }
+  }
+  A0hat=(1/N)*H
+  return(list(H=H,A0hat=A0hat))
+}
+```
+
+##d: Compute the analytical expression  for $A_0$:
+$A_0=E[H(w,\hat{\theta})]=\frac{1}{N}\sum_{i=1}^N H(w_i,\hat{\theta})$.
+
+##e: Estimate the populaton model under consideration:
+```{r}
+library(tidyverse)
+attend<-read_csv("attend.csv")
+attach(attend)
+nlsout=nls(termgpa~(b0+b1*priGPA+b2*ACT),start=list(b0=1,b1=0.04321,b2=.9))
+summary(nlsout)
+```
+## f: Verify the result with the code qderivfun2.R:
+```{r}
+source('~/Dropbox/My Mac (Wei’s MacBook Air)/Downloads/PhD-Coursework/22Spring/Econometrics/My_solution_to _hw/HW3/qfunction.R', encoding = 'UTF-8')
+source('~/Dropbox/My Mac (Wei’s MacBook Air)/Downloads/PhD-Coursework/22Spring/Econometrics/My_solution_to _hw/HW3/qderivfun.R', encoding = 'UTF-8')
+ source('~/Dropbox/My Mac (Wei’s MacBook Air)/Downloads/PhD-Coursework/22Spring/Econometrics/My_solution_to _hw/HW3/qderivfun2.R', encoding = 'UTF-8')
+
+thetahat=cbind(0.257753,0.875274,0.003514)
+X=cbind(priGPA,ACT)
+out=qderivfun(termgpa,X,t(thetahat))
+out1=qderivfun2(termgpa,X,t(thetahat))
+out1
+```
+
+##g: Calculate the estimated variance-covariance matrix $\hat{Avar}(\hat{\theta})$:
+```{r}
+avartheta=solve(out1$A0hat)%*% out$B0hat%*% solve(out1$A0hat)/length(termgpa)
+avartheta
+```
+##h: Test the null hypothesis:
+```{r}
+vartheta=diag(avartheta)
+se=vartheta^(1/2)
+se
+t_stat=thetahat/se
+t_stat
+```
+Thus, from the results we derived above, we can't accept the alternative condition for 
+$\theta_{01},\theta_{03}\neq 0$, but another $\theta$, we accept the alternative conditions that they are not equal to 0.
+
+
+
+
+
+
+

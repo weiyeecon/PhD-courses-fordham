@@ -1,0 +1,36 @@
+-------------------------------------------------------------------------------------------------------------------------
+       log:  C:\mitbook1_2e\textfiles\401kpart.log
+  log type:  text
+ opened on:   8 Feb 2011, 16:33:39
+
+. ds
+partic     totemp     employ     mrate      prate      age        sole       ltotemp    agesq      ltotempsq
+
+. des
+
+Contains data from 401kpart.dta
+  obs:         4,075                          
+ vars:            10                          2 Nov 2005 15:30
+ size:       154,850 (99.9% of memory free)
+-------------------------------------------------------------------------------
+              storage  display     value
+variable name   type   format      label      variable label
+-------------------------------------------------------------------------------
+partic          float  %9.0g                  # employees partic. in 401(k)
+totemp          float  %9.0g                  # worldwide firm employees
+employ          float  %9.0g                  # employees eligible for 401(k)
+mrate           float  %9.0g                  plan match rate, per $
+prate           float  %9.0g                  partic/employ
+age             byte   %9.0g                  age of the plan
+sole            byte   %9.0g                  =1 if only pension plan
+ltotemp         float  %9.0g                  log(totemp)
+agesq           float  %9.0g                  age^2
+ltotempsq       float  %9.0g                  ltotemp^2
+-------------------------------------------------------------------------------
+Sorted by:  
+
+. log close
+       log:  C:\mitbook1_2e\textfiles\401kpart.log
+  log type:  text
+ closed on:   8 Feb 2011, 16:33:44
+-------------------------------------------------------------------------------------------------------------------------

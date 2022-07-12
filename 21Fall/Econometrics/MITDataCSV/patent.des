@@ -1,0 +1,79 @@
+-------------------------------------------------------------------------------
+       log:  C:\mitbook\textfiles\patent.des
+  log type:  text
+ opened on:  22 Apr 2002, 11:08:38
+
+. ds
+cusip     merger    employ    return    patents   patentsg  stckpr    rnd      
+rndeflt   rndstck   sales     sic       year      y72       y73       y74      
+y75       y76       y77       y78       y79       y80       y81       lrnd     
+lsales    lpat      rnd_1     rnd_2     rnd_3     rnd_4     rnd_5     lrnd_1   
+lrnd_2    lrnd_3    lrnd_4    lrnd_5    clpat     clrnd     clrnd_1   clrnd_2  
+clrnd_3   clrnd_4   clrnd_5   clsales   lrnd_6    lrnd_7    lrnd_8    lrnd_9   
+
+. des
+
+Contains data from patent.dta
+  obs:         2,260                          
+ vars:            48                          1 Dec 1999 15:54
+ size:       348,040 (65.7% of memory free)
+-------------------------------------------------------------------------------
+              storage  display     value
+variable name   type   format      label      variable label
+-------------------------------------------------------------------------------
+cusip           float  %9.0g                  firm identifier
+merger          byte   %9.0g                  =1 if major merger
+employ          float  %10.3f                 employees in 1000s
+return          float  %9.0g                  return on stock, %
+patents         int    %9.0g                  patents applied for
+patentsg        int    %9.0g                  patents granted
+stckpr          float  %9.0g                  price common stock
+rnd             float  %9.0g                  R&D expend, current mill $
+rndeflt         float  %9.0g                  R&D expend, 1972 mill $
+rndstck         float  %9.0g                  stock of R&D
+sales           float  %9.0g                  sales, current mill. $
+sic             int    %9.0g                  4 digit industry
+year            byte   %9.0g                  72 through 81
+y72             byte   %9.0g                  
+y73             byte   %9.0g                  
+y74             byte   %9.0g                  
+y75             byte   %9.0g                  
+y76             byte   %9.0g                  
+y77             byte   %9.0g                  
+y78             byte   %9.0g                  
+y79             byte   %9.0g                  
+y80             byte   %9.0g                  
+y81             byte   %9.0g                  
+lrnd            float  %9.0g                  log(1+rnd)
+lsales          float  %9.0g                  log(sales)
+lpat            float  %9.0g                  log(1+patents)
+rnd_1           float  %9.0g                  
+rnd_2           float  %9.0g                  
+rnd_3           float  %9.0g                  
+rnd_4           float  %9.0g                  
+rnd_5           float  %9.0g                  
+lrnd_1          float  %9.0g                  
+lrnd_2          float  %9.0g                  
+lrnd_3          float  %9.0g                  
+lrnd_4          float  %9.0g                  
+lrnd_5          float  %9.0g                  
+clpat           float  %9.0g                  
+clrnd           float  %9.0g                  
+clrnd_1         float  %9.0g                  
+clrnd_2         float  %9.0g                  
+clrnd_3         float  %9.0g                  
+clrnd_4         float  %9.0g                  
+clrnd_5         float  %9.0g                  
+clsales         float  %9.0g                  
+lrnd_6          float  %9.0g                  
+lrnd_7          float  %9.0g                  
+lrnd_8          float  %9.0g                  
+lrnd_9          float  %9.0g                  
+-------------------------------------------------------------------------------
+Sorted by:  cusip  year  
+
+. log close
+       log:  C:\mitbook\textfiles\patent.des
+  log type:  text
+ closed on:  22 Apr 2002, 11:09:35
+-------------------------------------------------------------------------------

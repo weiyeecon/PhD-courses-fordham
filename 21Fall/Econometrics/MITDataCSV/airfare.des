@@ -1,0 +1,43 @@
+-------------------------------------------------------------------------------
+       log:  C:\mitbook\statafiles\airfare.des
+  log type:  text
+ opened on:   2 Apr 2002, 16:53:45
+
+. ds
+year      origin    destin    id        dist      passen    fare      bmktshr  
+ldist     y98       y99       y00       lfare     ldistsq   concen    lpassen  
+
+. des
+
+Contains data from airfare.dta
+  obs:         4,596                          
+ vars:            16                          8 Jan 2002 22:16
+ size:       395,256 (61.1% of memory free)
+-------------------------------------------------------------------------------
+              storage  display     value
+variable name   type   format      label      variable label
+-------------------------------------------------------------------------------
+year            int    %9.0g                  1997, 1998, 1999, 2000
+origin          str21  %21s                   flight's origin
+destin          str24  %24s                   flight's destination
+id              int    %9.0g                  route identifier
+dist            int    %9.0g                  distance, in miles
+passen          int    %9.0g                  avg. passengers per day
+fare            int    %9.0g                  avg. one-way fare, $
+bmktshr         float  %9.0g                  fraction market, biggest carrier
+ldist           float  %9.0g                  log(distance)
+y98             byte   %9.0g                  =1 if year == 1998
+y99             byte   %9.0g                  =1 if year == 1999
+y00             byte   %9.0g                  =1 if year == 2000
+lfare           float  %9.0g                  log(fare)
+ldistsq         float  %9.0g                  ldist^2
+concen          float  %9.0g                  = bmktshr
+lpassen         float  %9.0g                  log(passen)
+-------------------------------------------------------------------------------
+Sorted by:  id  year  
+
+. log close
+       log:  C:\mitbook\statafiles\airfare.des
+  log type:  text
+ closed on:   2 Apr 2002, 16:53:58
+-------------------------------------------------------------------------------
